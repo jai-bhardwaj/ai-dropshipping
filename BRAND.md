@@ -31,7 +31,7 @@
 **Logo prompt (for an AI image tool):**
 > Minimal logo for a pet keepsake brand called "Woven Tails". A simple paw print formed by three interlaced woven thread lines, forest green (#2F4A3A) on a cream (#F6F0E6) background, flat vector, clean, no gradients, works at small sizes, the wordmark "Woven Tails" in a soft modern serif under the icon.
 
-(Generate 4 options, pick one, then remove the background for a PNG.)
+(Done: 2 options in `assets/logo/`; option 1, the woven paw, is used in the videos.)
 
 ## Homepage copy (Shopify → Online Store → Customize)
 

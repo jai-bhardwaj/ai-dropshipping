@@ -1,0 +1,50 @@
+# Woven Tails: sample media
+
+All images and clips were generated with AI (Higgsfield: GPT Image 2.5 for images, Seedance 2.5 for clips) on 2026-10-08. The pets are **AI-generated sample pets** (not real customers' pets), so you can use them freely in ads and on the store.
+
+## Folders
+
+| Folder | What | Use it for |
+|---|---|---|
+| `pets/` | 4 sample "phone photos": golden retriever ("Sunny"), orange tabby, border collie, French bulldog | "Before" shots in videos and product pages |
+| `blanket-art/` | Each pet in the 3 blanket styles: Bold Pop, Christmas Scarf, Royal (12 illustrations) | Product page style picker, Printify mockups, Pinterest, "pick a style" posts |
+| `lifestyle/` | Product-in-use scenes: blanket on sofa/bed/under tree, weave close-up, presenter with blanket/book, book on table, gift box | Product page gallery, homepage hero, Pinterest pins, video frames |
+| `storybook/pages/` | Sample book: cover + 6 finished pages (1, 11, 12, 13, 16, 23) of *Sunny and the Very Big Day* with text | Product page gallery, storybook videos; template for real orders |
+| `storybook/raw/` | The same pages without text | Re-use with other text |
+| `logo/` | 2 logo options (option 1 = woven paw, used in the videos) | Shopify logo, social profile pictures |
+| `clips/` | 7 animated 5-second clips (720p, silent) | Building new video edits |
+| `videos/` | **6 finished vertical videos (1080×1920)**, ready to post | Reels, Shorts, Facebook Reels, Pinterest video pins, later Meta ads |
+| `fonts/` | Nunito + Fraunces (SIL Open Font License, free for commercial use) | Book text, videos, brand |
+
+## The 6 videos
+
+| File | Script (`SCRIPTS.md`) | Length | Hook |
+|---|---|---|---|
+| `1A-photo-to-blanket.mp4` | 1A | ~15 s | "Send us your dog's photo…" → illustrated → woven |
+| `1B-dog-mom-gift.mp4` | 1B | ~14 s | "The gift for the person who shows you 400 dog photos" |
+| `1C-pick-a-style.mp4` | 1C | ~13 s | "Which style would you pick?" (built for comments) |
+| `2A-storybook-hero.mp4` | 2A | ~17 s | "What if your dog was the hero of a book?" |
+| `2B-bedtime-story.mp4` | 2B | ~14 s | "The bedtime story kids ask for every night" |
+| `3A-gift-set.mp4` | 3A | ~13 s | "One photo of your pet… two gifts" |
+
+**Before posting:**
+1. **Add a trending sound inside the app** (Instagram/YouTube/Facebook). The files are silent on purpose; in-app trending audio gets more reach than baked-in music, and it avoids music-copyright problems.
+2. **Turn on the AI label** ("AI info" on Instagram/Facebook, "Altered or synthetic content" on YouTube). The presenter and pets are AI-generated.
+3. Caption: one line + price + "link in bio". Example: *Your dog, illustrated from your photo and woven into a 100% cotton blanket. $64 · order by Dec 10 for Christmas · link in bio.*
+4. **Once your real storybook sample arrives**, film 2–3 real clips of it (flipping pages, close-ups) and swap them into the storybook videos (see below).
+
+## Important honesty notes
+- Lifestyle images show **what the products look like**; they're AI renders, not photos of a manufactured product. On the store, label them "illustration of the product" (as `PRODUCT_PAGES.md` says) until you have real photos.
+- The woven texture in the renders is a good guide, but **real jacquard weaving simplifies fine detail** (whiskers, fur strands). Keep customer art bold and simple (`OPERATIONS.md`).
+- Never present the AI presenter as a real customer.
+
+## Remaking or editing the videos
+Everything is reproducible:
+```bash
+python3 scripts/make_videos.py        # rebuilds all 6 videos from assets/ (needs ffmpeg + Pillow)
+python3 scripts/make_book_pages.py    # re-renders storybook pages with text
+```
+To change a caption, edit the text in the `video(...)` lists at the bottom of `scripts/make_videos.py` and run it again.
+
+## Credits used
+~336 Higgsfield credits (33 images ≈ 91 + 7 clips ≈ 245); balance 2,063 → 1,727. Per new customer order: 1 illustration ≈ 2.75 credits; a full 24-page book ≈ 70 credits.

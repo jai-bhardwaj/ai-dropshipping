@@ -24,6 +24,8 @@ AI-illustrated pet portraits → **100% cotton woven blankets** ($64) and **"sta
 | `TRACKER.xlsx` | Unit economics + daily log + summary (formulas built in) | Daily |
 | `COMPLIANCE.md` | GST, IEC, PayPal purpose code, income tax and records, done without a CA | Week 1 |
 | `VERIFICATION.md` | Results of the pre-launch checks + tax/paperwork research for the CA | Week 1 |
+| `assets/` | **Ready media:** sample pet art (3 styles), storybook pages, lifestyle shots, 2 logos, **6 finished videos** (see `assets/README.md`) | Week 1+ |
+| `scripts/` | Rebuild videos / storybook pages after editing captions | As needed |
 | `PRICING_RESEARCH.md` | Why the first products (gadgets) were dropped | Background |
 
 ## Your first 5 actions
@@ -31,7 +33,7 @@ AI-illustrated pet portraits → **100% cotton woven blankets** ($64) and **"sta
 2. Read `COMPLIANCE.md` (no CA needed to start) and send the free bank forex-desk message in it.
 3. Open PayPal Business (India).
 4. Sign up for Shopify (₹20 offer), set currency to USD, buy `woventails.com`.
-5. Connect Printify and make the sample artwork (`OPERATIONS.md`).
+5. Connect Printify and create the 2 products using the sample art in `assets/blanket-art/` and `assets/storybook/`.
 
 ## Pre-launch checks: done (see `VERIFICATION.md`)
 - ✅ Printify prices confirmed: blanket $28.85 + $10.39, book $11.42 + $6.19 (US)

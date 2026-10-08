@@ -98,7 +98,8 @@ Date: 2026-10-08 · Vertical 9:16 · 12–25 s · Instagram Reels, YouTube Short
 - **Winner:** best 3-second hold + link clicks → first Meta ad (see `ADS.md`).
 - **Each week:** 3 new hooks on the winner (same body, new first 3 seconds).
 
-## Before generating
-- [ ] Make 3–4 sample pets' artwork in all 3 blanket styles (using AI-generated pets or pets you have rights to)
-- [ ] Download Printify mockups for the blanket and book with the sample art
-- [ ] Approve AI video credit spend (check the cost first)
+## Made (2026-10-08)
+- [x] 4 AI sample pets × 3 blanket styles, sample storybook pages, lifestyle shots, logo → `assets/`
+- [x] **6 finished videos** in `assets/videos/`: 1A, 1B, 1C, 2A, 2B, 3A (2C cat-book version needs cat story pages; make it after the first cat order, or generate cat pages with `OPERATIONS.md` prompts)
+- [ ] Add a trending sound in-app + AI label when posting (see `assets/README.md`)
+- [ ] When the real storybook sample arrives, film real page-flip clips and swap them in

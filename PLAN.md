@@ -45,13 +45,13 @@ Both passed the price check (≤ 1.3× cheapest comparable listing, ≥ $20 marg
 - [ ] Everything in `SETUP_CHECKLIST.md` (accounts, compliance per `COMPLIANCE.md`, Shopify, PayPal, Printify, Pixel)
 - [ ] Logo (prompt in `BRAND.md`), homepage + about page copy (`BRAND.md`)
 - [ ] Policies (`POLICIES.md`), emails (`EMAILS.md`)
-- [ ] Make sample artwork: 4 sample pets × 3 blanket styles + 1 sample storybook (`OPERATIONS.md`)
+- [x] Sample artwork, storybook pages, lifestyle shots, logo and 6 videos made → `assets/` (see `assets/README.md`)
 - [ ] Create both products + bundle in Printify (Printify Choice), publish pages (`PRODUCT_PAGES.md`)
 - [ ] Order the storybook sample
 - [x] Pre-launch checks done (`VERIFICATION.md`): prices confirmed, cheap Amazon "woven" blanket is printed, no trademark conflicts
 
 ### Weeks 2–4 (Oct 15–Nov 4): organic test
-- [ ] Generate the 7 videos in `SCRIPTS.md`; post **2/day** across Reels, Shorts, Facebook
+- [ ] Post the 6 ready videos in `assets/videos/` (**2/day**, rotating, across Reels, Shorts, Facebook); make new hooks weekly with `scripts/make_videos.py`
 - [ ] **5 Pinterest pins/day** from `PINTEREST.md`
 - [ ] Reply to every comment and DM within a few hours
 - [ ] Log numbers daily in `TRACKER.xlsx`
