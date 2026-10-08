@@ -77,7 +77,7 @@ function setup(stage, { fov = 32, pos = [0, 0.4, 7.2], target = [0, 0, 0], floor
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     // On tall screens pull the camera back so the whole object stays in frame.
-    const f = Math.max(1, fitAspect / camera.aspect);
+    const f = Math.max(1, fitAspect / camera.aspect) * (window.__fitScale || 1);
     camera.position.copy(controls.target).add(baseOffset.clone().multiplyScalar(f));
     camera.updateProjectionMatrix();
   };

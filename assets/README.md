@@ -16,6 +16,7 @@ All images and clips were generated with AI (Higgsfield: GPT Image 2.5 for image
 | `clips/` | 8 AI-animated 5-second clips + 4 rendered 3D clips (`3d-*.mp4`, from `scripts/record_3d.mjs`) | Building new video edits |
 | `videos/` | **11 finished vertical videos (1080×1920)**, incl. 4 rendered 3D reels, ready to post | Reels, Shorts, Facebook Reels, Pinterest video pins, later Meta ads |
 | `social/` | Profile picture, 6 highlight covers, Facebook cover, 9 launch posts (incl. 4 carousels), 6 Pinterest pins; made by `scripts/make_social.py` | See `SOCIAL.md` |
+| `audio/` | Original music beds + Kokoro voiceovers (see `audio/README.md`) | Already mixed into the videos |
 | `fonts/` | Nunito + Fraunces (SIL Open Font License, free for commercial use) | Book text, videos, brand |
 
 ## The 11 videos
@@ -35,7 +36,7 @@ All images and clips were generated with AI (Higgsfield: GPT Image 2.5 for image
 | `4D-3d-gift-set.mp4` | 3D | ~11 s | Rendered 3D gift box opening |
 
 **Before posting:**
-1. **Add a trending sound inside the app** (Instagram/YouTube/Facebook). The files are silent on purpose; in-app trending audio gets more reach than baked-in music, and it avoids music-copyright problems.
+1. **Sound is built in:** each video has an original music bed + a voiceover (see `audio/README.md`). Optional: add a trending sound in the app at low volume.
 2. **Turn on the AI label** ("AI info" on Instagram/Facebook, "Altered or synthetic content" on YouTube). The presenter and pets are AI-generated.
 3. Caption: one line + price + "link in bio". Example: *Your dog, illustrated from your photo and woven into a 100% cotton blanket. $64 · order by Dec 10 for Christmas · link in bio.*
 4. **Once your real storybook sample arrives**, film 2–3 real clips of it (flipping pages, close-ups) and swap them into the storybook videos (see below).

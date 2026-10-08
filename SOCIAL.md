@@ -137,4 +137,4 @@ Upload `assets/social/pin-*.jpg` (6 pins, 1000×1500) with the titles and descri
 - Label AI content (Instagram/Facebook "AI info", YouTube "altered or synthetic content").
 - Never present AI people or pets as real customers. Real customer photos only with written permission.
 - No fake reviews, follower counts or "sold out" claims.
-- Add trending audio inside the app (the videos are silent on purpose).
+- Videos already have music + voiceover; optionally add a trending sound at low volume in the app.

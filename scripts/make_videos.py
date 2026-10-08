@@ -1,7 +1,7 @@
 """Assemble vertical (1080x1920) short videos from stills + AI clips with on-screen text.
 
 Usage: python3 scripts/make_videos.py [video-name ...]   (needs ffmpeg; clips in assets/clips/)
-Output: assets/videos/*.mp4 (silent: add a trending sound inside Instagram/YouTube when posting)
+Output: assets/videos/*.mp4 with music + voiceover (run make_music.py and make_voiceover.py first)
 """
 import os, subprocess, sys, tempfile, textwrap
 from PIL import Image, ImageDraw, ImageFont
@@ -105,9 +105,33 @@ def video(name, segments):
     lst = f"{TMP}/{name}.txt"
     open(lst, "w").write("".join(f"file '{f}'\n" for f in files))
     os.makedirs(A + "videos", exist_ok=True)
-    run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo",
-         "-shortest", "-c:v", "libx264", "-crf", "20", "-pix_fmt", "yuv420p", "-c:a", "aac", "-movflags", "+faststart", A + f"videos/{name}.mp4"])
+    silent = f"{TMP}/{name}-silent.mp4"
+    run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-c:v", "libx264", "-crf", "20", "-pix_fmt", "yuv420p", silent])
+    add_audio(name, silent, A + f"videos/{name}.mp4")
     print("made", name)
+
+
+# Soundtrack: original synthesized music (scripts/make_music.py) + Kokoro voiceover (scripts/make_voiceover.py).
+MUSIC = {"2": "storybook", "4B": "storybook", "4C": "storybook"}
+
+def add_audio(name, video_in, out):
+    dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", video_in],
+                               capture_output=True, text=True).stdout)
+    track = MUSIC.get(name[:2], MUSIC.get(name[:1], "cozy"))
+    music = A + f"audio/music/{track}.wav"
+    vo = A + f"audio/vo/{name}.wav"
+    fade = max(0.0, dur - 1.6)
+    if os.path.exists(vo):
+        fc = (f"[1:a]atrim=0:{dur},asetpts=N/SR/TB,volume=0.42,afade=t=out:st={fade}:d=1.6[m];"
+              f"[2:a]aresample=44100,aformat=channel_layouts=stereo,volume=1.7,apad=whole_dur={dur},asplit=2[v][sc];"
+              f"[m][sc]sidechaincompress=threshold=0.02:ratio=9:attack=15:release=350[duck];"
+              f"[duck][v]amix=inputs=2:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11[a]")
+        ins = ["-i", music, "-i", vo]
+    else:
+        fc = f"[1:a]atrim=0:{dur},volume=0.6,afade=t=out:st={fade}:d=1.6,loudnorm=I=-14:TP=-1.5[a]"
+        ins = ["-i", music]
+    run(["ffmpeg", "-y", "-i", video_in, *ins, "-filter_complex", fc, "-map", "0:v", "-map", "[a]", "-c:v", "copy",
+         "-c:a", "aac", "-b:a", "192k", "-ar", "44100", "-t", str(dur), "-movflags", "+faststart", out])
 
 def end(l1, l2, dur=2.5):
     return ("end", l1, l2, dur)

@@ -18,6 +18,8 @@
   import { initBlanket, initBook, initGift } from "./js/scenes.js";
   window.__manual = new URLSearchParams(location.search).has("manual");
   const mode = location.hash.slice(1) || "blanket";
+  // Tighter framing for vertical social videos (1 = whole object always in frame).
+  window.__fitScale = { blanket: 0.74, book: 0.86, bookcat: 0.86, gift: 0.76 }[mode] || 1;
   const stage = document.getElementById("stage");
   if (mode === "blanket") {
     const b = initBlanket(stage, { art: "golden-pop" });
