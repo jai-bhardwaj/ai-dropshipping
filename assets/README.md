@@ -13,12 +13,12 @@ All images and clips were generated with AI (Higgsfield: GPT Image 2.5 for image
 | `storybook/pages-cat/` | Cat sample book: cover + 5 finished pages of *Mango and the Very Big Day* (cat version) | Cat storybook gallery + video |
 | `storybook/raw/`, `storybook/raw-cat/` | The same pages without text | Re-use with other text |
 | `logo/` | 2 logo options (option 1 = woven paw, used in the videos) | Shopify logo, social profile pictures |
-| `clips/` | 8 animated 5-second clips (720p, silent) | Building new video edits |
-| `videos/` | **7 finished vertical videos (1080×1920)**, ready to post | Reels, Shorts, Facebook Reels, Pinterest video pins, later Meta ads |
+| `clips/` | 8 AI-animated 5-second clips + 4 rendered 3D clips (`3d-*.mp4`, from `scripts/record_3d.mjs`) | Building new video edits |
+| `videos/` | **11 finished vertical videos (1080×1920)**, incl. 4 rendered 3D reels, ready to post | Reels, Shorts, Facebook Reels, Pinterest video pins, later Meta ads |
 | `social/` | Profile picture, 6 highlight covers, Facebook cover, 9 launch posts (incl. 4 carousels), 6 Pinterest pins; made by `scripts/make_social.py` | See `SOCIAL.md` |
 | `fonts/` | Nunito + Fraunces (SIL Open Font License, free for commercial use) | Book text, videos, brand |
 
-## The 7 videos
+## The 11 videos
 
 | File | Script (`SCRIPTS.md`) | Length | Hook |
 |---|---|---|---|
@@ -29,6 +29,10 @@ All images and clips were generated with AI (Higgsfield: GPT Image 2.5 for image
 | `2B-bedtime-story.mp4` | 2B | ~14 s | "The bedtime story kids ask for every night" |
 | `2C-cat-main-character.mp4` | 2C | ~14 s | "Your cat already thinks they're the main character" |
 | `3A-gift-set.mp4` | 3A | ~13 s | "One photo of your pet… two gifts" |
+| `4A-3d-blanket.mp4` | 3D | ~16 s | Rendered 3D woven blanket cycling through pets and styles |
+| `4B-3d-storybook-dog.mp4` | 3D | ~16 s | Rendered 3D book turning its pages (dog) |
+| `4C-3d-storybook-cat.mp4` | 3D | ~15 s | Rendered 3D book turning its pages (cat) |
+| `4D-3d-gift-set.mp4` | 3D | ~11 s | Rendered 3D gift box opening |
 
 **Before posting:**
 1. **Add a trending sound inside the app** (Instagram/YouTube/Facebook). The files are silent on purpose; in-app trending audio gets more reach than baked-in music, and it avoids music-copyright problems.
