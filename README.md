@@ -27,7 +27,7 @@ AI-illustrated pet portraits → **100% cotton woven blankets** ($64) and **"sta
 
 ## Your first 5 actions
 1. Create the business Gmail.
-2. Book the CA consultation (4 questions in `SETUP_CHECKLIST.md`).
+2. Book the CA consultation and take `VERIFICATION.md` section 5 (5 questions + research answers).
 3. Open PayPal Business (India).
 4. Sign up for Shopify (₹20 offer), set currency to USD, buy `woventails.com`.
 5. Connect Printify and make the sample artwork (`OPERATIONS.md`).
