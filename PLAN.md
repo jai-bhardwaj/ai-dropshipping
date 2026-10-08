@@ -98,5 +98,5 @@ Daily tracking (I'll set up a sheet): views, pin clicks, store visits, add to ca
 ## 8. Your next steps (today)
 
 1. Create: Shopify, PayPal Business, CJ Dropshipping, Pinterest Business, YouTube, Instagram (all free except Shopify's ₹20).
-2. Tell me: face/voice in videos, or faceless (AI + product only)?
-3. Tell me once CJ is set up, and I'll build the 10-product shortlist.
+2. ~~Face or faceless?~~ Decided: **faceless, AI UGC videos** (AI presenters + real product clips). Rules in `PRODUCTS.md`.
+3. ~~Product shortlist~~ Done: see `PRODUCTS.md`. Next: check the top 3 + backups in CJ (US warehouse) and send me the real prices.
