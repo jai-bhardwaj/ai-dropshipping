@@ -101,5 +101,5 @@ Date: 2026-10-08 · Vertical 9:16 · 12–25 s · Instagram Reels, YouTube Short
 ## Made (2026-10-08)
 - [x] 4 AI sample pets × 3 blanket styles, sample storybook pages, lifestyle shots, logo → `assets/`
 - [x] **7 finished videos** in `assets/videos/`: 1A, 1B, 1C, 2A, 2B, 2C (cat book), 3A
-- [ ] Add a trending sound in-app + AI label when posting (see `assets/README.md`)
+- [x] Music + voiceover built into every video (`assets/audio/README.md`); turn on the AI label when posting
 - [ ] When the real storybook sample arrives, film real page-flip clips and swap them in
