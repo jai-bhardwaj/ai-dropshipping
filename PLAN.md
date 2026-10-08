@@ -1,123 +1,96 @@
-# AI Dropshipping: plan for the first $100k (60 days)
+# AI Dropshipping: India plan starting with ₹5,000
 
-Start: 2026-10-08 · Target date: 2026-12-07 (this window covers Black Friday / Cyber Monday and the Q4 gifting season)
+Start: 2026-10-08 · Plan period: 60 days (to 2026-12-07) · Starting budget: **₹5,000**
 
-## 0. Reality check (read this first)
+## 0. Honest goal reset
 
-- **The $100k goal is revenue, not profit.** A healthy dropshipping store keeps roughly 10–25% of revenue as net profit. $100k in sales is about **$10k–25k profit** if things go well.
-- **Most new stores never reach $100k, and very few reach it in 60 days.** To have a chance, we need a winning product and paid ads that turn a profit, and we need to scale hard during BFCM. The plan below gives us the best odds. It is not a guarantee.
-- **It takes cash before it makes cash.** With a 2.5x return on ad spend (ROAS), $100k of revenue needs about **$40k of ad spend**. Payment processors also hold payouts for a while. You need **at least $3–5k** to test products, and scaling depends on putting the profit back into ads (or on a credit line).
-- **Rules we never bend:** no fake reviews, no counterfeit or trademarked products, no health claims, and honest shipping times. Breaking these gets ad accounts and Stripe/Shopify Payments accounts banned, and a ban ends the plan.
+- $100k is about **₹88 lakh**. You can't get there from ₹5,000 in 60 days: paid ads alone would need about ₹35 lakh. Anyone who promises that is selling a course.
+- **New 60-day goal:** **first ₹1 lakh in sales** (about 150–250 orders) and a **proven product + ad creative** you can grow.
+- **Stretch goal:** ₹3 lakh in sales, if the festive season (Diwali, weddings, Christmas) goes well.
+- **After that:** put every rupee of profit back into ads. A store doing ₹3–5 lakh/month is how you get to ₹88 lakh, over 6–12 months instead of 2.
 
-## 1. Who does what
+## 1. Decisions I made for you
 
-| Me (Claude, with the tools connected to this session) | You (needs a human, an identity or money) |
+| Decision | Choice | Why |
+|---|---|---|
+| Market | **India only (sell to Indian customers)** | Cheaper ads, cash on delivery (COD) works, fast shipping, no currency issues |
+| Store | **Shopify** on the ₹20/month offer for the first 3 months (check it's still live when you sign up) | Professional store, works with Indian dropshipping suppliers. After 3 months it's about ₹1,500–2,000/month, which the business should be paying by then |
+| Supplier | **An Indian COD dropshipping supplier.** First try Baapstore or vFulfill, pick whichever has the product and better reviews | They hold stock, pack, ship and collect COD. Order 1–2 samples before selling anything |
+| Niche | **Home & kitchen gadgets + festive gifting** (₹299–899 items) | Easy to show in a 10-second video, impulse price, the Diwali/wedding/Christmas gifting season is now, few returns |
+| Avoid | Clothing (sizes, returns), electronics (defects), skincare or supplements (claims, regulations), copies of brands | These cause returns, account bans or legal trouble |
+| Traffic | **Free first:** Instagram Reels + YouTube Shorts + Facebook Reels, made by me with AI. **Paid later:** Meta ads only after a product proves itself | ₹5,000 isn't enough to test with ads, but free reach on Reels is |
+| Orders | **WhatsApp Business** to confirm every COD order, plus a **₹30–50 discount for prepaid (UPI)** | Indian COD orders often get refused at the door (20–40% of orders). Confirming and nudging toward prepaid saves your margin |
+
+## 2. ₹5,000 budget split
+
+| Item | Amount |
 |---|---|
-| Product research and competitor ad teardowns (web search) | Register the business, bank account, payment processor |
-| Store copy, product pages, FAQ, policies, email flows | Shopify account + payment setup, and approving spend |
-| AI ad creatives: product images (Higgsfield / OpenArt / Runway), UGC-style video ads, hooks, scripts | Ad accounts (Meta, TikTok), adding the card, final launch clicks |
-| Landing pages / advertorials (Vercel), domain search | Ordering samples, checking supplier quality |
-| Scheduling organic social posts (SocialAPI) | Customer-service escalations, refunds, chargebacks |
-| Daily KPI review: kill / keep / scale decisions | Final say on anything that spends money or posts publicly |
+| Shopify (₹20 × 3 months + GST) | ~₹75 |
+| Supplier signup/plan (choose a free or cheapest option) | ₹0–1,000 |
+| 1–2 product samples (for real footage + quality check) | ~₹1,000 |
+| Meta ads, **only after organic shows a winner** | ₹2,500–3,000 |
+| Buffer (domain later ~₹800, refunds) | ~₹500 |
 
-I will ask before anything that spends money, publishes publicly or sends email.
+Not spent at first: a custom domain (use the free `.myshopify.com` address until the first ₹20k in sales), paid apps, paid AI tools (I make the creatives here).
 
-## 2. The model
+## 3. Who does what
 
-- **Store:** a one-product (or one-niche) branded Shopify store, not a general store. Branded stores convert better and survive ad-account reviews.
-- **Product criteria:** costs ≤ 1/3 of the sale price, sells for $35–80, has a visual "wow" that shows in 3 seconds of video, solves a problem or makes a strong gift, ships in < 10 days (US/EU warehouse preferred: CJ, Zendrop, AutoDS, Spocket), isn't sold at Walmart or Amazon for less, can be bundled to raise order value.
-- **Q4 angle:** focus on giftable items (cozy/home, pet, kitchen gadgets, self-care, car accessories, kids' learning toys).
-- **Traffic:** Meta ads (main channel) + TikTok ads, with organic TikTok/Reels made from the same AI creatives as a free extra.
-- **Unit economics target (example):** price $49.99, product + shipping cost $14, payment fees ~$2, so gross margin is about $34 (68%). **Breakeven ROAS is about 1.5x.** We aim for 2.5x or better.
-
-## 3. Revenue math backwards from $100k
-
-| Phase | Dates | Daily ad spend | Target ROAS | Revenue |
-|---|---|---|---|---|
-| Build | Oct 8–14 | $0 | — | $0 |
-| Test | Oct 15–28 | $100–200 | find ≥ 2.0 | ~$4k |
-| Validate + early scale | Oct 29–Nov 11 | $300–700 | 2.2–2.5 | ~$15k |
-| Aggressive scale + BFCM | Nov 12–Dec 1 | $1k–3k | 2.0–2.5 | ~$65k |
-| Cyber Week tail / gifting | Dec 2–7 | $1k–2k | 2.0 | ~$16k |
-| **Total** | | **≈ $40k** | | **≈ $100k** |
-
-At about $50 per order (AOV), that is roughly 2,000 orders. Customer service, fulfillment and cash flow all need to handle that volume.
-
-## 4. Week-by-week execution
-
-### Week 1 (Oct 8–14): foundation
-1. **You:** pick the business entity and set up the bank account, Shopify (Basic), Shopify Payments + PayPal, a Meta Business Manager + ad account, a TikTok Ads account and a store email.
-2. **Me:** run product research and produce a **shortlist of 10 products** with ad evidence (TikTok Creative Center, Meta Ad Library, AliExpress/CJ order velocity), price and margin math, and supplier options. We narrow it to **3 to test**.
-3. **You:** order samples of the top 3 (for real footage and a quality check).
-4. **Me:** write the brand name options, store copy, product pages, policies (shipping/returns/privacy/terms), FAQ, and the about page. Pick a theme and plan a conversion layout (sticky add-to-cart, bundles, reviews section that is empty until real reviews come in, trust badges that are true).
-5. **Me:** set up Klaviyo email flows (welcome, abandoned cart, abandoned checkout, post-purchase, review request).
-6. **Both:** set up the pixel and Conversions API (Meta), the TikTok pixel and GA4. Place a test order end to end.
-
-### Week 2 (Oct 15–21): creative + launch testing
-1. **Me:** make **5 ad creatives per product** with AI tools (15 total): 3 UGC-style video ads with different hooks (problem → solution, "TikTok made me buy it", gift angle), 1 product demo and 1 static. AI-generated people get labeled where the platform requires it.
-2. **Launch:** one ad-budget-optimized test campaign per product, about $50/day each, broad targeting, 3–5 creatives each.
-3. **Kill rules:** shut down any ad that spends 1.5× the target cost per purchase with 0 sales; any ad with click-through rate under 1% after $30; any product with ROAS under 1.2 after $150–200.
-
-### Week 3 (Oct 22–28): find the winner
-1. Every day: I read the metrics you export (or share from ad tools) and give kill / keep / scale decisions.
-2. Make 5–10 **new hooks** on whatever is working (creative is the main lever, not targeting).
-3. Raise average order value: 2-pack/3-pack bundles, a post-purchase upsell, and a free-shipping threshold.
-4. **Decision gate (Oct 28):** if one product has ROAS ≥ 2.0 at a CPA ≤ breakeven over 3 days, go all-in on it. If nothing works, test 3 new products in week 4 (budget: another ~$1.5k).
-
-### Weeks 4–5 (Oct 29–Nov 11): validate + early scale
-1. Raise budgets 20–30% every 48h on winning ad sets. Duplicate winners into a scaling campaign (Advantage+ Shopping).
-2. Add TikTok ads with the best performing creatives.
-3. Creative output: **10 new creatives per week** (AI video variations, real footage from samples, testimonials only from real customers).
-4. Lock in fulfillment: move to a private agent or US warehouse for faster shipping; negotiate volume pricing.
-5. Build the BFCM offer (e.g. tiered "Buy 2, get 1 free" + gift wrap / gift message), plus the email/SMS list sequences.
-
-### Weeks 6–8 (Nov 12–Dec 1): BFCM scale
-1. Pre-BFCM: grow the email list with early-access signups from Nov 12.
-2. BFCM (Nov 27–Dec 1): spend peaks at $2–3k/day if ROAS holds; tighten kill rules hourly; launch fresh creatives daily.
-3. Customer service: macro replies, tracking emails, a helpdesk (Gorgias/Shopify Inbox); you or a VA handle tickets daily.
-4. Watch cash: make sure the card limit and payouts cover ad spend at peak.
-
-### Week 9 (Dec 2–7): Cyber week tail + gifting
-1. "Order by X for Christmas delivery" urgency (true dates only).
-2. Retargeting + email campaigns to past buyers.
-3. Review the 60 days: profit and loss, what to keep, and the Q1 plan (second product, more channels).
-
-## 5. Daily operating rhythm (about 30 min of your time + my work)
-
-1. Morning: you share ad + Shopify numbers → I return the kill/keep/scale list and new creative briefs.
-2. I produce the creatives and copy → you approve → you (or I, once approved) upload.
-3. Evening: check customer service, fulfillment issues and supplier tracking numbers.
-
-**KPIs to track:** spend, revenue, ROAS, CPA vs breakeven CPA, CTR, cost per click, add-to-cart rate, conversion rate (target 2–3%+), AOV, refund/chargeback rate (< 1%), shipping time.
-
-## 6. Budget
-
-| Item | Est. cost |
+| Me (Claude) | You |
 |---|---|
-| Shopify + apps (reviews, upsells, Klaviyo) | ~$150/mo |
-| Samples | $100–200 |
-| AI creative tools (credits) | $50–150/mo |
-| Domain | ~$15 |
-| Product testing ad spend | $2–4k |
-| Scaling ad spend | funded from revenue (plus a buffer for payout holds) |
+| Pick and research products, with price and margin math | Create Shopify, supplier, Instagram, YouTube, WhatsApp Business accounts (they need your phone number/ID) |
+| Write the store pages, product descriptions (English + Hinglish), policies, FAQ | Order samples, film 1–2 short real clips of the product |
+| Make AI videos/images for Reels and ads, write hooks, captions, hashtags | Post daily (or approve my scheduling), reply to DMs/WhatsApp |
+| Daily review of numbers: what to keep, drop or push | Confirm COD orders, handle returns |
+| Ad setup guide and ad creatives when we go paid | Approve anything that spends money |
 
-## 7. Main risks and how we handle them
+I'll always ask before spending money or posting publicly.
 
-| Risk | Mitigation |
+## 4. Week-by-week
+
+### Week 1 (Oct 8–14): set up, ₹0–1,000 spent
+1. **You:** create a new Instagram account (store name), a YouTube channel, a WhatsApp Business number, a Shopify store (₹20 offer), and a supplier account.
+2. **Me:** a shortlist of **10 products** from the supplier's catalog, with cost, selling price, margin, and why each one could go viral. We pick **3**.
+3. **Me:** store name + logo options, homepage, the 3 product pages, policies (shipping, returns, privacy, terms), WhatsApp order-confirmation messages.
+4. **You:** order a sample of the top 1–2 products.
+
+### Weeks 2–4 (Oct 15–Nov 4): test for free on Reels
+1. **Me:** **2–3 short videos per day** across the 3 products: problem → solution, "Diwali gift under ₹499", unboxing/demo, before/after. Captions, hooks and hashtags in English + Hinglish.
+2. **You:** post on Instagram Reels, YouTube Shorts and Facebook Reels (the same video on all 3). Reply to every comment and DM within a few hours.
+3. **Measure each product:** views, profile visits, link clicks, orders. Signs of a winner: one video gets **10k+ views**, people comment "price?" or "link?", the first orders come in.
+4. **Diwali push:** "Order by X for Diwali delivery" (only with true delivery dates from the supplier).
+5. **Decision (Nov 4):** keep the 1 product with the best results. If nothing shows a signal, swap in 3 new products and repeat for 2 weeks.
+
+### Weeks 5–6 (Nov 5–18): first paid ads, ₹2,500–3,000
+1. Turn the **best-performing Reel** into a Meta ad ("Boost" or Ads Manager), ₹200–300/day, India, ages 18–45, broad targeting.
+2. Rule: if an ad gets no order after ₹400–500 spent, stop it and try the next creative.
+3. Every rupee of profit goes back into ads for the winning video.
+
+### Weeks 7–9 (Nov 19–Dec 7): grow
+1. Wedding season + Christmas/New Year gifting angles.
+2. Bundles ("Buy 2 at ₹X") to raise order value; a prepaid discount to cut refused COD orders.
+3. 10+ new creatives a week from me so the ads don't go stale.
+4. End of the 60 days: profit and loss review, and a plan for the next 60 days (custom domain, 2nd product, more ad spend).
+
+## 5. The numbers we track (I'll make a simple tracker)
+
+Daily: views per video, link clicks, orders, prepaid vs COD share, refused COD orders (RTO), ad spend, cost per order, profit per order.
+
+**Example unit economics:** sale price ₹599, supplier price + shipping ₹300, so **₹299 margin** before ads. With ads at ₹150/order and 20% of COD orders refused (losing about ₹80 per refused order), profit is about **₹130 per order**. 250 orders is about ₹1.5 lakh in sales and **₹30k profit** to reinvest.
+
+## 6. Risks
+
+| Risk | What we do |
 |---|---|
-| No winning product | Test new products in batches of 3; budget for 2–3 rounds |
-| Ad account banned | Branded store, honest claims, verified business, a backup ad account, no policy-borderline products |
-| Payout holds / cash crunch | Start with savings or a credit line; scale only as fast as cash allows |
-| Slow shipping → chargebacks | US/EU warehouse suppliers, clear shipping times, send tracking quickly |
-| Creative fatigue at scale | AI-assisted creative pipeline: 10+ new ads per week |
-| Customer-service overload at BFCM | Macro replies, FAQ, hire a VA before Nov 20 |
+| Videos get no views | More hooks per day, follow trending audio/formats, test different products quickly |
+| COD orders refused at the door | WhatsApp confirmation, prepaid discount, block repeat refusers |
+| Bad supplier quality | Sample first, check reviews, keep a backup supplier |
+| Money runs out | No ads until organic proves a product; strict stop rules on ads |
+| GST/tax | Ask a CA about GST registration before selling across states (it often applies to online sellers); some suppliers handle invoicing |
 
-## 8. What I need from you to start
+## 7. Your next 3 steps (today)
 
-1. **Budget:** how much can you put into testing + scaling?
-2. **Country** you are selling from and to (US? UK? India? EU?). This changes suppliers, payments and ad costs.
-3. **Hours per day** you can give to the business.
-4. **Niche preferences**, or anything you won't sell.
-5. Do you already have Shopify / Meta ad accounts?
+1. Create the Instagram account + WhatsApp Business number (free).
+2. Sign up for Shopify (₹20 offer) and one supplier (Baapstore or vFulfill) and tell me which one.
+3. Tell me if you're OK showing your face or voice in videos, or prefer faceless (AI + product clips only).
 
-Once I have these, step one is the 10-product shortlist (Week 1, item 2).
+Then I'll build the 10-product shortlist from that supplier's catalog.
