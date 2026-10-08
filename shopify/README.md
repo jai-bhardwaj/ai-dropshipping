@@ -1,5 +1,20 @@
 # Shopify paste-ready product content
 
+## Fastest way: import all products in one go
+1. In Shopify admin: **Products → Import → Add file** → choose `products_import.csv` → **Upload and preview** → **Import products**.
+2. This creates 4 products as **drafts** (nothing is visible to shoppers yet):
+   - Custom Pet Portrait Woven Blanket: $64, styles Bold Pop / Christmas Scarf / Royal, 7 images
+   - Personalized Pet Storybook: $42, versions Dog / Cat / Memorial, 6 images
+   - Gift Set (blanket + storybook): $99 (compare-at $106), 3 styles, 3 images
+   - Extra Copy of Your Pet Storybook: $19 add-on
+   Descriptions, SEO titles, alt text, SKUs and URL handles are all filled in. Images load from the live site (woven-tails…vercel.app).
+3. Inventory is not tracked and "continue selling when out of stock" is on (everything is made to order). Fulfillment is manual: you place each order in Printify after the customer approves the art (`OPERATIONS.md`).
+4. Check each product, then set **Status: Active** to publish.
+
+The handles match the buy buttons on the website, so those start working as soon as the products are active on `woventails.com`.
+
+## Manual way (field by field)
+
 For each product in Shopify (Products → Add product), fill in:
 
 | Field | Blanket | Storybook | Gift set |
