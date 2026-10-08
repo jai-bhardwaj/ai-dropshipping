@@ -88,9 +88,12 @@ def seg(kind, src, dur, text="", pos="top", size=78, src2=None):
         run(["ffmpeg", "-y", "-loop", "1", "-t", str(half + 0.3), "-i", a, "-loop", "1", "-t", str(half + 0.3), "-i", b, "-i", ov,
              "-filter_complex", vf, "-t", str(dur), "-c:v", "libx264", "-crf", "20", out])
     elif kind == "vid":
+        ss = "0"
+        if "@" in src:
+            src, ss = src.split("@")
         vf = (f"[0:v]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},fps={FPS}[v];"
               f"[v][1:v]overlay=0:0,format=yuv420p")
-        run(["ffmpeg", "-y", "-i", src, "-i", ov, "-filter_complex", vf, "-t", str(dur), "-an", "-c:v", "libx264", "-crf", "20", out])
+        run(["ffmpeg", "-y", "-ss", ss, "-i", src, "-i", ov, "-filter_complex", vf, "-t", str(dur), "-an", "-c:v", "libx264", "-crf", "20", out])
     return out
 
 ONLY = sys.argv[1:]  # optional: build only these video names
@@ -160,6 +163,25 @@ if __name__ == "__main__":
         (("vid", C + "book-bed-tabby.mp4") if os.path.exists(C + "book-bed-tabby.mp4") else ("img", L + "book-bed-tabby.jpg"))
         + (3.5, "A hardcover storybook illustrated from YOUR photo"),
         end("Personalized cat storybook", XMAS)])
+    video("4A-3d-blanket", [
+        ("vid", C + "3d-blanket.mp4@0", 4.4, "Your pet, woven into 100% cotton"),
+        ("vid", C + "3d-blanket.mp4@4.4", 4.4, "Bold Pop, Christmas or Royal"),
+        ("vid", C + "3d-blanket.mp4@8.8", 4.4, "Made from YOUR photo"),
+        end("Custom pet portrait woven blanket", XMAS)])
+    video("4B-3d-storybook-dog", [
+        ("vid", C + "3d-book.mp4@0", 4.5, "A storybook starring your dog"),
+        ("vid", C + "3d-book.mp4@4.5", 4.5, "Your real pet on every page"),
+        ("vid", C + "3d-book.mp4@9", 4.5, "24 pages · hardcover · $42"),
+        end("Personalized pet storybook", XMAS)])
+    video("4C-3d-storybook-cat", [
+        ("vid", C + "3d-bookcat.mp4@0", 4.3, "A storybook starring your cat"),
+        ("vid", C + "3d-bookcat.mp4@4.3", 4.3, "Sunbeams, boxes and naps"),
+        ("vid", C + "3d-bookcat.mp4@8.6", 4.2, "Illustrated from YOUR photo"),
+        end("Personalized cat storybook", XMAS)])
+    video("4D-3d-gift-set", [
+        ("vid", C + "3d-gift.mp4@0", 4.2, "One photo of your pet..."),
+        ("vid", C + "3d-gift.mp4@4.2", 4.6, "...two gifts: blanket + storybook"),
+        end("Blanket + storybook gift set $99", XMAS)])
     video("3A-gift-set", [
         ("img", P + "golden.jpg", 1.5, "One photo of your pet..."),
         ("vid", C + "bundle-giftbox.mp4", 3.5, "...two gifts"),

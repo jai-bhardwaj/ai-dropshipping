@@ -15,6 +15,7 @@ All images and clips were generated with AI (Higgsfield: GPT Image 2.5 for image
 | `logo/` | 2 logo options (option 1 = woven paw, used in the videos) | Shopify logo, social profile pictures |
 | `clips/` | 8 animated 5-second clips (720p, silent) | Building new video edits |
 | `videos/` | **7 finished vertical videos (1080×1920)**, ready to post | Reels, Shorts, Facebook Reels, Pinterest video pins, later Meta ads |
+| `social/` | Profile picture, 6 highlight covers, Facebook cover, 9 launch posts (incl. 4 carousels), 6 Pinterest pins; made by `scripts/make_social.py` | See `SOCIAL.md` |
 | `fonts/` | Nunito + Fraunces (SIL Open Font License, free for commercial use) | Book text, videos, brand |
 
 ## The 7 videos

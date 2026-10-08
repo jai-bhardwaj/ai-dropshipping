@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3D Render Stage</title>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<style>
+  html, body { margin: 0; height: 100%; background: radial-gradient(120% 80% at 50% 35%, #FBF8F2, #E6DCCB); overflow: hidden; }
+  #stage { position: absolute; inset: 0; }
+  #stage canvas { width: 100% !important; height: 100% !important; }
+</style>
+</head>
+<body>
+<!-- Full-screen stage used only to record 3D clips for social videos (scripts/record_3d.mjs). -->
+<div id="stage"></div>
+<script type="module">
+  import { initBlanket, initBook, initGift } from "./js/scenes.js";
+  window.__manual = new URLSearchParams(location.search).has("manual");
+  const mode = location.hash.slice(1) || "blanket";
+  const stage = document.getElementById("stage");
+  if (mode === "blanket") {
+    const b = initBlanket(stage, { art: "golden-pop" });
+    // Art sequence; the recorder calls __setArt between frames and waits for it.
+    window.__arts = ["golden-pop", "golden-christmas", "golden-royal", "tabby-royal", "collie-christmas", "frenchie-pop"];
+    window.__setArt = (n) => b.setArt(n);
+    if (!window.__manual) { let i = 1; setInterval(() => b.setArt(window.__arts[i++ % 6]), 2200); }
+  } else if (mode === "book") {
+    initBook(stage, { variant: "dog" });
+  } else if (mode === "bookcat") {
+    initBook(stage, { variant: "cat" });
+  } else {
+    initGift(stage, {});
+  }
+</script>
+</body>
+</html>
