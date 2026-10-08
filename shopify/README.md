@@ -1,5 +1,7 @@
 # Shopify paste-ready product content
 
+> **Status: done.** All 4 products, the collection, pages, free US shipping, the US market and discount codes were created directly in the store through the Shopify connector. You don't need the import below unless you rebuild the store. Policies still need pasting: `policies-paste.md`.
+
 ## Fastest way: import all products in one go
 1. In Shopify admin: **Products → Import → Add file** → choose `products_import.csv` → **Upload and preview** → **Import products**.
 2. This creates 4 products as **drafts** (nothing is visible to shoppers yet):
