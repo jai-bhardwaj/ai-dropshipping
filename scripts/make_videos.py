@@ -1,9 +1,9 @@
 """Assemble vertical (1080x1920) short videos from stills + AI clips with on-screen text.
 
-Usage: python3 scripts/make_videos.py   (needs ffmpeg; clips in assets/clips/)
+Usage: python3 scripts/make_videos.py [video-name ...]   (needs ffmpeg; clips in assets/clips/)
 Output: assets/videos/*.mp4 (silent: add a trending sound inside Instagram/YouTube when posting)
 """
-import os, subprocess, tempfile, textwrap
+import os, subprocess, sys, tempfile, textwrap
 from PIL import Image, ImageDraw, ImageFont
 
 W, H, FPS = 1080, 1920, 30
@@ -93,8 +93,12 @@ def seg(kind, src, dur, text="", pos="top", size=78, src2=None):
         run(["ffmpeg", "-y", "-i", src, "-i", ov, "-filter_complex", vf, "-t", str(dur), "-an", "-c:v", "libx264", "-crf", "20", out])
     return out
 
+ONLY = sys.argv[1:]  # optional: build only these video names
+
 def video(name, segments):
-    files = [seg(*s) if isinstance(s, tuple) else s for s in segments]
+    if ONLY and name not in ONLY:
+        return
+    files = [seg("img", end_card(*s[1:3]), s[3]) if s[0] == "end" else seg(*s) for s in segments]
     lst = f"{TMP}/{name}.txt"
     open(lst, "w").write("".join(f"file '{f}'\n" for f in files))
     os.makedirs(A + "videos", exist_ok=True)
@@ -103,7 +107,7 @@ def video(name, segments):
     print("made", name)
 
 def end(l1, l2, dur=2.5):
-    return seg("img", end_card(l1, l2), dur)
+    return ("end", l1, l2, dur)
 
 P, ART, L, C, BK = A + "pets/", A + "blanket-art/", A + "lifestyle/", A + "clips/", A + "storybook/pages/"
 XMAS = "Order by Dec 10 for Christmas"
@@ -146,6 +150,16 @@ if __name__ == "__main__":
         ("img", BK + "23.jpg", 2.4, "drawn from your photo", "top"),
         ("vid", C + "book-table.mp4", 3.0, "Hardcover · 24 pages · made in the USA"),
         end("Personalized pet storybook", XMAS)])
+    BC = A + "storybook/pages-cat/"
+    video("2C-cat-main-character", [
+        ("img", P + "tabby.jpg", 1.8, "Your cat already thinks they're the main character"),
+        ("xfade", P + "tabby.jpg", 2.0, "So we made it official", "top", 78, BC + "00-cover.jpg"),
+        ("img", BC + "10.jpg", 1.5, "", "top"),
+        ("img", BC + "13.jpg", 1.5, "", "top"),
+        ("img", BC + "23.jpg", 1.7, "", "top"),
+        (("vid", C + "book-bed-tabby.mp4") if os.path.exists(C + "book-bed-tabby.mp4") else ("img", L + "book-bed-tabby.jpg"))
+        + (3.5, "A hardcover storybook illustrated from YOUR photo"),
+        end("Personalized cat storybook", XMAS)])
     video("3A-gift-set", [
         ("img", P + "golden.jpg", 1.5, "One photo of your pet..."),
         ("vid", C + "bundle-giftbox.mp4", 3.5, "...two gifts"),

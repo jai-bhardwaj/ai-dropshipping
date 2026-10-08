@@ -49,3 +49,14 @@ if __name__ == "__main__":
          ("p16-surprise.jpg", "SURPRISE!", "16.jpg"),
          ("p23-sleep.jpg", "That night, Sunny curls up in his favorite spot. What a very big day.", "23.jpg")]
     for s, t, o in P: page(R + s, t, O + o)
+
+    # Cat version: "Mango and the Very Big Day"
+    RC, OC = "assets/storybook/raw-cat/", "assets/storybook/pages-cat/"
+    import os; os.makedirs(OC, exist_ok=True)
+    cover(RC + "cover.jpg", "Mango", "and the Very Big Day", "A story starring Mango, made for Mom, Dad and Lily", OC + "00-cover.jpg")
+    PC = [("p08-sunbeam.jpg", "Mango spots a sunbeam on the floor. Mango pounces. The sunbeam wins.", "08.jpg"),
+          ("p10-box.jpg", "A box! The best thing that has ever happened.", "10.jpg"),
+          ("p12-mouse.jpg", "Mango bats the toy mouse under the sofa. Again. And again.", "12.jpg"),
+          ("p13-birds.jpg", "From the window, Mango watches the birds. Mango is in charge of the birds.", "13.jpg"),
+          ("p23-laundry.jpg", "That night, Mango curls up in the laundry basket. On the clean laundry. Of course.", "23.jpg")]
+    for s, t, o in PC: page(RC + s, t, OC + o)

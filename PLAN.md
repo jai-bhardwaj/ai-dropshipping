@@ -51,7 +51,7 @@ Both passed the price check (≤ 1.3× cheapest comparable listing, ≥ $20 marg
 - [x] Pre-launch checks done (`VERIFICATION.md`): prices confirmed, cheap Amazon "woven" blanket is printed, no trademark conflicts
 
 ### Weeks 2–4 (Oct 15–Nov 4): organic test
-- [ ] Post the 6 ready videos in `assets/videos/` (**2/day**, rotating, across Reels, Shorts, Facebook); make new hooks weekly with `scripts/make_videos.py`
+- [ ] Post the 7 ready videos in `assets/videos/` (**2/day**, rotating, across Reels, Shorts, Facebook); make new hooks weekly with `scripts/make_videos.py`
 - [ ] **5 Pinterest pins/day** from `PINTEREST.md`
 - [ ] Reply to every comment and DM within a few hours
 - [ ] Log numbers daily in `TRACKER.xlsx`

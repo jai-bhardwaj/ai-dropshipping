@@ -24,7 +24,7 @@ AI-illustrated pet portraits → **100% cotton woven blankets** ($64) and **"sta
 | `TRACKER.xlsx` | Unit economics + daily log + summary (formulas built in) | Daily |
 | `COMPLIANCE.md` | GST, IEC, PayPal purpose code, income tax and records, done without a CA | Week 1 |
 | `VERIFICATION.md` | Results of the pre-launch checks + tax/paperwork research for the CA | Week 1 |
-| `assets/` | **Ready media:** sample pet art (3 styles), storybook pages, lifestyle shots, 2 logos, **6 finished videos** (see `assets/README.md`) | Week 1+ |
+| `assets/` | **Ready media:** sample pet art (3 styles), storybook pages, lifestyle shots, 2 logos, **7 finished videos** (see `assets/README.md`) | Week 1+ |
 | `scripts/` | Rebuild videos / storybook pages after editing captions | As needed |
 | `PRICING_RESEARCH.md` | Why the first products (gadgets) were dropped | Background |
 

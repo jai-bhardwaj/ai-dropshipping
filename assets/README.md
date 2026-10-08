@@ -9,14 +9,15 @@ All images and clips were generated with AI (Higgsfield: GPT Image 2.5 for image
 | `pets/` | 4 sample "phone photos": golden retriever ("Sunny"), orange tabby, border collie, French bulldog | "Before" shots in videos and product pages |
 | `blanket-art/` | Each pet in the 3 blanket styles: Bold Pop, Christmas Scarf, Royal (12 illustrations) | Product page style picker, Printify mockups, Pinterest, "pick a style" posts |
 | `lifestyle/` | Product-in-use scenes: blanket on sofa/bed/under tree, weave close-up, presenter with blanket/book, book on table, gift box | Product page gallery, homepage hero, Pinterest pins, video frames |
-| `storybook/pages/` | Sample book: cover + 6 finished pages (1, 11, 12, 13, 16, 23) of *Sunny and the Very Big Day* with text | Product page gallery, storybook videos; template for real orders |
-| `storybook/raw/` | The same pages without text | Re-use with other text |
+| `storybook/pages/` | Dog sample book: cover + 6 finished pages (1, 11, 12, 13, 16, 23) of *Sunny and the Very Big Day* with text | Product page gallery, storybook videos; template for real orders |
+| `storybook/pages-cat/` | Cat sample book: cover + 5 finished pages of *Mango and the Very Big Day* (cat version) | Cat storybook gallery + video |
+| `storybook/raw/`, `storybook/raw-cat/` | The same pages without text | Re-use with other text |
 | `logo/` | 2 logo options (option 1 = woven paw, used in the videos) | Shopify logo, social profile pictures |
-| `clips/` | 7 animated 5-second clips (720p, silent) | Building new video edits |
-| `videos/` | **6 finished vertical videos (1080×1920)**, ready to post | Reels, Shorts, Facebook Reels, Pinterest video pins, later Meta ads |
+| `clips/` | 8 animated 5-second clips (720p, silent) | Building new video edits |
+| `videos/` | **7 finished vertical videos (1080×1920)**, ready to post | Reels, Shorts, Facebook Reels, Pinterest video pins, later Meta ads |
 | `fonts/` | Nunito + Fraunces (SIL Open Font License, free for commercial use) | Book text, videos, brand |
 
-## The 6 videos
+## The 7 videos
 
 | File | Script (`SCRIPTS.md`) | Length | Hook |
 |---|---|---|---|
@@ -25,6 +26,7 @@ All images and clips were generated with AI (Higgsfield: GPT Image 2.5 for image
 | `1C-pick-a-style.mp4` | 1C | ~13 s | "Which style would you pick?" (built for comments) |
 | `2A-storybook-hero.mp4` | 2A | ~17 s | "What if your dog was the hero of a book?" |
 | `2B-bedtime-story.mp4` | 2B | ~14 s | "The bedtime story kids ask for every night" |
+| `2C-cat-main-character.mp4` | 2C | ~14 s | "Your cat already thinks they're the main character" |
 | `3A-gift-set.mp4` | 3A | ~13 s | "One photo of your pet… two gifts" |
 
 **Before posting:**
@@ -41,10 +43,11 @@ All images and clips were generated with AI (Higgsfield: GPT Image 2.5 for image
 ## Remaking or editing the videos
 Everything is reproducible:
 ```bash
-python3 scripts/make_videos.py        # rebuilds all 6 videos from assets/ (needs ffmpeg + Pillow)
+python3 scripts/make_videos.py              # rebuilds all 7 videos from assets/ (needs ffmpeg + Pillow)
+python3 scripts/make_videos.py 1A-photo-to-blanket   # rebuild just one
 python3 scripts/make_book_pages.py    # re-renders storybook pages with text
 ```
 To change a caption, edit the text in the `video(...)` lists at the bottom of `scripts/make_videos.py` and run it again.
 
 ## Credits used
-~336 Higgsfield credits (33 images ≈ 91 + 7 clips ≈ 245); balance 2,063 → 1,727. Per new customer order: 1 illustration ≈ 2.75 credits; a full 24-page book ≈ 70 credits.
+~390 Higgsfield credits (40 images ≈ 110 + 8 clips ≈ 280); balance 2,063 → ~1,670. Per new customer order: 1 illustration ≈ 2.75 credits; a full 24-page book ≈ 70 credits.
