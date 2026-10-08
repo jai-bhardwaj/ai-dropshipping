@@ -15,6 +15,7 @@ AI-illustrated pet portraits → **100% cotton woven blankets** ($64) and **"sta
 | `PRODUCTS.md` | Final lineup, costs, margins, specs, rejected products, risks | Reference |
 | `BRAND.md` | Name, domain, colors, fonts, logo prompt, homepage + About copy | Week 1 |
 | `PRODUCT_PAGES.md` | Copy for the 3 product pages (blanket, storybook, bundle) | Week 1 |
+| `shopify/` | **Paste-ready** Shopify product descriptions (HTML) + a field-by-field setup table | Week 1 |
 | `POLICIES.md` | Shipping, refunds, privacy, terms, contact, FAQ | Week 1 |
 | `EMAILS.md` | Abandoned checkout, welcome, order/shipping, reviews, holiday emails | Week 1 |
 | `OPERATIONS.md` | How each order is made: photo → AI art prompts → proof → Printify; 24-page story template | Every order |
