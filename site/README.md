@@ -1,15 +1,15 @@
 # Woven Tails website (landing pages with live 3D)
 
-**Live:** https://woven-tails-sujalsharmas-projects.vercel.app (Vercel project `woven-tails`, root directory `site/`, connected to this GitHub repo)
+**Live:** https://woventails.com (once DNS is set, see `DOMAIN.md`) · https://woven-tails-sujalsharmas-projects.vercel.app (Vercel project `woven-tails`, root directory `site/`, connected to this GitHub repo)
 
 Static site: home page + 3 product landing pages, each with an interactive 3D scene (three.js r160).
 
 | Page | 3D scene | Buy button goes to |
 |---|---|---|
 | `index.html` | Woven blanket that ripples like cloth; try 4 sample pets | product pages |
-| `blanket.html` | Same blanket with pet + style picker (12 combinations) | `woventails.com/products/custom-pet-portrait-woven-blanket` |
-| `storybook.html` | Hardcover book that turns its own pages; dog/cat toggle, prev/next | `woventails.com/products/personalized-pet-storybook` |
-| `gift-set.html` | Gift box that opens and lifts out the blanket and book | `woventails.com/products/pet-portrait-gift-set` |
+| `blanket.html` | Same blanket with pet + style picker (12 combinations) | `shop.woventails.com/products/custom-pet-portrait-woven-blanket` |
+| `storybook.html` | Hardcover book that turns its own pages; dog/cat toggle, prev/next | `shop.woventails.com/products/personalized-pet-storybook` |
+| `gift-set.html` | Gift box that opens and lifts out the blanket and book | `shop.woventails.com/products/pet-portrait-gift-set` |
 
 Buy buttons point at the Shopify product URLs from `PRODUCT_PAGES.md`. They work once those products exist in Shopify with exactly these handles.
 

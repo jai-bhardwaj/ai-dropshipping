@@ -8,6 +8,8 @@
    - Gift Set (blanket + storybook): $99 (compare-at $106), 3 styles, 3 images
    - Extra Copy of Your Pet Storybook: $19 add-on
    Descriptions, SEO titles, alt text, SKUs and URL handles are all filled in. Images load from the live site (woven-tails…vercel.app).
+
+**Domain:** connect the store as `shop.woventails.com` (see `DOMAIN.md`); the website's buy buttons point there.
 3. Inventory is not tracked and "continue selling when out of stock" is on (everything is made to order). Fulfillment is manual: you place each order in Printify after the customer approves the art (`OPERATIONS.md`).
 4. Check each product, then set **Status: Active** to publish.
 

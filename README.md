@@ -26,6 +26,7 @@ AI-illustrated pet portraits → **100% cotton woven blankets** ($64) and **"sta
 | `COMPLIANCE.md` | GST, IEC, PayPal purpose code, income tax and records, done without a CA | Week 1 |
 | `VERIFICATION.md` | Results of the pre-launch checks + tax/paperwork research for the CA | Week 1 |
 | `site/` | **Website:** home + 3 product landing pages with live 3D (woven blanket, page-turning book, opening gift box); see `site/README.md` | Week 1 |
+| `DOMAIN.md` | woventails.com DNS setup (Vercel site + Shopify on shop.woventails.com) | Week 1 |
 | `SOCIAL.md` | Instagram/Facebook profile, highlights, launch grid, captions, reply templates | Week 1+ |
 | `assets/` | **Ready media:** sample pet art (3 styles), storybook pages, lifestyle shots, 2 logos, **11 finished videos** (incl. 4 rendered 3D reels), social posts, highlight covers, pins (see `assets/README.md`) | Week 1+ |
 | `scripts/` | Rebuild videos / storybook pages after editing captions | As needed |
