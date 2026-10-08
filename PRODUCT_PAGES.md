@@ -1,271 +1,181 @@
-# Shopify product pages: top 3 products
+# Shopify product pages: Woven Tails
 
-Date: 2026-10-08 · Language: US English · Currency: USD
+Date: 2026-10-08 · Language: US English · Currency: USD · Supplier: Printify (Printify Choice)
 
-## Before publishing
+## Rules for every page
+- **Images:** use Printify mockups + your own AI artwork examples. Label lifestyle images "illustration of the product" if they're generated. Never show a feature the product doesn't have (e.g. fine fur detail on the woven blanket).
+- **No fake reviews, ratings, "X sold" counters or fake timers.** Reviews section shows "Be the first to review" until real ones arrive.
+- **Christmas deadline:** Dec 10 (standard shipping). Only change it if Printify's real times change.
+- **Size:** say "approx." for the blanket (±2.5" tolerance).
 
-- Fill every **[bracket]** with the real value from the CJ listing (battery, sizes, delivery days, what's in the box). If CJ doesn't state it, **delete the line**. Don't guess.
-- **No fake reviews, ratings or "X sold" counters.** Leave the reviews section empty until real customers review (a review app like Judge.me can email buyers automatically).
-- Only say "Ships from the US" / delivery times if CJ's US warehouse confirms it for that product.
-- Countdown timers and "only 3 left" are allowed only when true. Shopify review and Meta ad reviews flag fake urgency.
-- Set up the shipping, returns, privacy and terms pages before going live (I'll write those next if you want).
-
-## Store-wide trust bar (shows on every product page)
-
-> 🚚 Free US shipping on orders over $50 · 📦 Ships from our US warehouse in [1–3] business days · ↩️ 30-day returns · 🔒 Secure checkout with PayPal
-
-(Adjust the free-shipping threshold to match your pricing; $50 nudges people toward the bundle.)
+## Store-wide trust bar
+> 🎨 Illustrated from your photo · ✅ You approve the art first · 🇺🇸 Made in the USA · 🔁 Free replacement if anything's wrong
 
 ---
 
-## Product 1: Rechargeable hand warmers (2-pack)
+## Product 1: AI pet portrait woven blanket
 
-**Product title:** Rechargeable Magnetic Hand Warmers, 2-in-1 Pocket Set
-**URL handle:** `rechargeable-hand-warmers`
-**SEO title (≤60 chars):** Rechargeable Hand Warmers 2-Pack | Magnetic, USB-C
-**Meta description (≤155 chars):** Two rechargeable hand warmers that snap together. [X] heat levels, up to [X] hours of warmth, USB-C charging. The stocking stuffer that lasts every winter.
+**Title:** Custom Pet Portrait Woven Blanket, Illustrated from Your Photo
+**URL handle:** `custom-pet-portrait-woven-blanket`
+**SEO title:** Custom Pet Portrait Woven Blanket | 100% Cotton, From Your Photo
+**Meta description:** Your dog or cat, illustrated from your photo and woven into a 100% cotton blanket with fringe. You approve the art first. Made in the USA.
 
-### Price and variants
-| Option | Price | Compare-at (only if it's a real former price) |
-|---|---|---|
-| 1 set (2 warmers) | $34.99 | — |
-| **2 sets (4 warmers): best gift value** | **$59.99** | — |
-
-Variant picker label: "Choose your bundle" · Pre-select **1 set**; badge on 2 sets: "Gift one, keep one"
-
-Colors: [list the colors CJ offers]
-
-### Above the fold
-**Headline:** Warm hands. Every winter. No more throwaway packs.
-**Subheadline:** Two rechargeable warmers that split apart, one for each pocket, and charge with USB-C like your phone.
-
-**Key benefits (with icons):**
-- 🔥 **[X] heat levels.** Choose how warm you want it
-- 🧲 **Splits in two.** Magnetic pair: one for each hand or pocket
-- 🔋 **Up to [X] hours per charge.** Charges via USB-C in [X] hours
-- ♻️ **Reusable every winter.** Replaces single-use warmer packs
-- 🎁 **Gift-ready.** Fits in any stocking
-
-**Button:** Add to cart
-**Under the button:** Order by [Dec X] for delivery before Christmas (US) · 30-day returns
-
-### Product description
-Cold mornings, long commutes, early dog walks, game days in the stands: your hands shouldn't have to suffer through it.
-
-These rechargeable hand warmers heat up in [X] seconds with one press. Pull them apart and you've got two warmers, one for each pocket or glove. Snap them back together to charge both at once with the included USB-C cable.
-
-Pick from [X] heat levels and get up to [X] hours of warmth per charge [at the lowest setting]. When they run low, charge them like your phone. No more buying packs of disposable warmers every winter.
-
-**Great for:** commuters · dog walkers · students · outdoor workers · sports fans · anyone who's always cold
-
-### How it works
-1. **Press** the button to turn on, press again to change heat level
-2. **Split** the magnetic pair, one for each hand or pocket
-3. **Recharge** both together with the USB-C cable
-
-### What's in the box
-- 2 hand warmers (magnetic pair)
-- 1 USB-C charging cable
-- [User manual]
-
-### Specs
-| | |
-|---|---|
-| Heat levels | [X] |
-| Max temperature | [X °F] |
-| Battery | [X mAh] per warmer |
-| Warmth per charge | Up to [X] hours (low setting) |
-| Charging time | [X] hours |
-| Size / weight | [X in] / [X oz] each |
-| Certifications | [CE / FCC / RoHS, only if listed by supplier] |
-
-### FAQ
-**How hot do they get?** Up to [X °F] on the highest setting. Start on low and adjust.
-**How long does the warmth last?** Up to [X] hours on low, less on higher settings.
-**Can I use them as a phone charger?** [Only answer yes if the CJ listing says it has a power-bank output; otherwise delete this question.]
-**Are they safe to keep in a pocket?** Use them as described in the manual and don't place them directly on bare skin for long periods on high. Not for use while sleeping.
-**When will my order arrive?** Orders ship from our US warehouse within [1–3] business days and arrive in [X–X] business days. You'll get a tracking number by email.
-**Can I return them?** Yes, within 30 days. See our returns policy.
-
-### Image gallery (in order)
-1. Hero: both warmers glowing on a clean white/wood background
-2. Split apart in two hands, in gloves
-3. Close-up of heat level button / indicator
-4. USB-C charging both
-5. Lifestyle: bus stop / dog walk (AI UGC frame)
-6. In a Christmas stocking (gift angle)
-7. Infographic: "[X] heat levels · up to [X] hrs · USB-C · splits in 2"
-8. What's in the box
-
----
-
-## Product 2: Mini portable photo printer
-
-**Product title:** Mini Pocket Photo Printer: Print from Your Phone, No Ink
-**URL handle:** `mini-photo-printer`
-**SEO title:** Mini Photo Printer for iPhone & Android | No Ink, Bluetooth
-**Meta description:** Print photos straight from your phone in seconds, no ink needed. Pocket-size Bluetooth printer for journals, scrapbooks and gifts.
-
-### Price and variants
+### Price and options
 | Option | Price |
 |---|---|
-| Printer + [1] paper roll | $44.99 |
-| **Printer + 3 extra paper rolls: journaling bundle** | **$59.99** |
-| Extra paper rolls (3-pack) | $[14.99] (add-on / repeat purchase) |
+| Woven blanket, approx. 52×37 in | **$64** |
+| **Blanket + storybook bundle** (separate product, see Product 3) | **$99** |
 
-Colors: [list CJ colors, e.g. white, pink, blue]
-Badge on bundle: "Most popular for gifts" (only once it actually is your most popular, until then use "Best value")
+**Art style** (variant dropdown, same price): Bold Pop · Christmas Scarf · Royal
+**Pet:** (cart note) name, dog/cat
 
 ### Above the fold
-**Headline:** Your best photos deserve to leave your phone.
-**Subheadline:** A pocket-size printer that prints straight from your phone over Bluetooth. No ink, ever.
+**Headline:** Your pet, woven into a blanket you'll actually use.
+**Subheadline:** We turn your photo into a bold illustrated portrait, then weave it into a soft 100% cotton blanket with fringed edges.
 
 **Key benefits:**
-- 📱 **Prints from your phone.** iPhone & Android via the free [app name] app
-- ✨ **No ink, no cartridges.** Uses [thermal / zero-ink] paper
-- 🎒 **Pocket-size.** [X in], [X oz], fits in a bag
-- ✂️ **Journals, scrapbooks, letters, walls.** [Sticky-back paper available]
-- 🎁 **The gift she'll actually use**
+- 🎨 **Illustrated from your photo:** your pet's real markings, not a stock breed
+- ✅ **Approve before we make it:** up to 2 free art changes
+- 🧶 **100% cotton, woven (jacquard):** the design is woven into the fabric, not printed on top
+- 📏 **Approx. 52×37 in:** throw size for the sofa, bed or reading chair
+- 🇺🇸 **Made in the USA** and shipped with tracking
 
-**Under the button:** Order by [Dec X] for delivery before Christmas (US) · 30-day returns
+**Under the button:**
+> 📸 After checkout, we'll email you to ask for your pet's photo. Artwork proof within 24 hours.
+> 🎄 Order by **Dec 10** for Christmas delivery (US).
 
-### Product description
-Thousands of photos on your phone, and none of them on your wall. This mini printer fixes that.
+### Description
+Most of our best pet photos never leave our phones. This blanket changes that.
 
-Connect it to your phone over Bluetooth, pick a photo in the free [app name] app, and it prints in seconds. There's no ink and no cartridges to replace. It prints on [thermal] paper rolls, [including sticker-back paper] for journals and scrapbooks.
+Send us a photo of your dog or cat. We create a bold illustrated portrait of your pet (AI-assisted, then checked and finished by hand), with their real markings, colors and expression. You approve it (or ask for changes), and then it's woven into a soft 100% cotton blanket.
 
-It's small enough to carry everywhere, so you can print at a sleepover, a road trip, a birthday party, or right at your desk while you journal.
+Because the design is **woven** into the fabric, the colors are part of the blanket itself, and it gets softer with every wash. That's also why we illustrate your photo first: bold artwork weaves beautifully, while a raw photo would look muddy.
 
-**Perfect for:** bullet journals · scrapbooks · photo walls · notes in lunchboxes · to-do lists · labels · gifts for teens and friends
+**Perfect for:** dog moms & cat dads · gifts for grandparents of furry grandkids · couples · pet memorials · Christmas, birthdays, Mother's Day
 
 ### How it works
-1. **Download** the free [app name] app (iPhone & Android)
-2. **Connect** the printer over Bluetooth
-3. **Pick a photo** (or text, a list, a sticker) and tap print
+1. **Order:** choose your art style
+2. **Send your photo:** reply to the email after checkout
+3. **Approve the art:** proof within 24 hours, up to 2 free changes
+4. **We weave & ship:** made in the USA, delivered in about 4–7 business days after approval
 
-### What's in the box
-- Mini photo printer
-- [1] paper roll
-- USB [type] charging cable
-- [User manual]
-
-### Specs
+### Details
 | | |
 |---|---|
-| Print technology | [Thermal] |
-| Print type | [Black & white / color, state exactly what it is] |
-| Paper width | [X mm] |
-| Connection | Bluetooth [version] |
-| App | [App name], iOS & Android |
-| Battery | [X mAh], [X] prints per charge |
-| Size / weight | [X] / [X] |
-
-**Important:** most pocket printers in this price range print **black-and-white (thermal)**. If yours does, say so clearly in the title, gallery and specs. Showing color prints for a black-and-white printer is the #1 reason these products get refunds and bad reviews.
+| Material | 100% cotton, woven (jacquard) |
+| Size | Approx. 52 × 37 in (may vary by up to 2.5 in) |
+| Edges | Fringed |
+| Design | Illustrated portrait from your photo (bold color style) |
+| Care | Machine wash cold, gentle cycle; tumble dry low [confirm on Printify care info] |
+| Made in | USA |
+| Production + shipping | ~1–2 business days production after approval + 2–5 business days shipping |
 
 ### FAQ
-**Does it print in color?** [Answer exactly from the CJ listing.]
-**Do I need ink?** No. It uses [thermal] paper, no ink or cartridges.
-**Which phones does it work with?** iPhone and Android, using the free [app name] app.
-**Where can I get more paper?** Right here, add the 3-pack of rolls to your cart.
-**How long does the photo last?** [Thermal prints can fade over time in sunlight. Answer honestly per supplier info.]
-**When will it arrive?** Ships from our US warehouse within [1–3] business days, delivered in [X–X] business days.
+**What photo should I send?** A clear, well-lit photo of your pet's face, eyes visible. Phone photos are perfect. Send 2–3 if you can.
+**Can I include two pets?** [Not yet. Offer once you've tested a 2-pet layout.]
+**Is the art made with AI?** Yes, we use AI-assisted illustration, then check every image by hand against your photo and fix anything that's off. You always approve it first.
+**Will it look exactly like my photo?** It's an illustration of your pet, not a photo. We keep their real markings, colors and expression in a bold, woven-friendly art style. You approve it before we make anything.
+**Can you add my pet's name?** Yes, add it in the order note and we'll put it under the portrait.
+**How detailed is the weave?** Woven blankets show bold shapes and colors beautifully; very fine details (like single whiskers) are simplified.
+**What if I don't like it?** You get up to 2 free changes before production. If the finished blanket arrives damaged or doesn't match the approved art, we replace it free.
+**Can I return it?** Because it's made just for you, we can't accept change-of-mind returns, but anything wrong = free replacement or refund.
+**When will it arrive?** About 4–7 business days after you approve the art. Order by Dec 10 for Christmas.
 
-### Image gallery
-1. Hero: printer with a photo coming out, pastel background
-2. Phone + printer side by side, app screen visible
-3. Journal page with printed photos
-4. Size comparison in a hand
-5. Paper rolls (incl. sticker paper)
-6. Lifestyle: desk with fairy lights (AI UGC frame)
-7. Infographic: "No ink · Bluetooth · pocket-size · iPhone & Android"
-8. What's in the box
+### Gallery (in order)
+1. Hero: blanket mockup with an illustrated dog, on a sofa
+2. Before/after: real pet photo → illustrated portrait → blanket
+3. Close-up of the woven texture + fringe (Printify mockup)
+4. The 3 art styles side by side (your own examples on a sample pet; use a pet photo you have rights to)
+5. Lifestyle: cozy reading chair / Christmas tree (labeled illustration)
+6. "How it works" infographic (4 steps)
+7. Size guide: blanket next to a sofa / person outline with "approx. 52 × 37 in"
 
 ---
 
-## Product 3: Motion-sensor LED cabinet lights (3-pack)
+## Product 2: "Starring your pet" storybook
 
-**Product title:** Motion Sensor LED Lights, Rechargeable, No Wiring (3-Pack)
-**URL handle:** `motion-sensor-cabinet-lights`
-**SEO title:** Motion Sensor Under Cabinet Lights 3-Pack | Rechargeable
-**Meta description:** Lights that turn on when you walk by. Rechargeable, magnetic, no wiring or drilling. For cabinets, closets, stairs and hallways. Renter-friendly.
+**Title:** Personalized Pet Storybook, Starring Your Dog or Cat
+**URL handle:** `personalized-pet-storybook`
+**SEO title:** Personalized Pet Storybook | Your Real Pet Illustrated | Hardcover
+**Meta description:** A 24-page hardcover picture book starring your own dog or cat, illustrated from your photo on every page. Made in the USA. Perfect gift for pet lovers.
 
-### Price and variants
+### Price and options
 | Option | Price |
 |---|---|
-| 3-pack | $32.99 |
-| **6-pack: light up the whole home** | **$54.99** |
+| Hardcover storybook, 8×8 in, 24 pages | **$42** |
+| Add a 2nd copy ("one for Grandma") | **+$19** |
 
-Lengths (if CJ offers): [20 cm / 30 cm / 40 cm] · Light color: [warm white / cool white]
-Badge on 6-pack: "Best value"
+**Story version** (variant): Dog · Cat · Memorial (gentle version)
 
 ### Above the fold
-**Headline:** Lights that turn on when you need them.
-**Subheadline:** Motion-sensor LED lights for cabinets, closets and stairs. No wiring, no drilling, no electrician.
+**Headline:** A storybook where your pet is the hero.
+**Subheadline:** *[PET NAME] and the Very Big Day*: 24 illustrated pages starring your real dog or cat, drawn from your photo.
 
 **Key benefits:**
-- 👋 **Turns on automatically.** Motion sensor, turns off [X] seconds after you leave
-- 🧲 **Sticks on in seconds.** Magnetic strip + adhesive, no tools
-- 🔋 **Rechargeable.** USB-C, up to [X] [days/weeks] per charge [under typical use]
-- 🏠 **Renter-friendly.** Comes off cleanly when you move [if the adhesive is removable; confirm]
-- 🌙 **Safer at night.** Stairs and hallways without fumbling for a switch
+- 🐾 **Your actual pet on every page:** illustrated from your photo, not picked from preset breeds
+- 📖 **Hardcover, 8×8 in, 24 full-color pages**
+- 👨‍👩‍👧 **Your family's names in the story:** up to 3
+- ✅ **Approve the character first** before we illustrate the book
+- 🇺🇸 **Printed in the USA**
 
-**Under the button:** Order by [Dec X] for delivery before Christmas (US) · 30-day returns
+**Under the button:**
+> 📸 After checkout, we'll email you to ask for your pet's photo. Character proof within 24 hours.
+> 🎄 Order by **Dec 10** for Christmas delivery (US).
 
-### Product description
-Dark closets, deep kitchen cabinets, stairs at 2 a.m.: everyday spots that need a little light, without an electrician.
+### Description
+Every pet has a story. Now yours gets a real book.
 
-These LED lights have a built-in motion sensor. Open the cabinet or walk past, and they switch on. Walk away, and they switch off after [X] seconds. [Switch to "always on" mode when you need it.]
+*[PET NAME] and the Very Big Day* follows your dog or cat through one wonderful day: a morning stretch, a big adventure, a surprise at home, and a heartfelt thank-you from the family. It ends with a cozy goodnight, perfect for reading aloud.
 
-Installation takes seconds: stick the magnetic strip where you want it, then snap the light on. To charge, pop it off the magnet and plug in the USB-C cable. No drilling, no wiring, no damage to your walls.
+Send us a photo and we illustrate your pet (AI-assisted, checked by hand), with their real markings and personality, on every page. Your pet's name and up to 3 family members' names are written into the story.
 
-**Use them in:** kitchen cabinets · closets · wardrobes · stairs · hallways · under the bed · garage shelves · pantry
+**Perfect for:** kids who adore the family dog · pet parents · grandparents · Christmas & birthdays · remembering a pet who's passed (gentle memorial version)
 
 ### How it works
-1. **Stick** the magnetic strip in place (no tools)
-2. **Snap** the light onto the strip
-3. **Walk by** and it turns on. Walk away, and it turns off.
+1. **Order:** choose dog, cat, or memorial version
+2. **Send your photo + names:** reply to the email after checkout
+3. **Approve the character:** proof within 24 hours
+4. **We illustrate, print & ship:** about 5–8 business days after approval
 
-### What's in the box
-- 3 (or 6) LED motion-sensor lights
-- 3 (or 6) magnetic mounting strips with adhesive
-- [X] USB-C charging cable(s)
-- [User manual]
-
-### Specs
+### Details
 | | |
 |---|---|
-| Length | [X cm / X in] |
-| Light color | [warm / cool white, X K] |
-| Brightness | [X lumens] |
-| Sensor range | [X ft], [X°] angle |
-| Auto-off | after [X] seconds |
-| Modes | [Motion / always on / off] |
-| Battery | [X mAh], USB-C charging |
-| Battery life | Up to [X] [days/weeks] [typical use] |
+| Format | Hardcover, case-bound, 8 × 8 in |
+| Pages | 24 full-color illustrated pages |
+| Cover | Glossy laminated |
+| Story | *[PET NAME] and the Very Big Day* (dog, cat or memorial version) |
+| Personalization | Pet's name, appearance from your photo, up to 3 family names, favorite treat |
+| Printed in | USA |
 
 ### FAQ
-**Do I need an electrician?** No. They're rechargeable, with no wiring.
-**Will it damage my walls/cabinets?** The adhesive strip [removes cleanly from most smooth surfaces]; test on a hidden spot first.
-**How long does a charge last?** Up to [X] depending on how often it turns on.
-**Does it work in daylight?** [Answer from listing, e.g. "Has a light sensor, so it only turns on in the dark."]
-**What length should I choose?** [X cm] for cabinets, [X cm] for closets/stairs.
-**When will it arrive?** Ships from our US warehouse within [1–3] business days, delivered in [X–X] business days.
+**What age is it for?** Read-aloud for ages 2–8, and loved by grown-up pet parents too.
+**Is the art made with AI?** Yes, AI-assisted illustration, checked by hand. You approve the character first.
+**Will the pet look exactly like my photo?** It's an illustration in a picture-book style, keeping your pet's real colors, markings and features. You approve the character before we illustrate the book.
+**Can I change the story?** The story is the same for every book; names, pet and version are personalized.
+**Can I include two pets?** [Not yet.]
+**Can I return it?** It's made just for you, so no change-of-mind returns. Any printing issue = free reprint.
+**When will it arrive?** About 5–8 business days after you approve the character. Order by Dec 10 for Christmas.
 
-### Image gallery
-1. Hero: dark kitchen with cabinets lit underneath
-2. Before / after of a dark closet
-3. Hand sticking the magnetic strip (installation)
-4. Stairs / hallway at night
-5. USB-C charging
-6. Sensor close-up with "turns on when you walk by" text
-7. Infographic: "Motion sensor · rechargeable · no wiring · magnetic"
-8. What's in the box (3-pack and 6-pack)
+### Gallery
+1. Cover mockup with an illustrated dog
+2. Open book spread (pages 16–17, "SURPRISE!")
+3. Before/after: pet photo → character illustration
+4. 3–4 sample pages in a grid
+5. Book + blanket bundle shot
+6. "How it works" infographic
 
 ---
 
-## Reviews section (all 3 pages)
+## Product 3: Bundle: blanket + storybook
 
-Show this until real reviews arrive:
-> **Be the first to review this product.** Bought one? Tell us what you think. We read every review.
+**Title:** The Woven Tails Gift Set: Pet Portrait Blanket + Storybook
+**URL handle:** `pet-portrait-gift-set`
+**Price:** **$99** (buying separately is $106) · Badge: "Best gift"
+**Headline:** The complete gift: their pet, woven and in a story.
+**Description:** Our two favorite keepsakes, made from the same photo: the 100% cotton woven portrait blanket (approx. 52×37 in) and the 24-page hardcover storybook starring your pet. One photo, one approval, both made in the USA and shipped together.
+**Note in Printify:** both items on **Printify Choice** so they ship together.
 
-Then let the review app collect real reviews from buyers (send the request ~7 days after delivery).
+---
+
+## Reviews section (all pages)
+> **Be the first to review.** Got yours? Tell us what you think. We read every review.

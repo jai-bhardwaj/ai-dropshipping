@@ -1,146 +1,104 @@
-# AI UGC video scripts: top 3 products
+# AI UGC video scripts: Woven Tails
 
-Date: 2026-10-08 · Format: vertical 9:16, 15–25 seconds · Platforms: Instagram Reels, YouTube Shorts, Facebook Reels, Meta ads (Pinterest: use the first 6–10 seconds + text overlay)
+Date: 2026-10-08 · Vertical 9:16 · 12–25 s · Instagram Reels, YouTube Shorts, Facebook Reels, Meta ads; Pinterest uses the first 6–10 s + text overlay
 
 ## How to use these
-
-- **[AI]** = AI presenter shot (generated). **[REAL]** = real product footage (CJ supplier video or your sample). Every video mixes both, so the product shown is always the real one.
-- **Placeholders in [brackets]** (battery hours, heat levels, delivery dates, price) must be filled with the **real numbers from the CJ listing**. Never guess them.
-- Presenter style = **demo/explainer**, not a fake customer. The presenter never says "I've used this for months" or invents a personal story.
-- Turn on the platform's **AI-generated content label** when posting.
-- Each product gets **3 hooks/angles**. We test all 3 and keep the winner.
-- On-screen text: big, centered, 4–6 words, readable with the sound off (most people watch muted).
-
----
-
-## Product 1: Rechargeable hand warmers (2-pack)
-
-**Presenter:** woman, late 20s, puffer jacket, beanie; outdoors on a cold city morning (frost, breath visible). Friendly, quick talker.
-**Price to show:** $34.99 · **CTA:** link in bio / Shop now
-
-### Script 1A: "Cold hands" problem → solution (18s)
-
-| Time | Visual | Voiceover | On-screen text |
-|---|---|---|---|
-| 0–2s | [AI] Presenter at a bus stop, rubbing hands, breath visible | "If your hands are always freezing, watch this." | Always cold hands? 🥶 |
-| 2–5s | [REAL] Close-up: one warmer pulled from a pocket, button pressed, light turns on | "These are rechargeable hand warmers." | Rechargeable hand warmers |
-| 5–9s | [REAL] Two units snapping apart magnetically, one in each hand | "They split in two, one for each pocket." | 2 in 1, magnetic |
-| 9–13s | [REAL] Charging via USB-C, heat level button pressed | "[X] heat levels, up to [X] hours per charge, and you charge them like your phone." | Up to [X] hrs warmth |
-| 13–16s | [AI] Presenter holding them, smiling, walking on | "No more disposable warmers." | No more single-use packs |
-| 16–18s | [REAL] Product on a gift box with ribbon | "Link's in bio." | Shop now → |
-
-### Script 1B: Stocking stuffer gift angle (15s)
-
-| Time | Visual | Voiceover | On-screen text |
-|---|---|---|---|
-| 0–2s | [AI] Presenter holding an empty Christmas stocking | "The stocking stuffer everyone actually uses." | Best stocking stuffer 2026 🎄 |
-| 2–6s | [REAL] Warmers glowing, split apart, put into a stocking | "Rechargeable hand warmers. They split into two." | Rechargeable · splits in 2 |
-| 6–10s | [AI] Presenter counting on fingers | "Commuters, dog walkers, students, anyone who's always cold." | For: commuters · dog walkers · students |
-| 10–13s | [REAL] Gift box shot | "Order by [date] for Christmas delivery." | Order by [date] for Christmas |
-| 13–15s | [AI] Presenter pointing down | "Link in bio." | Shop now → |
-
-### Script 1C: Comparison (disposable vs rechargeable) (20s)
-
-| Time | Visual | Voiceover | On-screen text |
-|---|---|---|---|
-| 0–2s | [AI] Presenter holding a pile of used disposable hand-warmer packs | "Still buying these every winter?" | Still buying these? |
-| 2–5s | [AI] Presenter drops them in a trash can | "They're single use and go straight in the trash." | Single use 🗑️ |
-| 5–10s | [REAL] Rechargeable warmer turned on, heat level changed | "This one recharges over USB-C and has [X] heat levels." | USB-C rechargeable |
-| 10–15s | [REAL] Magnetic split, in a glove/pocket | "Splits in two, fits in any pocket." | Splits in 2 · pocket-size |
-| 15–20s | [AI] Presenter holding it up | "One buy, every winter. Link in bio." | One buy. Every winter. → |
-
-**AI video prompt (for the presenter shots):** "Vertical UGC-style smartphone video, young woman in a puffer jacket and beanie at a frosty city bus stop in the morning, visible breath, natural light, handheld camera feel, talking to camera, friendly and energetic."
+- **[AI]** = AI presenter shot · **[ART]** = AI artwork / transformation shot · **[MOCK]** = Printify mockup or real product footage (once you have the sample).
+- **The transformation (photo → illustration → blanket/book) is the hook.** It's the most watchable thing we have; show it in the first 3 seconds.
+- Presenter = **demo/explainer**, never a fake customer. No "I ordered this for my mom and she cried." Use "Imagine their face when…" or show the product itself.
+- Turn on the **AI-generated content label** when posting.
+- **Pet photos:** use pets you have rights to (AI-generated sample pets, or friends' pets with written permission). **Never use a customer's pet without written permission.**
+- On-screen text: big, centered, 4–6 words, readable on mute.
 
 ---
 
-## Product 2: Mini portable photo printer
+## Product 1: Woven blanket ($64)
 
-**Presenter:** woman early 20s, cozy room with fairy lights, journal on the desk. Creative, calm, excited at the reveal.
-**Price to show:** $44.99 · **CTA:** link in bio / Shop now
-
-### Script 2A: "Photos from your phone in seconds" demo (18s)
-
+### 1A: "Watch your dog turn into a blanket" transformation (15s)
 | Time | Visual | Voiceover | On-screen text |
 |---|---|---|---|
-| 0–2s | [AI] Presenter holding the phone, scrolling photos | "Your camera roll has 5,000 photos and none of them are printed." | 5,000 photos. 0 printed. |
-| 2–6s | [REAL] Phone app, picks photo, taps print | "This mini printer connects to your phone over Bluetooth." | Prints from your phone 📱 |
-| 6–10s | [REAL] Photo sliding out of the printer | "No ink. The photo just comes out." | No ink needed ✨ |
-| 10–15s | [REAL] Photo stuck into a journal / on a fridge / on a wall | "Journals, the fridge, letters, gifts." | Journals · gifts · walls |
-| 15–18s | [AI] Presenter holding the printer and a photo | "Link in bio." | Shop now → |
+| 0–2s | [ART] Phone photo of a dog → morphs into a bold illustrated portrait | "Send a photo of your dog…" | Your dog's photo 📸 |
+| 2–5s | [ART→MOCK] Illustration → woven blanket unfolding with fringe | "…we illustrate it and weave it into a 100% cotton blanket." | → illustrated → WOVEN 🧶 |
+| 5–9s | [MOCK] Close-up of the weave and fringe, hand running over it | "The art is woven into the fabric, not printed on top." | Woven, not printed |
+| 9–12s | [MOCK] Blanket on a sofa, same dog curled up beside it | "Their real markings. Their real face." | Made from YOUR photo |
+| 12–15s | [AI] Presenter holding the blanket up | "You approve the art first. Link in bio." | Order by Dec 10 for Christmas → |
 
-### Script 2B: Gift for her / teen angle (15s)
-
+### 1B: Gift for the dog mom (18s)
 | Time | Visual | Voiceover | On-screen text |
 |---|---|---|---|
-| 0–2s | [AI] Presenter holding a wrapped gift | "If you don't know what to get her, get this." | Gift idea for her 🎁 |
-| 2–6s | [REAL] Unwrapping → mini printer | "A pocket photo printer." | Pocket photo printer |
-| 6–10s | [REAL] Printing a friend-group photo, sticker paper peel | "Prints straight from her phone. [Sticker paper works too.]" | Prints from her phone |
-| 10–13s | [REAL] Wall of mini photos | "She'll print everything." | |
-| 13–15s | [AI] Presenter | "Order by [date] for Christmas. Link in bio." | Order by [date] → |
+| 0–2s | [AI] Presenter holding a wrapped gift | "The gift for the person who shows you 400 photos of their dog." | For the dog mom 🐶 |
+| 2–6s | [ART] 3 different pets → 3 illustrated portraits (quick cuts) | "Send us one of those photos, and we turn it into art." | 1 photo → art |
+| 6–11s | [MOCK] Gift box opens → blanket unfolds | "Then we weave it into a soft cotton blanket." | 100% cotton · woven |
+| 11–15s | [MOCK] Blanket on a bed / sofa, cozy | "It'll be the first thing they show their friends." | |
+| 15–18s | [AI] Presenter | "Order by December 10 for Christmas. Link in bio." | Order by Dec 10 🎄 |
 
-### Script 2C: Journaling / aesthetic (Pinterest-first) (20s, voiceover optional, music-led)
-
+### 1C: Three styles (20s)
 | Time | Visual | Voiceover | On-screen text |
 |---|---|---|---|
-| 0–3s | [AI] Hands over an open journal, warm lamp, coffee | (soft) "A cozy way to save memories." | Journal with me ☕ |
-| 3–8s | [REAL] Printing a photo | "Print a photo from your phone…" | Print from your phone |
-| 8–14s | [REAL] Cutting, sticking the photo into the journal, adding a date | "…and turn your camera roll into something real." | No ink · pocket-size |
-| 14–20s | [AI] Finished page, presenter closing the journal | "Link in bio." | Mini photo printer → |
+| 0–2s | [ART] Same cat in 3 styles flashing | "Which one would you pick?" | Pick a style 👇 |
+| 2–6s | [ART] Bold Pop | "Bold Pop…" | 1. Bold Pop |
+| 6–10s | [ART] Christmas Scarf | "…Christmas…" | 2. Christmas |
+| 10–14s | [ART] Royal | "…or Royal." | 3. Royal 👑 |
+| 14–18s | [MOCK] Chosen style as woven blanket | "Then we weave it into a cotton blanket." | Woven blanket |
+| 18–20s | [AI] Presenter | "Comment 1, 2 or 3. Link in bio." | Comment 1, 2 or 3 → |
 
-**AI video prompt:** "Vertical UGC-style smartphone video, young woman in a cozy bedroom with warm fairy lights, sitting at a desk with an open journal and coffee, natural soft light, handheld feel, calm and excited, talking to camera."
+(1C is built for comments, which boosts organic reach.)
+
+**Presenter prompt:** "Vertical UGC-style smartphone video, friendly woman in her 30s in a cozy living room with a Christmas tree, warm evening light, holding a fringed woven blanket, talking to camera, natural and upbeat."
 
 ---
 
-## Product 3: Motion-sensor LED cabinet lights (3-pack)
+## Product 2: Storybook ($42)
 
-**Presenter:** man or woman, 30s, home kitchen at night, casual hoodie. Practical "home hacks" tone.
-**Price to show:** $32.99 · **CTA:** link in bio / Shop now
-
-### Script 3A: "Lights turn on by themselves" wow (15s)
-
+### 2A: "Your dog is the main character" (15s)
 | Time | Visual | Voiceover | On-screen text |
 |---|---|---|---|
-| 0–2s | [REAL] Dark kitchen cabinet, door opens, light turns on by itself | (no voice, sound effect) | Wait for it… 👀 |
-| 2–5s | [AI] Presenter in dark kitchen | "That's a motion-sensor light. No wires, no electrician." | No wires. No drilling. |
-| 5–9s | [REAL] Peel and stick under cabinet, magnetic mount | "It sticks on with a magnet strip." | Sticks on in 10 sec |
-| 9–12s | [REAL] Closet, stairs, under bed lighting up | "Cabinets, closets, stairs, under the bed." | Closet · stairs · cabinets |
-| 12–15s | [REAL] USB-C charging · [AI] presenter | "Rechargeable. Link in bio." | 3-pack → link in bio |
+| 0–2s | [ART] Dog photo → storybook character | "What if your dog was the hero of a storybook?" | Your dog = the hero 📖 |
+| 2–6s | [MOCK] Book cover "[PET] and the Very Big Day" | "We illustrate your real dog from your photo…" | From your photo |
+| 6–11s | [ART] Flip through 4 pages: park, stick, puddle, surprise | "…on every page of a 24-page hardcover book." | 24 pages · hardcover |
+| 11–15s | [AI] Presenter holding the book | "Your family's names are in the story too. Link in bio." | Link in bio → |
 
-### Script 3B: Midnight snack / night-time safety (18s)
-
+### 2B: Bedtime story for kids (18s)
 | Time | Visual | Voiceover | On-screen text |
 |---|---|---|---|
-| 0–2s | [AI] Presenter walks into dark kitchen at night, squinting | "Stop turning on the big light at 2 a.m." | 2 a.m. kitchen trips 🌙 |
-| 2–6s | [REAL] Lights turning on as someone walks past | "These motion lights turn on when you walk by…" | Motion-sensing |
-| 6–9s | [REAL] Lights fading off | "…and off when you leave." | Auto on · auto off |
-| 9–14s | [REAL] Stairs and hallway | "Great for stairs and hallways, so nobody trips in the dark." | Stairs · hallways |
-| 14–18s | [AI] Presenter | "Pack of 3, link in bio." | 3-pack → |
+| 0–3s | [AI] Presenter (parent) sitting on a kid's bed with a book (kid seen from behind / out of frame) | "The bedtime story kids ask for every single night." | Bedtime, but make it the dog 🐶 |
+| 3–8s | [ART] Pages: morning stretch → park → surprise party | "It stars your family dog, drawn from your photo." | Your real dog, every page |
+| 8–13s | [ART] Page 21 "Thank you for being [FAMILY]'s best friend" | "And it ends with a thank-you to the best friend in the house." | |
+| 13–18s | [MOCK] Book + blanket bundle | "Order by December 10 for Christmas. Link in bio." | Order by Dec 10 🎄 |
 
-### Script 3C: Renter-friendly home upgrade (20s)
+**Children:** never show an identifiable child's face (AI or real) in ads. It triggers Meta review and privacy issues. Use hands, backs, or out-of-frame.
 
+### 2C: Cat version (15s, humor)
 | Time | Visual | Voiceover | On-screen text |
 |---|---|---|---|
-| 0–2s | [AI] Presenter in a rental apartment, gesturing at a dark closet | "Renter-friendly upgrade that costs less than a takeout dinner." | Renter-friendly upgrade 🏠 |
-| 2–7s | [REAL] Before (dark closet) → after (lit closet) | "Before. After." | Before → After |
-| 7–12s | [REAL] Installing without tools, removing it again | "No drilling, no wiring. Comes off with no damage when you move." | No tools · no damage |
-| 12–16s | [REAL] 3 lights in different places | "Three lights in a pack." | 3 lights per pack |
-| 16–20s | [AI] Presenter | "Link in bio." | Shop now → |
+| 0–2s | [ART] Grumpy-looking cat → storybook character | "Your cat already thinks they're the main character." | Main character energy 😼 |
+| 2–7s | [ART] Pages: sunbeam, box adventure, bird watching | "So we made it official." | Now it's official |
+| 7–12s | [MOCK] Hardcover book closing | "A 24-page hardcover storybook, illustrated from your photo." | 24 pages · from your photo |
+| 12–15s | [AI] Presenter | "Link in bio." | Link in bio → |
 
-**Note on 3C:** "costs less than a takeout dinner" fits only if the price stays near $32.99. Change the line if the price changes.
-
-**AI video prompt:** "Vertical UGC-style smartphone video, person in their 30s in a casual hoodie in a dark home kitchen at night, only soft under-cabinet light, handheld feel, practical and friendly, talking to camera."
+**Presenter prompt:** "Vertical UGC-style smartphone video, woman in her 30s sitting on a cozy armchair with a reading lamp, holding a square hardcover children's picture book, warm light, talking to camera, gentle and warm."
 
 ---
 
-## Testing plan for these 9 videos
+## Bundle ($99)
 
-1. **Organic first (weeks 2–4):** post 1 video per product per day, rotating A → B → C. After every video goes out once, repost the best one with a new hook.
-2. **What to watch:** 3-second hold rate (people who keep watching past the hook), average watch time, comments asking "where to buy", link clicks.
-3. **Winner:** the hook with the best hold rate + link clicks becomes the first Meta ad (week 5).
-4. **Next round:** I'll write 3 new hooks for the winner every week, keeping the same body.
+### 3A: "The gift set" (15s)
+| Time | Visual | Voiceover | On-screen text |
+|---|---|---|---|
+| 0–3s | [MOCK] Gift box with blanket + book | "One photo of your pet. Two gifts." | 1 photo → 2 gifts 🎁 |
+| 3–9s | [ART→MOCK] Photo → illustration → blanket; → book | "A woven cotton blanket and a storybook starring them." | Blanket + storybook |
+| 9–15s | [AI] Presenter | "Ships together. Order by December 10. Link in bio." | $99 gift set → |
+
+---
+
+## Posting plan (organic, weeks 2–4)
+- **2 videos/day:** rotate 1A, 1B, 1C, 2A, 2B, 2C, 3A.
+- Same video → Instagram Reels + YouTube Shorts + Facebook Reels; first 8 s + text → Pinterest video pin.
+- **Comment replies:** answer every "how much?" with the price + "link in bio".
+- **Winner:** best 3-second hold + link clicks → first Meta ad (see `ADS.md`).
+- **Each week:** 3 new hooks on the winner (same body, new first 3 seconds).
 
 ## Before generating
-
-- [ ] Fill in all **[brackets]** with real numbers from CJ (battery, heat levels, Christmas delivery date).
-- [ ] Get the real product footage (CJ product videos or your sample).
-- [ ] Approve AI video credit spend (I'll show the cost first).
+- [ ] Make 3–4 sample pets' artwork in all 3 blanket styles (using AI-generated pets or pets you have rights to)
+- [ ] Download Printify mockups for the blanket and book with the sample art
+- [ ] Approve AI video credit spend (check the cost first)

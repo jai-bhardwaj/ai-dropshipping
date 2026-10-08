@@ -28,15 +28,15 @@ Rules for the whole setup:
 ## Day 1, afternoon: store
 
 - [ ] **Shopify account:** sign up at shopify.com (India) → 3-day trial → choose the ₹20/month for 3 months offer on the Basic plan (check it's offered at checkout).
-  - Store name: (picked in `BRAND.md` once products are final)
+  - Store name: **Woven Tails** (see `BRAND.md`)
   - Store currency: **USD** (Settings → Store details → Store currency). **Set this before adding products**; changing it later is painful.
   - Billing currency stays INR; that's fine.
 - [ ] **Theme:** Online Store → Themes → use **Dawn** (free) or **Refresh** (free). No paid theme needed.
-- [ ] **Domain:** Settings → Domains → Buy a `.com` (~₹900/yr). Pick from the names in `BRAND.md`.
+- [ ] **Domain:** Settings → Domains → Buy **`woventails.com`** (~₹1,000/yr). Check the USPTO trademark search first (see `BRAND.md`).
 - [ ] **Payments:** Settings → Payments → add **PayPal** (connect your PayPal Business account). Shopify Payments is not available in India; that's expected.
 - [ ] **Markets:** Settings → Markets → primary market **United States**. Turn off India as a selling market for this store.
 - [ ] **Shipping:** Settings → Shipping and delivery → create "United States" zone:
-  - Standard shipping: Free over $50, $4.99 under $50 (adjust per `PRODUCT_PAGES.md` pricing).
+  - Standard shipping: **Free** on all orders (all products are over $40 and shipping is built into the price).
 - [ ] **Taxes:** Settings → Taxes and duties → United States. Ask your CA about US sales tax; most small foreign sellers start without US sales tax registration, but confirm.
 - [ ] **Policies:** Settings → Policies → paste from `POLICIES.md` (fill the brackets first).
 - [ ] **Checkout:** Settings → Checkout →
@@ -47,9 +47,12 @@ Rules for the whole setup:
 
 ## Day 1, evening: apps (all free plans)
 
-- [ ] **Supplier app:** CJdropshipping (for CJ products) and/or **Printify** (for print-on-demand products). Connect, then import the chosen products.
-  - In CJ, only choose variants **shipped from the US warehouse**.
-  - Turn on **automatic order fulfillment** only after your first 5 manual orders go fine.
+- [ ] **Supplier app: Printify** (free plan). Connect it to Shopify, then create the products:
+  - Woven Blanket (blueprint 1626), 52×37", **Artwork** variant, provider **Printify Choice**
+  - Hardcover Photo Book 8×8 (blueprint 2737), provider **Printify Choice**
+  - Use your sample artwork for the mockups; set prices from `PRODUCT_PAGES.md`
+  - Personalized orders are placed **manually** per order (see `OPERATIONS.md`). Turn **off** automatic order sending for these products in Printify, or every order would print the sample art.
+  - Add a card to Printify billing (you pay Printify per order after the customer pays you).
 - [ ] **Reviews:** **Judge.me** (free). Turn on automatic review request emails ~7 days after delivery. **No imported/fake reviews.**
 - [ ] **Email marketing:** **Shopify Email** (free up to 10,000 emails/month) or Klaviyo (free up to 250 contacts). Set up flows from `EMAILS.md`.
 - [ ] **Facebook & Instagram app** (by Meta): connect the Meta Business account (next section). This installs the **Meta Pixel + Conversions API** in one go; choose data sharing **"Maximum"**.
@@ -64,14 +67,14 @@ Rules for the whole setup:
   - Add payment method (Indian card works; Meta adds 18% GST to the bill).
   - Verify the domain in Business settings → Brand safety → Domains.
 - [ ] **YouTube channel:** on the business Gmail, channel name = store name.
-- [ ] **Pinterest Business:** create, claim your domain, create 5 boards (names in `PINTEREST.md` once products are final).
+- [ ] **Pinterest Business:** create, claim your domain, create the 6 boards in `PINTEREST.md`.
 - [ ] **WhatsApp Business (optional):** for customer support only; US customers mostly prefer email.
 
 ## Day 2, afternoon: test everything
 
 - [ ] **Place a real test order** on your own store with PayPal (buy the cheapest item, then refund yourself). Check:
   - [ ] Order confirmation email arrives and looks right
-  - [ ] Order shows up in the supplier app (CJ/Printify)
+  - [ ] Order shows up in Shopify (Printify orders are placed manually, see `OPERATIONS.md`)
   - [ ] **Meta Events Manager** shows PageView, ViewContent, AddToCart, InitiateCheckout, **Purchase** (use the "Test events" tab)
   - [ ] Pinterest tag shows checkout event
 - [ ] **Mobile check:** open the store on your phone; product page loads in under 3 seconds, the add-to-cart button is visible without scrolling.

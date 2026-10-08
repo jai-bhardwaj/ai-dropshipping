@@ -4,8 +4,10 @@ Fill every **[bracket]** before publishing. These are plain-English templates fo
 
 Placeholders used everywhere:
 - [STORE NAME] · [DOMAIN] · [SUPPORT EMAIL] · [YOUR FULL NAME / BUSINESS NAME] · [BUSINESS ADDRESS IN INDIA]
-- [PROCESSING DAYS]: for CJ US warehouse items usually 1–3 business days; for print-on-demand items 2–5 business days (use the supplier's real numbers)
-- [DELIVERY DAYS]: supplier's real US delivery estimate (e.g. 3–7 business days)
+- [PROCESSING DAYS]: artwork proof within 1 business day + production 1–3 business days after you approve (Printify Choice)
+- [DELIVERY DAYS]: 2–5 business days (Printify standard US shipping)
+- [DATE] (Christmas cutoff): **December 10**
+- Our fulfillment partner: **Printify**
 
 ---
 
@@ -21,8 +23,7 @@ Orders are processed within [PROCESSING DAYS] business days (Monday–Friday, ex
 After processing, delivery usually takes [DELIVERY DAYS] business days. Your order may ship in more than one package if it contains items from different fulfillment centers.
 
 **Shipping cost**
-- Free standard shipping on orders over $[50]
-- $[4.99] standard shipping on orders under $[50]
+- Free standard shipping on all US orders
 
 **Holiday deadline**
 To receive your order before December 25, please order by **[DATE]** (standard shipping). Orders after this date are still shipped as fast as possible, but we can't guarantee delivery before Christmas.
@@ -70,7 +71,7 @@ We don't offer direct exchanges; return the item for a refund and place a new or
 Use Shopify's built-in generator (Settings → Policies → Privacy policy → "Create from template") and then check that it mentions:
 - What we collect: name, email, shipping address, phone (optional), order details, device/browser data, and cookies.
 - Why: to fulfill orders, provide support, send order updates, send marketing emails only if you opt in, and improve our store and ads.
-- Who we share it with: Shopify (store platform), PayPal (payments), our fulfillment partners [CJ Dropshipping / Printify] (to make and ship your order), Meta, Pinterest and Google (analytics and ads, via cookies/pixels), [Shopify Email / Klaviyo] (emails), Judge.me (review requests).
+- Who we share it with: Shopify (store platform), PayPal (payments), our fulfillment partner Printify (to make and ship your order), the AI image tool we use to create your illustration ([TOOL NAME]; your photo is uploaded there only to make your artwork), Meta, Pinterest and Google (analytics and ads, via cookies/pixels), [Shopify Email / Klaviyo] (emails), Judge.me (review requests).
 - **Photos you upload** for personalized products are used only to create your order and are deleted from our systems [90] days after delivery. We never use them for ads without your written permission.
 - Your rights: access, correction, deletion (email [SUPPORT EMAIL]); California residents' rights under CCPA; unsubscribe from marketing anytime.
 - Contact: [SUPPORT EMAIL], [BUSINESS ADDRESS IN INDIA].

@@ -1,102 +1,87 @@
-# AI Dropshipping: global plan from India, starting with ₹5,000
+# Master plan: Woven Tails (AI pet keepsakes, US market, run from India)
 
-Start: 2026-10-08 · Plan period: 60 days (to 2026-12-07) · Budget: **₹5,000 (about $57)** · Goal: **earn in dollars**
+Start: 2026-10-08 · Plan period: to 2026-12-31 · Budget: **₹5,000 (~$57)** · Goal: **earn in dollars**
 
 ## 0. Honest goal
+- **$100k in 2 months from $57 isn't realistic.** The plan aims for **the first $1,000–3,000 in sales by Christmas** and a proven product + video that can grow with reinvested profit.
+- **Path to $100k:** reinvest every dollar of profit into ads and new products; at $10–15k/month that's 6–12 months.
 
-- $100k in 2 months from $57 isn't realistic. Selling to the US/UK with paid ads costs more than selling in India, and you can't test ads properly with $57.
-- **60-day goal:** **first $1,000–3,000 in sales** in dollars, and one product + video style that is proven to sell.
-- **Path to $100k:** put every dollar of profit back into ads. A store at $10–15k/month reaches $100k total in about 6–12 months.
+## 1. What we sell and why
+See `PRODUCTS.md`. In short:
+- **AI-illustrated pet portrait woven blanket**: $64, ~$20 margin
+- **"Starring your pet" storybook**: $42, ~$21 margin
+- **Gift set (both)**: $99, ~$39 margin
 
-## 1. Decisions I made for you
+Both passed the price check (≤ 1.3× cheapest comparable listing, ≥ $20 margin). Generic gadgets failed it (`PRICING_RESEARCH.md`).
 
-| Decision | Choice | Why |
-|---|---|---|
-| Customers | **US, UK, Canada, Australia** (English-speaking, pay in dollars) | Highest spending, one language, one store |
-| India store | **Paused** (kept as a backup plan) | Your budget is too small to run two businesses; dollars are the goal |
-| Store | **Shopify** (₹20/month for the first 3 months, priced in rupees for you), store in English with prices in USD | Works globally, connects to suppliers in one click |
-| Payments | **PayPal Business** (India account that can receive international payments) | Works for Indian sellers selling abroad. Stripe needs a US company, so we skip it for now |
-| Supplier | **CJ Dropshipping**, choosing products **in stock at its US warehouse** (5–8 day delivery). Printify for print-on-demand (custom designs) as the second option | Free to join, fast US delivery = fewer complaints and refunds |
-| What to sell | **Q4 gifts and problem-solving gadgets, $25–45**: cozy home, pet, kitchen, car, desk gadgets; later, custom AI-designed gifts (Printify) | Christmas/Black Friday gifting season is now; easy to show in 10-second video |
-| Free traffic (first 4 weeks) | **Pinterest** + **YouTube Shorts** + **Instagram Reels**, all in English, all made by me with AI | TikTok is banned in India. Pinterest and YouTube send global (mostly US) traffic even from an Indian account |
-| Paid traffic (later) | Meta ads to US/UK/CA/AU, **only after a product sells for free** | Ads are where the money is lost if we test blindly |
-| Etsy | **Check later.** Etsy needs GST registration + Payoneer for Indian sellers, and it's unclear if new Indian shops are accepted | Good extra channel for custom gifts once that's sorted |
+## 2. Decisions (all made)
+| Area | Decision |
+|---|---|
+| Brand | **Woven Tails**, `woventails.com` (available 2026-10-08), see `BRAND.md` |
+| Customers | United States |
+| Store | Shopify (₹20/month for first 3 months), USD prices, Dawn theme |
+| Payments | PayPal Business (India) |
+| Supplier | Printify, provider **Printify Choice** for both products (ship together) |
+| Videos | Faceless AI UGC: AI presenter + photo→art→product transformations (`SCRIPTS.md`) |
+| Free traffic | Instagram Reels, YouTube Shorts, Facebook Reels, Pinterest (`PINTEREST.md`) |
+| Paid traffic | Meta ads, US, only after organic proves a video (`ADS.md`) |
+| Orders | Photo collected by email after checkout, proof approval, manual Printify order (`OPERATIONS.md`) |
+| Christmas cutoff | **Dec 10** (standard shipping) |
 
-## 2. ₹5,000 split
-
+## 3. ₹5,000 budget
 | Item | Amount |
 |---|---|
 | Shopify (₹20 × 3 months + GST) | ~₹75 |
-| Domain `.com` (looks trustworthy to US customers) | ~₹900 |
-| 1 product sample shipped to you in India (real footage + quality check) | ~₹1,000 |
-| Meta ads test, **only after organic shows a winner** | ~₹2,500 (~$30) |
-| Buffer (refunds, PayPal fees) | ~₹500 |
+| Domain `woventails.com` | ~₹1,000 |
+| **Storybook sample** (Printify, shipped to India; check the exact international shipping price at checkout) | ~₹2,000–2,800 |
+| AI image credits for sample artwork (or free tiers) | ~₹500 |
+| Buffer | ~₹600–1,400 |
 
-Free: PayPal, CJ Dropshipping, Printify, Pinterest, YouTube, Instagram, and all AI creatives (I make them).
+- **The blanket sample (~$39 + international shipping) doesn't fit the budget.** Launch the blanket with Printify mockups (labeled). Treat the **first blanket order as the quality check**: if anything is off, free replacement (it's in the policy). Order your own blanket sample from the first profits.
+- **Ads: ₹0 at launch.** The first ~2–3 orders' profit funds the first ad test.
 
-## 3. Before your first sale (do this in week 1)
-
-Selling abroad from India comes with paperwork. Check these with a CA (a chartered accountant, usually ₹1,000–2,000 for a consultation, or a free one-time chat with a friend who is one):
-1. **PayPal:** set it up as a Business account, add the purpose code for goods exports, and link your bank so money is withdrawn to INR.
-2. **IEC (Import Export Code):** free on the DGFT website; often needed to receive export payments.
-3. **GST:** whether you need it, and whether a LUT (letter of undertaking) applies to your case.
-4. **Income tax:** dollar earnings are taxable in India; keep records of every sale and expense from day 1.
-
-## 4. Who does what
-
-| Me (Claude) | You |
-|---|---|
-| Product research (10-product shortlist with price/margin) | Accounts: Shopify, PayPal, CJ, Pinterest, YouTube, Instagram (your ID/phone) |
-| Store copy, product pages, policies, FAQ in US English | Order 1 sample, film 2–3 short real clips |
-| AI videos + images + Pinterest pins, hooks, captions, keywords | Post (or approve scheduling), answer messages within 12h |
-| Daily numbers review: keep, drop, push | Process orders in CJ, handle refunds |
-| Meta ad creatives + setup guide when we go paid | Approve any spending |
-
-I'll always ask before spending money or posting publicly.
-
-## 5. Week-by-week
-
+## 4. Timeline
 ### Week 1 (Oct 8–14): set up
-1. **You:** create accounts (Shopify, PayPal Business, CJ Dropshipping, Pinterest Business, YouTube channel, Instagram), buy the domain.
-2. **Me:** a shortlist of **10 products** in stock at CJ's US warehouse: cost, shipping, sale price, margin, video idea. We pick **3**.
-3. **Me:** store name + logo, homepage, 3 product pages, shipping/returns/privacy/terms, FAQ.
-4. **You:** order a sample of product #1, and book the CA chat (section 3).
+- [ ] Everything in `SETUP_CHECKLIST.md` (accounts, CA questions, Shopify, PayPal, Printify, Pixel)
+- [ ] Logo (prompt in `BRAND.md`), homepage + about page copy (`BRAND.md`)
+- [ ] Policies (`POLICIES.md`), emails (`EMAILS.md`)
+- [ ] Make sample artwork: 4 sample pets × 3 blanket styles + 1 sample storybook (`OPERATIONS.md`)
+- [ ] Create both products + bundle in Printify (Printify Choice), publish pages (`PRODUCT_PAGES.md`)
+- [ ] Order the storybook sample
+- [ ] **Before launch:** check the Amazon "Tidal Colors Custom Woven Blanket" ($23.45) material. If it's truly cotton woven at that price, lead with the storybook instead (see `PRODUCTS.md`)
 
-### Weeks 2–4 (Oct 15–Nov 4): free traffic test
-1. **Me, daily:** 2 short videos + 5 Pinterest pins across the 3 products ("gift for dog lovers under $40", "kitchen gadget that saves 10 minutes", before/after, demo).
-2. **You:** post every day: same video on YouTube Shorts + Instagram Reels; pins on Pinterest.
-3. **Winner signals:** a video above 10k views, pins with many saves/clicks, store visits from the US, first orders.
-4. **Decision (Nov 4):** keep the best product. If none shows signs, swap in 3 new products for 2 weeks.
+### Weeks 2–4 (Oct 15–Nov 4): organic test
+- [ ] Generate the 7 videos in `SCRIPTS.md`; post **2/day** across Reels, Shorts, Facebook
+- [ ] **5 Pinterest pins/day** from `PINTEREST.md`
+- [ ] Reply to every comment and DM within a few hours
+- [ ] Log numbers daily in `TRACKER.xlsx`
+- [ ] **Nov 4 decision:** which product + which hook gets the most link clicks and orders?
 
-### Weeks 5–6 (Nov 5–18): first ads
-1. Turn the best video into a Meta ad, $5/day, US (or US+UK+CA+AU), broad targeting, about 6 days of test.
-2. Stop rule: no sale after $15 spent on one ad → stop it, try the next creative.
-3. Profit goes straight back into ads.
+### Weeks 5–6 (Nov 5–18): first ads (from organic profit)
+- [ ] Winning video → Meta ad, $5–8/day, US (`ADS.md`)
+- [ ] Strict stop rules; reinvest profit
 
-### Weeks 7–9 (Nov 19–Dec 7): Black Friday + Christmas
-1. Black Friday/Cyber Monday offer (e.g. "Buy 2, get 15% off"), "order by Dec X for Christmas" (true dates only, from CJ's US delivery times).
-2. Raise ad spend 20–30% every 2 days while each sale costs less than the profit it makes.
-3. 10+ new creatives per week from me.
-4. End: profit and loss review → next 60 days (more budget, 2nd product, Etsy/print-on-demand).
+### Weeks 7–10 (Nov 19–Dec 10): Black Friday → Christmas cutoff
+- [ ] Black Friday offer: e.g. bundle $89 (Nov 27–Dec 1), real end date
+- [ ] "Order by Dec 10 for Christmas" in every post, email, ad
+- [ ] Batch artwork daily; keep proof turnaround under 24h
 
-## 6. Numbers
+### Dec 11–31: after the cutoff
+- [ ] Switch messaging to "gift for after the holidays", Valentine's Day (couples' pets), and memorial
+- [ ] Review: profit, best product, best hook → plan for Q1 (next product: e.g. 2-pet blanket, more story templates)
 
-**Example:** sell at $34.99, CJ product + US shipping $12, PayPal + Shopify fees ~$3 → **~$20 margin** before ads. With ads at $10 per sale, about **$10 profit per order**. 100 orders is about $3,500 in sales and $1,000 profit to reinvest.
-
-Daily tracking (I'll set up a sheet): views, pin clicks, store visits, add to carts, orders, ad spend, cost per order, profit.
-
-## 7. Risks
-
-| Risk | What we do |
+## 5. Daily routine (~1.5–3 hours)
+| When | What |
 |---|---|
-| Content doesn't reach US viewers | Lean on Pinterest + YouTube (global search), English hooks, US-style topics |
-| PayPal holds funds (new seller) | Fast shipping + tracking uploaded right away; keep a small buffer |
-| Slow delivery → refunds/disputes | Only US-warehouse products; honest delivery times |
-| Paperwork mistakes | CA check before first sale (section 3) |
-| Money runs out | No ads until a product proves itself; strict stop rules |
+| Morning | Orders → photo requests / proofs / Printify orders (`OPERATIONS.md`) |
+| Midday | Post 2 videos + 5 pins |
+| Evening | Comments/DMs/emails, tracking numbers, log `TRACKER.xlsx` |
 
-## 8. Your next steps (today)
-
-1. Create: Shopify, PayPal Business, CJ Dropshipping, Pinterest Business, YouTube, Instagram (all free except Shopify's ₹20).
-2. ~~Face or faceless?~~ Decided: **faceless, AI UGC videos** (AI presenters + real product clips). Rules in `PRODUCTS.md`.
-3. ~~Product shortlist~~ Done: see `PRODUCTS.md`. Next: check the top 3 + backups in CJ (US warehouse) and send me the real prices.
+## 6. Main risks
+| Risk | Plan |
+|---|---|
+| No traction organically | New hooks weekly; switch lead product (book ↔ blanket) |
+| Artwork quality / likeness complaints | Proof approval + 2 free revisions + free replacement |
+| Holiday production delays | Dec 10 cutoff, honest delay emails |
+| PayPal holds for new sellers | Upload tracking fast, keep proof-approval emails |
+| Tax/paperwork | CA consultation in week 1 (`SETUP_CHECKLIST.md`) |
