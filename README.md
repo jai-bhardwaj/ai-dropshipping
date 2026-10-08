@@ -22,6 +22,7 @@ AI-illustrated pet portraits → **100% cotton woven blankets** ($64) and **"sta
 | `PINTEREST.md` | Boards + 20 ready pins with SEO titles/descriptions | Weeks 2+ |
 | `ADS.md` | Customer acquisition cost math, break-even per product, Meta targeting, stop/scale rules | Week 5+ |
 | `TRACKER.xlsx` | Unit economics + daily log + summary (formulas built in) | Daily |
+| `VERIFICATION.md` | Results of the pre-launch checks + tax/paperwork research for the CA | Week 1 |
 | `PRICING_RESEARCH.md` | Why the first products (gadgets) were dropped | Background |
 
 ## Your first 5 actions
@@ -31,9 +32,9 @@ AI-illustrated pet portraits → **100% cotton woven blankets** ($64) and **"sta
 4. Sign up for Shopify (₹20 offer), set currency to USD, buy `woventails.com`.
 5. Connect Printify and make the sample artwork (`OPERATIONS.md`).
 
-## Open checks before launch (can't be done without your accounts)
-- [ ] Exact Printify prices in your account (the plan uses Printify's public catalog from 2026-10-08)
-- [ ] International shipping cost of the storybook sample to India
-- [ ] Amazon "Tidal Colors" woven blanket material (see `PRODUCTS.md` risks)
-- [ ] USPTO trademark search for "Woven Tails"
-- [ ] CA answers on GST / IEC / PayPal purpose code
+## Pre-launch checks: done (see `VERIFICATION.md`)
+- ✅ Printify prices confirmed: blanket $28.85 + $10.39, book $11.42 + $6.19 (US)
+- ✅ Storybook sample to India: $26.01 (~₹2,300), arrives in 10–30 business days
+- ✅ Amazon $23.45 "woven" blanket is a printed picnic blanket, so the blanket stays the hero product
+- ✅ USPTO: no "Woven Tails" trademarks found
+- ⚠️ Tax/paperwork: research answers in `VERIFICATION.md` (GST likely not applicable, P0108 purpose code); **confirm with a CA**

@@ -61,9 +61,9 @@ Printify providers list up to 10 days maximum handling in peak season. Set the *
 
 | Risk | Handling |
 |---|---|
-| Cheaper "woven" look-alikes on Amazon (e.g. a Tidal Colors listing showed $23.45; likely printed polyester, not woven) | **Before launch:** open that listing and check the material. If a genuine cotton woven blanket is under $49, re-price or lead with the book |
+| Cheaper "woven" look-alikes on Amazon | Checked: the $23.45 Tidal Colors listing is a dye-sublimation printed picnic blanket, not jacquard-woven cotton (`VERIFICATION.md`). Keep watching for real cotton jacquard under $49 |
 | Woven detail loss | Only bold, simple AI styles (see `OPERATIONS.md`); proof approval before printing |
 | Storybook takes 1–2 hours per order | Fixed story template with name/species swaps (in `OPERATIONS.md`); batch orders daily |
 | Character consistency across book pages | Generate one character reference first, reuse it for every page |
-| Sample cost (international shipping to India is expensive) | See `PLAN.md` budget: order the cheaper book sample first; first blanket order doubles as quality check (replace free if anything is off) |
+| Sample cost to India | Book sample $26.01 (~₹2,300, 10–30 business days); blanket $49.64 is out of budget, so the first blanket order is the quality check (free replacement if anything is off) |
 | Customers' pet photos | Used only for their order, deleted after 90 days, never in ads without written permission (in `POLICIES.md`) |

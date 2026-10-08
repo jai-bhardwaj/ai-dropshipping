@@ -33,7 +33,7 @@ Both passed the price check (≤ 1.3× cheapest comparable listing, ≥ $20 marg
 |---|---|
 | Shopify (₹20 × 3 months + GST) | ~₹75 |
 | Domain `woventails.com` | ~₹1,000 |
-| **Storybook sample** (Printify, shipped to India; check the exact international shipping price at checkout) | ~₹2,000–2,800 |
+| **Storybook sample** (Printify: $11.42 + $14.59 shipping to India = $26.01; arrives in 10–30 business days) | ~₹2,300 (+ ~₹200–500 possible courier fee) |
 | AI image credits for sample artwork (or free tiers) | ~₹500 |
 | Buffer | ~₹600–1,400 |
 
@@ -48,7 +48,7 @@ Both passed the price check (≤ 1.3× cheapest comparable listing, ≥ $20 marg
 - [ ] Make sample artwork: 4 sample pets × 3 blanket styles + 1 sample storybook (`OPERATIONS.md`)
 - [ ] Create both products + bundle in Printify (Printify Choice), publish pages (`PRODUCT_PAGES.md`)
 - [ ] Order the storybook sample
-- [ ] **Before launch:** check the Amazon "Tidal Colors Custom Woven Blanket" ($23.45) material. If it's truly cotton woven at that price, lead with the storybook instead (see `PRODUCTS.md`)
+- [x] Pre-launch checks done (`VERIFICATION.md`): prices confirmed, cheap Amazon "woven" blanket is printed, no trademark conflicts
 
 ### Weeks 2–4 (Oct 15–Nov 4): organic test
 - [ ] Generate the 7 videos in `SCRIPTS.md`; post **2/day** across Reels, Shorts, Facebook

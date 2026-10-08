@@ -12,7 +12,7 @@ Rules for the whole setup:
 ## Day 1, morning: legal and money
 
 - [ ] **Business email:** new Gmail account for the store.
-- [ ] **CA consultation (₹1,000–2,000, or a friend who's a CA).** Ask these 4 questions:
+- [ ] **CA consultation (₹1,000–2,000, or a friend who's a CA).** Take `VERIFICATION.md` section 5 (research answers + the 5 updated questions). The original 4 questions:
   1. Do I need GST registration to sell goods to US customers through a foreign supplier (goods never enter India)? If yes, should I file a LUT?
   2. Do I need an IEC (Import Export Code) for this?
   3. Which PayPal purpose code should I use?
