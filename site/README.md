@@ -1,5 +1,7 @@
 # Woven Tails website (landing pages with live 3D)
 
+**Live:** https://woven-tails-sujalsharmas-projects.vercel.app (Vercel project `woven-tails`, root directory `site/`, connected to this GitHub repo)
+
 Static site: home page + 3 product landing pages, each with an interactive 3D scene (three.js r160).
 
 | Page | 3D scene | Buy button goes to |
