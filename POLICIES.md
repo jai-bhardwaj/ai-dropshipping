@@ -1,6 +1,6 @@
 # Store policies: paste into Shopify (Settings → Policies)
 
-Fill every **[bracket]** before publishing. These are plain-English templates for a small store, **not legal advice**. Show them to your CA (and, once revenue grows, a lawyer).
+Fill every **[bracket]** before publishing. These are plain-English templates for a small store, **not legal advice**. Once revenue grows, have a lawyer review them.
 
 Placeholders used everywhere:
 - [STORE NAME] · [DOMAIN] · [SUPPORT EMAIL] · [YOUR FULL NAME / BUSINESS NAME] · [BUSINESS ADDRESS IN INDIA]
@@ -85,7 +85,7 @@ Use Shopify's generator (Settings → Policies → Terms of service → "Create 
 - Prices in USD; we may change prices but not for orders already placed.
 - Product images are representative; personalized items are made from the photo/text you provide and small color variations can occur.
 - **Customer content:** by uploading a photo or text, you confirm you have the right to use it, and you give us permission to use it only to make your order. We may refuse content that's offensive, infringes someone else's rights (e.g., logos, celebrities, copyrighted characters) or is illegal.
-- Limitation of liability, governing law (ask your CA/lawyer which jurisdiction to use).
+- Limitation of liability, governing law (for now: the laws of India; have a lawyer review once revenue grows).
 
 ---
 

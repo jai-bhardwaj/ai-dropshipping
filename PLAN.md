@@ -42,7 +42,7 @@ Both passed the price check (≤ 1.3× cheapest comparable listing, ≥ $20 marg
 
 ## 4. Timeline
 ### Week 1 (Oct 8–14): set up
-- [ ] Everything in `SETUP_CHECKLIST.md` (accounts, CA questions, Shopify, PayPal, Printify, Pixel)
+- [ ] Everything in `SETUP_CHECKLIST.md` (accounts, compliance per `COMPLIANCE.md`, Shopify, PayPal, Printify, Pixel)
 - [ ] Logo (prompt in `BRAND.md`), homepage + about page copy (`BRAND.md`)
 - [ ] Policies (`POLICIES.md`), emails (`EMAILS.md`)
 - [ ] Make sample artwork: 4 sample pets × 3 blanket styles + 1 sample storybook (`OPERATIONS.md`)
@@ -84,4 +84,4 @@ Both passed the price check (≤ 1.3× cheapest comparable listing, ≥ $20 marg
 | Artwork quality / likeness complaints | Proof approval + 2 free revisions + free replacement |
 | Holiday production delays | Dec 10 cutoff, honest delay emails |
 | PayPal holds for new sellers | Upload tracking fast, keep proof-approval emails |
-| Tax/paperwork | CA consultation in week 1 (`SETUP_CHECKLIST.md`) |
+| Tax/paperwork | Follow `COMPLIANCE.md`; bank forex-desk check in week 1 |

@@ -12,16 +12,11 @@ Rules for the whole setup:
 ## Day 1, morning: legal and money
 
 - [ ] **Business email:** new Gmail account for the store.
-- [ ] **CA consultation (₹1,000–2,000, or a friend who's a CA).** Take `VERIFICATION.md` section 5 (research answers + the 5 updated questions). The original 4 questions:
-  1. Do I need GST registration to sell goods to US customers through a foreign supplier (goods never enter India)? If yes, should I file a LUT?
-  2. Do I need an IEC (Import Export Code) for this?
-  3. Which PayPal purpose code should I use?
-  4. How do I report this income in my income tax return?
-- [ ] **IEC (if the CA says yes):** free, online at the DGFT website, takes ~1 day. Needs PAN, Aadhaar, bank details.
+- [ ] **Compliance (no CA needed to start):** follow `COMPLIANCE.md`. GST: don't register; IEC: later; PayPal purpose code P0108; send the bank forex-desk message in section 4 (free).
 - [ ] **PayPal Business account (India)**
   1. Sign up for a **Business** account (not Personal).
   2. Add PAN, bank account, business details.
-  3. Set the **purpose code** for your sales (as advised by your CA; for goods sales it's usually a goods-export code).
+  3. Set the **purpose code: P0108** (merchanting trade; see `COMPLIANCE.md`).
   4. Verify the bank account (small test deposits).
   5. Note: PayPal India withdraws to your bank in INR automatically. Keep the FIRC/advice records PayPal provides for taxes.
 
@@ -37,7 +32,7 @@ Rules for the whole setup:
 - [ ] **Markets:** Settings → Markets → primary market **United States**. Turn off India as a selling market for this store.
 - [ ] **Shipping:** Settings → Shipping and delivery → create "United States" zone:
   - Standard shipping: **Free** on all orders (all products are over $40 and shipping is built into the price).
-- [ ] **Taxes:** Settings → Taxes and duties → United States. Ask your CA about US sales tax; most small foreign sellers start without US sales tax registration, but confirm.
+- [ ] **Taxes:** Settings → Taxes and duties → United States. US sales tax: small foreign sellers below US state thresholds (commonly $100,000 sales per state) usually don't need to register; revisit if sales grow.
 - [ ] **Policies:** Settings → Policies → paste from `POLICIES.md` (fill the brackets first).
 - [ ] **Checkout:** Settings → Checkout →
   - Customer contact: **email**

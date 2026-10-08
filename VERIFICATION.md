@@ -52,7 +52,9 @@ Searched the USPTO trademark database (tmsearch.uspto.gov backend) today:
 - This is a **knockout search**, not a legal clearance opinion. It doesn't cover unregistered (common-law) use or similar-sounding marks in other words. A web search also found no store/brand named "Woven Tails".
 - Registering your own US trademark later costs ~$350 per class (USPTO fee; current fee schedule applies). Not needed to start.
 
-## 5. Accountant questions: research answers (confirm with a CA)
+## 5. Accountant questions: research answers
+
+**No CA? Follow `COMPLIANCE.md`**: decisions for each item, a free check with your bank's forex desk, and when a paid consult becomes worth it.
 
 I can't act as your accountant, but here's what the law and published guidance say for **this exact model** (US printer → US customer, goods never enter India). Take this page to the CA so the consultation is quick.
 
@@ -63,7 +65,7 @@ I can't act as your accountant, but here's what the law and published guidance s
 
 ### IEC (Import Export Code)
 - An IEC is required to import or export goods across India's border. **Your goods never cross it**, so many sources say an IEC isn't needed; generic guides say "all dropshippers need IEC".
-- **Not settled.** IEC is free and quick on the DGFT website. Ask the CA (or your bank) whether your bank/PayPal will want it for merchanting receipts. If in doubt, getting it costs nothing.
+- **Not settled.** IEC costs ₹500 (government fee) on the DGFT website and is quick. Decision without a CA: see `COMPLIANCE.md` (get it when PayPal/bank asks, or at ~₹5k profit).
 
 ### PayPal purpose code
 - RBI has no "dropshipping" code. Your model (buy from a foreign supplier, sell to a foreign buyer, goods move directly between them) is **merchanting trade**.
