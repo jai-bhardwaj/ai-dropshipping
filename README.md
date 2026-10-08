@@ -3,6 +3,8 @@
 AI-illustrated pet portraits → **100% cotton woven blankets** ($64) and **"starring your pet" storybooks** ($42), sold to US customers through Shopify, made and shipped by Printify. Run from India, starting budget ₹5,000.
 
 ## Start here
+**→ Open `MORNING.md` first: the 10 steps only you can do, in order.**
+
 1. Read **`PLAN.md`**: the decisions, budget and timeline (5 min).
 2. Work through **`SETUP_CHECKLIST.md`** top to bottom (1–2 days).
 3. Then follow the timeline in `PLAN.md`.
