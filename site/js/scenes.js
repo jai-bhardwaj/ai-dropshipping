@@ -23,7 +23,7 @@ function canvasTex(canvas, renderer) {
   return t;
 }
 
-function setup(stage, { fov = 32, pos = [0, 0.4, 7.2], target = [0, 0, 0], floorY = -2.2, azimuth = 0.9, floor: hasFloor = true } = {}) {
+function setup(stage, { fov = 32, pos = [0, 0.4, 7.2], target = [0, 0, 0], floorY = -2.2, azimuth = 0.9, floor: hasFloor = true, fitAspect = 1 } = {}) {
   const canvas = document.createElement("canvas");
   stage.prepend(canvas);
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" });
@@ -48,6 +48,7 @@ function setup(stage, { fov = 32, pos = [0, 0.4, 7.2], target = [0, 0, 0], floor
   controls.minAzimuthAngle = -azimuth;
   controls.maxAzimuthAngle = azimuth;
   controls.rotateSpeed = 0.6;
+  const baseOffset = camera.position.clone().sub(controls.target);
 
   scene.add(new THREE.HemisphereLight(0xfff4e2, 0x3d4b3f, 1.25));
   const key = new THREE.DirectionalLight(0xffffff, 2.4);
@@ -75,6 +76,9 @@ function setup(stage, { fov = 32, pos = [0, 0.4, 7.2], target = [0, 0, 0], floor
     if (!width || !height) return;
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
+    // On tall screens pull the camera back so the whole object stays in frame.
+    const f = Math.max(1, fitAspect / camera.aspect);
+    camera.position.copy(controls.target).add(baseOffset.clone().multiplyScalar(f));
     camera.updateProjectionMatrix();
   };
   new ResizeObserver(resize).observe(stage);
@@ -172,7 +176,7 @@ function weaveBump() {
 /* ---------- blanket ---------- */
 
 export function initBlanket(stage, { art = "golden-pop", base = "tex/" } = {}) {
-  const { renderer, scene, loop, key } = setup(stage, { pos: [0.2, 0.5, 9.6], floor: false });
+  const { renderer, scene, loop, key } = setup(stage, { pos: [0.2, 0.5, 9.6], floor: false, fitAspect: 1.15 });
   key.position.set(2.5, 5, 6);
   const BW = 5.2, BH = 3.7, SX = 90, SY = 64;
   const geo = new THREE.PlaneGeometry(BW, BH, SX, SY);
@@ -256,7 +260,7 @@ function endpaper(renderer, label) {
 }
 
 export function initBook(stage, { variant = "dog", base = "tex/" } = {}) {
-  const { renderer, scene, loop, camera, controls } = setup(stage, { pos: [0, 7.0, 2.3], target: [0, -0.5, 0.05], fov: 32, floorY: -0.62, azimuth: 0.8 });
+  const { renderer, scene, loop, camera, controls } = setup(stage, { pos: [0, 7.0, 2.3], target: [0, -0.5, 0.05], fov: 32, floorY: -0.62, azimuth: 0.8, fitAspect: 1.1 });
   controls.minPolarAngle = 0.3; controls.maxPolarAngle = 1.2;
   const book = new THREE.Group();
   book.rotation.x = -Math.PI / 2;
@@ -365,7 +369,7 @@ function kraft(renderer) {
 }
 
 export function initGift(stage, { art = "golden-pop", cover = "dog-00-cover", base = "tex/" } = {}) {
-  const { renderer, scene, loop } = setup(stage, { pos: [3.2, 3.4, 6.4], target: [0, 0.3, 0], fov: 34, floorY: -0.9, azimuth: 1.1 });
+  const { renderer, scene, loop } = setup(stage, { pos: [3.2, 3.4, 6.4], target: [0, 0.3, 0], fov: 34, floorY: -0.9, azimuth: 1.1, fitAspect: 0.95 });
   const kr = kraft(renderer);
   const boxMat = new THREE.MeshStandardMaterial({ map: kr, roughness: 0.9 });
   const inner = new THREE.MeshStandardMaterial({ color: 0xf2e8d8, roughness: 1 });
@@ -376,10 +380,13 @@ export function initGift(stage, { art = "golden-pop", cover = "dog-00-cover", ba
   wall(W, Hh, T, 0, Hh / 2, D / 2); wall(W, Hh, T, 0, Hh / 2, -D / 2);
   wall(T, Hh, D, W / 2, Hh / 2, 0); wall(T, Hh, D, -W / 2, Hh / 2, 0);
   // tissue
-  const tissue = new THREE.Mesh(new THREE.PlaneGeometry(W * 1.2, D * 1.2, 20, 20), new THREE.MeshStandardMaterial({ color: 0xf7f1e6, roughness: 1, side: THREE.DoubleSide }));
-  tissue.rotation.x = -Math.PI / 2; tissue.position.y = Hh * 0.55;
+  const tissue = new THREE.Mesh(new THREE.PlaneGeometry(W - 0.12, D - 0.12, 30, 24), new THREE.MeshStandardMaterial({ color: 0xf7f1e6, roughness: 1, side: THREE.DoubleSide }));
+  tissue.rotation.x = -Math.PI / 2; tissue.position.y = 0.12;
   const tp = tissue.geometry.attributes.position;
-  for (let i = 0; i < tp.count; i++) tp.setZ(i, (Math.sin(tp.getX(i) * 5) + Math.cos(tp.getY(i) * 6)) * 0.05 + (Math.abs(tp.getX(i)) > W / 2 || Math.abs(tp.getY(i)) > D / 2 ? 0.25 : 0));
+  for (let i = 0; i < tp.count; i++) {
+    const ex = Math.max(0, Math.abs(tp.getX(i)) - (W / 2 - 0.35)), ey = Math.max(0, Math.abs(tp.getY(i)) - (D / 2 - 0.35));
+    tp.setZ(i, (Math.sin(tp.getX(i) * 6) * Math.cos(tp.getY(i) * 5)) * 0.025 + (ex + ey) * 1.6);
+  }
   tissue.geometry.computeVertexNormals(); box.add(tissue);
 
   // lid with ribbon
@@ -419,9 +426,9 @@ export function initGift(stage, { art = "golden-pop", cover = "dog-00-cover", ba
     const rise = smooth(2.0, 3.6, c) * (1 - smooth(6.8, 8.0, c));
     lid.position.set(lidClosed.x - open * 2.3, lidClosed.y + Math.sin(open * Math.PI) * 0.9 + open * -0.95, lidClosed.z - open * 0.6);
     lid.rotation.set(-open * 0.35, 0, open * 0.55);
-    fold.position.set(-0.55 - rise * 0.15, 0.4 + rise * 1.3, 0.1 + rise * 0.4);
+    fold.position.set(-0.55 - rise * 0.15, 0.36 + rise * 1.3, 0.1 + rise * 0.4);
     fold.rotation.set(rise * 0.55, rise * 0.25, 0);
-    bookG.position.set(0.78 + rise * 0.5, 0.36 + rise * 1.35, rise * 0.2);
+    bookG.position.set(0.72 + rise * 0.5, 0.24 + rise * 1.35, rise * 0.2);
     bookG.rotation.set(-1.45 + rise * 1.2, -0.2 + rise * -0.25, 0.04);
     bow.rotation.y = t * 0.6;
   });
