@@ -5,7 +5,7 @@ Everything that doesn't need your logins, ID or card is done (see "Already done"
 | # | Step | Time | Where | Details |
 |---|---|---|---|---|
 | 1 | **Rename the store to "Woven Tails"** and set the sender email to your Gmail | 2 min | Shopify → Settings → General → Store name / Store email + Sender email | The connector can't rename the store. Until you do, the checkout, emails and privacy policy say "My Store" |
-| 2 | **Email forwarding** for `hello@woventails.com` → your Gmail | 5 min | Spaceship → woventails.com → Email forwarding | All pages and policies use this address. Your current store email is an Apple relay address, and customer emails to it bounce |
+| 2 | ~~Email forwarding~~ **Done:** `hello@woventails.com` forwards to your iCloud (Forward Email, set up via the Spaceship connector). Now set Shopify → Settings → General → Store contact email + Sender email to `hello@woventails.com` | 2 min | Shopify | |
 | 3 | **Connect shop.woventails.com** | 5 min | Spaceship DNS: add `CNAME` · host `shop` · value `shops.myshopify.com`. Then Shopify → Settings → Domains → Connect existing domain → `shop.woventails.com` → set as primary | Makes every buy button on woventails.com work. See `DOMAIN.md` |
 | 4 | **Payments: PayPal Business (India)**, purpose code **P0108** | 20 min | paypal.com/in, then Shopify → Settings → Payments → PayPal → Activate | `COMPLIANCE.md` section 3 |
 | 5 | **Paste the policies** | 5 min | Shopify → Settings → Policies | Already filled in, copy-paste only: `shopify/policies-paste.md` |

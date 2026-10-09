@@ -26,4 +26,4 @@ Spaceship → **Launchpad → Domain manager → woventails.com → Advanced DNS
 Shopify admin → **Settings → Domains → Connect existing domain** → enter `shop.woventails.com` → verify → set it as the **primary domain**.
 
 ## Email
-Spaceship's email forwarding (free) can forward `hello@woventails.com` → your business Gmail. Add it under Spaceship's email settings; it adds MX records that don't conflict with the records above.
+**Done:** `hello@woventails.com` (and any other address @woventails.com) forwards to your iCloud via Forward Email (free). Records: `MX @ mx1.forwardemail.net` and `MX @ mx2.forwardemail.net` (priority 10), a `TXT @ forward-email=...` rule (encrypted, so your iCloud address isn't public), and `TXT @ v=spf1 include:spf.forwardemail.net ~all`. To change the destination, generate a new encrypted value at forwardemail.net and replace that TXT record.
