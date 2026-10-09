@@ -66,18 +66,26 @@ Click **"Create from template"**, then add these paragraphs at the end:
 
 ---
 
-## Privacy policy
+## Privacy policy (2 edits; the rest stays)
 
-Your privacy policy already exists. Make 2 edits:
-1. Replace **"My Store"** with **"Woven Tails"** (Shopify fills this in from the store name. Renaming the store in Settings → General fixes it everywhere).
-2. In the Contact section, replace the `privaterelay.appleid.com` address with **hello@woventails.com**. Customers can't email an Apple relay address; their messages bounce.
+**Edit 1.** Scroll to the last heading, **Contact**, and replace that paragraph with:
 
-Then add this paragraph before "Contact":
+> Should you have any questions about our privacy practices or this Privacy Policy, or if you would like to exercise any of the rights available to you, email us at hello@woventails.com. We reply within 24 hours, Monday–Friday.
 
-**Photos of your pet.** We use the photos you send only to create your order. They are processed by our AI illustration tool and by our print partner (Printify) for that purpose only. We delete them 90 days after delivery and never use them in ads without your written permission.
+(Customer emails to the Apple relay address bounce. This also removes your personal phone number from the public page.)
+
+**Edit 2.** Just above the **Contact** heading, add a heading **Photos of Your Pet** with this paragraph:
+
+> We use the photos you send us only to create your order. They are processed by our AI illustration tool and by our print partner, Printify, for that purpose only. We delete them 90 days after delivery, and we never use them in advertising without your written permission.
 
 ---
 
 ## Contact information
 
-Trade name: **Woven Tails** · Email: **hello@woventails.com** · Address: the same address as in your privacy policy.
+Settings → Policies → Contact information. Paste:
+
+> **Trade name:** Woven Tails
+> **Email:** hello@woventails.com (we reply within 24 hours, Monday–Friday)
+> Please email us before sending anything back, and we'll tell you what to do.
+
+Also set **Settings → General → Store contact email** to hello@woventails.com once forwarding works, so order emails stop showing the Apple relay address.
