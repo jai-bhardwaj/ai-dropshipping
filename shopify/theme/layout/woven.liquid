@@ -26,7 +26,7 @@
 <meta property="og:image" content="{{ og_image }}">
 <meta property="og:type" content="{% if product %}product{% else %}website{% endif %}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="{{ settings.favicon | image_url: width: 64 }}">
+{%- if settings.favicon != blank %}<link rel="icon" href="{{ settings.favicon | image_url: width: 64 }}">{% endif %}
 <link rel="apple-touch-icon" href="https://woven-tails.vercel.app/img/apple-touch-icon.png">
 <meta name="theme-color" content="#1F3127">
 <link rel="preconnect" href="https://fonts.googleapis.com">

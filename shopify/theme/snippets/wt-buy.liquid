@@ -1,7 +1,7 @@
 {%- comment -%} Woven Tails buy form: variant chips + personalization, straight to checkout. {%- endcomment -%}
 {%- assign current = product.selected_or_first_available_variant -%}
 <div class="wt-buy" data-buy-anchor>
-  {%- form 'product', product, id: 'wt-buy-form', class: 'wt-buy__form', novalidate: false -%}
+  {%- form 'product', product, id: 'wt-buy-form', class: 'wt-buy__form' -%}
     <input type="hidden" name="id" value="{{ current.id }}" data-wt-variant>
     <input type="hidden" name="return_to" value="/checkout">
     {%- unless product.has_only_default_variant -%}

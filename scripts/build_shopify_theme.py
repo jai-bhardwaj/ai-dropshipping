@@ -93,7 +93,7 @@ LAYOUT = """<!doctype html>
 <meta property="og:image" content="{{ og_image }}">
 <meta property="og:type" content="{% if product %}product{% else %}website{% endif %}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="{{ settings.favicon | image_url: width: 64 }}">
+{%- if settings.favicon != blank %}<link rel="icon" href="{{ settings.favicon | image_url: width: 64 }}">{% endif %}
 <link rel="apple-touch-icon" href="__MEDIA__img/apple-touch-icon.png">
 <meta name="theme-color" content="#1F3127">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -142,7 +142,7 @@ LAYOUT = """<!doctype html>
 BUY = """{%- comment -%} Woven Tails buy form: variant chips + personalization, straight to checkout. {%- endcomment -%}
 {%- assign current = product.selected_or_first_available_variant -%}
 <div class="wt-buy" data-buy-anchor>
-  {%- form 'product', product, id: 'wt-buy-form', class: 'wt-buy__form', novalidate: false -%}
+  {%- form 'product', product, id: 'wt-buy-form', class: 'wt-buy__form' -%}
     <input type="hidden" name="id" value="{{ current.id }}" data-wt-variant>
     <input type="hidden" name="return_to" value="/checkout">
     {%- unless product.has_only_default_variant -%}
