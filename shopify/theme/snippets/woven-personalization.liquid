@@ -176,6 +176,7 @@
     const input = document.getElementById('wt-photo-{{ uid }}');
     if (!input || input.dataset.wtBound) return;
     input.dataset.wtBound = '1';
+    input.addEventListener('click', () => window.wtWarmup && window.wtWarmup());
     input.addEventListener('change', () => {
       const box = input.closest('.wt-upload');
       const file = input.files && input.files[0];
@@ -214,11 +215,14 @@
       const st = state[uid]; if (!st || !window.wtStylize) return;
       const busy = document.querySelector('[data-wt-busy="' + uid + '"]');
       busy.hidden = false;
-      setTimeout(() => {
-        const canvas = window.wtStylize(st.photo, styleFromPage(), st.view);
-        st.art.src = canvas.toDataURL('image/jpeg', 0.9);
-        st.art.classList.add('is-user');
-        busy.hidden = true;
+      const seq = (st.seq = (st.seq || 0) + 1);
+      setTimeout(async () => {
+        try {
+          const canvas = await window.wtStylize(st.photo, styleFromPage(), st.view);
+          if (seq !== st.seq) return;
+          st.art.src = canvas.toDataURL('image/jpeg', 0.9);
+          st.art.classList.add('is-user');
+        } finally { if (seq === st.seq) busy.hidden = true; }
       }, 30);
     };
     window.wtPreview = (uid, photo) => {

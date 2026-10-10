@@ -59,8 +59,57 @@
     return [Y, Cb, Cr];
   }
 
-  window.wtStylize = function (image, style, view) {
+
+  // ---- background removal: U2-Net (u2netp, Apache-2.0) via onnxruntime-web, all in the browser ----
+  const ORT_URL = window.WT_ORT_URL || 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/ort.wasm.min.js';
+  const MODEL_URL = window.WT_MODEL_URL || 'https://woventails.com/models/u2netp.onnx';
+  let sessionP = null;
+  function loadScript(src) {
+    return new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
+  }
+  function session() {
+    if (!sessionP) sessionP = (async () => {
+      if (!window.ort) await loadScript(ORT_URL);
+      ort.env.wasm.numThreads = 1;
+      ort.env.wasm.wasmPaths = ORT_URL.replace(/[^/]+$/, '');
+      return ort.InferenceSession.create(MODEL_URL, { executionProviders: ['wasm'] });
+    })();
+    sessionP.catch(() => { sessionP = null; });
+    return sessionP;
+  }
+  window.wtWarmup = () => session().catch(() => {});
+  const maskCache = {};
+
+  async function segment(img) {
+    const M = 320, c = document.createElement('canvas'); c.width = c.height = M;
+    const x = c.getContext('2d'); x.drawImage(img, 0, 0, M, M);
+    const d = x.getImageData(0, 0, M, M).data;
+    let mx = 1; for (let i = 0; i < d.length; i += 4) mx = Math.max(mx, d[i], d[i + 1], d[i + 2]);
+    const mean = [0.485, 0.456, 0.406], std = [0.229, 0.224, 0.225], N = M * M, t = new Float32Array(3 * N);
+    for (let i = 0; i < N; i++) for (let k = 0; k < 3; k++) t[k * N + i] = (d[i * 4 + k] / mx - mean[k]) / std[k];
+    const sess = await session();
+    const out = await sess.run({ [sess.inputNames[0]]: new ort.Tensor('float32', t, [1, 3, M, M]) });
+    const m = out[sess.outputNames[0]].data;
+    let lo = Infinity, hi = -Infinity; for (let i = 0; i < N; i++) { lo = Math.min(lo, m[i]); hi = Math.max(hi, m[i]); }
+    const g = new ImageData(M, M);
+    for (let i = 0; i < N; i++) { const v = 255 * (m[i] - lo) / Math.max(1e-6, hi - lo); g.data[i * 4] = g.data[i * 4 + 1] = g.data[i * 4 + 2] = v; g.data[i * 4 + 3] = 255; }
+    const gc = document.createElement('canvas'); gc.width = gc.height = M; gc.getContext('2d').putImageData(g, 0, 0);
+    const up = document.createElement('canvas'); up.width = up.height = S;
+    const ux = up.getContext('2d'); ux.imageSmoothingQuality = 'high'; ux.drawImage(gc, 0, 0, S, S);
+    const u = ux.getImageData(0, 0, S, S).data, mask = new Float32Array(S * S);
+    for (let i = 0; i < S * S; i++) mask[i] = Math.min(1, Math.max(0, (u[i * 4] / 255 - 0.3) / 0.4));
+    return mask;
+  }
+
+  window.wtStylize = async function (image, style, view) {
     const src = cover(image, view), d = src.data, N = S * S;
+    let mask = null;
+    const key = JSON.stringify(view || {});
+    if (maskCache.img === image && maskCache.key === key) mask = maskCache.mask;
+    else try {
+      const sc = document.createElement('canvas'); sc.width = sc.height = S; sc.getContext('2d').putImageData(src, 0, 0);
+      mask = await segment(sc); Object.assign(maskCache, { img: image, key, mask });
+    } catch (e) { console.warn('cutout unavailable, using soft frame', e); }
     let Y = new Float32Array(N), Cb = new Float32Array(N), Cr = new Float32Array(N);
     for (let i = 0; i < N; i++) {
       const r = d[i * 4], g = d[i * 4 + 1], b = d[i * 4 + 2];
@@ -93,7 +142,7 @@
       t = Math.min(1, (f + step) / bands) * 0.9 + 0.07;
       const px = i % S, py = (i / S) | 0;
       const e = Math.hypot((px - S / 2) / (S * 0.41), (py - S * 0.52) / (S * 0.48));
-      const keep = e < 0.55 ? 1 : e > 0.95 ? 0.15 : 1 - 0.85 * (e - 0.55) / 0.4;
+      const keep = mask ? 1 : (e < 0.55 ? 1 : e > 0.95 ? 0.15 : 1 - 0.85 * (e - 0.55) / 0.4);
       const ink = 1 - (1 - line[i]) * keep;
       let r, g, b;
       if (style === 'royal') {
@@ -109,21 +158,32 @@
       o[i * 4 + 3] = 255;
     }
 
-    // portrait background: fade the room into a solid brand color around the subject
     const bg = style === 'royal' ? [58, 36, 22] : style === 'christmas' ? [244, 238, 227] : [200, 103, 62];
-    const rx = S * 0.41, ry = S * 0.48, cx = S / 2, cy = S * 0.52;
-    for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) {
-      const e = Math.hypot((x - cx) / rx, (y - cy) / ry);
-      const a = e < 0.84 ? 1 : e > 1.02 ? 0 : 1 - (e - 0.84) / 0.18;
-      if (a < 1) { const i = (y * S + x) * 4; o[i] = o[i] * a + bg[0] * (1 - a); o[i + 1] = o[i + 1] * a + bg[1] * (1 - a); o[i + 2] = o[i + 2] * a + bg[2] * (1 - a); }
+    const rim = style === 'royal' ? [233, 196, 106] : [251, 248, 242];
+    let alpha = mask;
+    if (!alpha) { // fallback: soft oval
+      alpha = new Float32Array(N);
+      for (let i = 0; i < N; i++) { const px = i % S, py = (i / S) | 0, e = Math.hypot((px - S / 2) / (S * 0.41), (py - S * 0.52) / (S * 0.48)); alpha[i] = e < 0.84 ? 1 : e > 1.02 ? 0 : 1 - (e - 0.84) / 0.18; }
+    }
+    // sticker outline: grow the mask by ~9px, plus a soft shadow
+    const grown = gauss(alpha, S, S, 4), shadow = gauss(alpha, S, S, 7);
+    for (let i = 0; i < N; i++) {
+      const a = alpha[i], ring = mask ? Math.min(1, Math.max(0, (grown[i] - 0.04) / 0.12)) : 0;
+      const sh = mask ? Math.min(0.35, shadow[(Math.min(S - 1, ((i / S) | 0) + 0) * S) + (i % S)] * 0.35) : 0;
+      // background with shadow
+      let r = bg[0] * (1 - sh), g = bg[1] * (1 - sh), b = bg[2] * (1 - sh);
+      // rim
+      r = r * (1 - ring) + rim[0] * ring; g = g * (1 - ring) + rim[1] * ring; b = b * (1 - ring) + rim[2] * ring;
+      // pet
+      o[i * 4] = o[i * 4] * a + r * (1 - a); o[i * 4 + 1] = o[i * 4 + 1] * a + g * (1 - a); o[i * 4 + 2] = o[i * 4 + 2] * a + b * (1 - a);
     }
 
     const c = document.createElement('canvas'); c.width = c.height = S;
     const x = c.getContext('2d');
     x.putImageData(out, 0, 0);
     if (style === 'royal') {
-      x.strokeStyle = '#C99A34'; x.lineWidth = 12; x.beginPath(); x.ellipse(S / 2, S / 2, S * 0.44, S * 0.47, 0, 0, Math.PI * 2); x.stroke();
-      x.strokeStyle = 'rgba(255,230,170,.6)'; x.lineWidth = 2; x.beginPath(); x.ellipse(S / 2, S / 2, S * 0.415, S * 0.445, 0, 0, Math.PI * 2); x.stroke();
+      x.strokeStyle = '#C99A34'; x.lineWidth = 14; x.strokeRect(7, 7, S - 14, S - 14);
+      x.strokeStyle = 'rgba(255,230,170,.7)'; x.lineWidth = 2; x.strokeRect(24, 24, S - 48, S - 48);
     } else if (style === 'christmas') {
       const band = S * 0.07;
       x.fillStyle = '#B3262E';
