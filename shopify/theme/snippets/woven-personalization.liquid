@@ -1,0 +1,243 @@
+{%- comment -%}
+  Woven Tails: personalization fields inside the product form.
+  Values are saved on the order line as properties (photo = file link in the order).
+{%- endcomment -%}
+{%- liquid
+  assign h = product.handle
+  assign wt_photo = false
+  assign wt_story = false
+  if h contains 'blanket' or h contains 'gift-set' or h == 'personalized-pet-storybook'
+    assign wt_photo = true
+  endif
+  if h == 'personalized-pet-storybook' or h contains 'gift-set'
+    assign wt_story = true
+  endif
+  assign wt_blanket = false
+  if h contains 'blanket' or h contains 'gift-set'
+    assign wt_blanket = true
+  endif
+-%}
+{%- if wt_photo -%}
+<div class="wt-personalize">
+  <p class="wt-personalize__title">{% if wt_blanket %}Design your blanket{% else %}Personalize it{% endif %}</p>
+
+  {%- if wt_blanket -%}
+  <div data-wt-editor data-handle="{{ product.handle }}" data-addon="67733051965719"></div>
+  <script src="https://woven-tails.vercel.app/theme-assets/wt-editor.js" defer></script>
+  {%- else -%}
+  <label class="wt-upload" for="wt-photo-{{ uid }}">
+    <input
+      id="wt-photo-{{ uid }}"
+      class="wt-upload__input"
+      type="file"
+      name="properties[Pet photo]"
+      accept="image/jpeg,image/png,image/heic,image/heif,image/webp"
+    >
+    <span class="wt-upload__thumb" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+      <img alt="" hidden>
+    </span>
+    <span class="wt-upload__text">
+      <strong class="wt-upload__label">Upload your pet's photo</strong>
+      <span class="wt-upload__hint">A clear, bright photo of their face. Phone photos are perfect.</span>
+    </span>
+  </label>
+  <p class="wt-personalize__note">No photo handy? Order now and reply to your confirmation email with it.</p>
+  {%- endif -%}
+
+  <label class="wt-field">
+    <span>Pet's name{% if wt_story %} <em>(used in the story)</em>{% endif %}</span>
+    <input type="text" name="properties[Pet's name]" maxlength="24" autocomplete="off" {% if wt_story %}required{% endif %} placeholder="e.g. Sunny">
+  </label>
+
+  {%- comment -%} blanket text now lives in the designer {%- endcomment -%}
+
+  {%- if wt_story -%}
+  <div class="wt-text" data-wt-text="{{ uid }}-book">
+    <label class="wt-field">
+      <span>Dedication on the first page <em>(optional, free)</em></span>
+      <textarea name="properties[Book dedication]" maxlength="120" rows="2" placeholder="e.g. For Emma, the best big sister Sunny could ask for. Love, Mom & Dad" data-wt-input></textarea>
+    </label>
+    <div class="wt-dedication" aria-live="polite">
+      <span class="wt-dedication__label">A note from you</span>
+      <span class="wt-dedication__text wt-f-script" data-wt-out>Your dedication here</span>
+      <span class="wt-dedication__paw" aria-hidden="true">🐾</span>
+    </div>
+  </div>
+  {%- endif -%}
+
+  {%- if wt_story -%}
+  <label class="wt-field">
+    <span>Family names <em>(up to 3, optional)</em></span>
+    <input type="text" name="properties[Family names]" maxlength="60" autocomplete="off" placeholder="e.g. Emma, Jake and Grandma Rose">
+  </label>
+  <label class="wt-field">
+    <span>Favorite treat <em>(optional)</em></span>
+    <input type="text" name="properties[Favorite treat]" maxlength="30" autocomplete="off" placeholder="e.g. peanut butter biscuits">
+  </label>
+  {%- endif -%}
+
+  <p class="wt-personalize__note">We email your artwork to approve within 24 hours. Nothing is made until you say yes.</p>
+</div>
+
+<style>
+  .wt-personalize { order:-1; flex:1 0 100%; width:100%; box-sizing:border-box; display:grid; gap:12px; margin:4px 0 18px; padding:16px; border:1px solid rgb(var(--color-foreground-rgb, 47 74 58) / .18); border-radius:14px; background:rgb(255 255 255 / .45); }
+  .wt-personalize__title { margin:0; font-weight:600; font-size:1.05em; }
+  .wt-personalize__note { margin:0; font-size:.86em; opacity:.75; line-height:1.45; }
+  .wt-upload { position:relative; display:flex; align-items:center; gap:14px; padding:14px; border:1.5px dashed rgb(var(--color-foreground-rgb, 47 74 58) / .45); border-radius:12px; cursor:pointer; transition:border-color .2s, background .2s; }
+  .wt-upload:hover, .wt-upload:focus-within { border-color:#C8673E; background:rgb(200 103 62 / .06); }
+  .wt-upload.is-filled { border-style:solid; border-color:#2F4A3A; }
+  .wt-upload__input { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; }
+  .wt-upload__thumb { flex:none; display:grid; place-items:center; width:58px; height:58px; border-radius:10px; background:rgb(var(--color-foreground-rgb, 47 74 58) / .08); overflow:hidden; }
+  .wt-upload__thumb img { width:100%; height:100%; object-fit:cover; }
+  .wt-upload__text { display:grid; gap:2px; line-height:1.35; }
+  .wt-upload__hint { font-size:.86em; opacity:.75; }
+  .wt-field { display:grid; gap:6px; font-size:.92em; }
+  .wt-field em { font-style:normal; opacity:.65; }
+  .wt-field input { font:inherit; padding:11px 12px; border:1px solid rgb(var(--color-foreground-rgb, 47 74 58) / .3); border-radius:10px; background:transparent; color:inherit; }
+  .wt-field input:focus, .wt-field textarea:focus { outline:2px solid #C8673E; outline-offset:1px; }
+  .wt-field textarea { font:inherit; padding:11px 12px; border:1px solid rgb(var(--color-foreground-rgb, 47 74 58) / .3); border-radius:10px; background:transparent; color:inherit; resize:vertical; }
+  .wt-text { display:grid; gap:10px; }
+  .wt-f-classic { font-family:'Fraunces', Georgia, serif; font-weight:600; }
+  .wt-f-script { font-family:'Great Vibes', 'Snell Roundhand', cursive; font-weight:400; font-size:1.35em; }
+  .wt-f-bold { font-family:'Nunito', 'Segoe UI', sans-serif; font-weight:800; letter-spacing:.14em; text-transform:uppercase; font-size:.85em; }
+  .wt-fonts { display:flex; gap:8px; flex-wrap:wrap; }
+  .wt-fonts label { position:relative; }
+  .wt-fonts input { position:absolute; opacity:0; inset:0; cursor:pointer; }
+  .wt-fonts span { display:inline-flex; align-items:center; min-height:40px; padding:4px 16px; border:1px solid rgb(var(--color-foreground-rgb, 47 74 58) / .3); border-radius:999px; cursor:pointer; }
+  .wt-fonts input:checked + span { background:#2F4A3A; color:#F6F0E6; border-color:#2F4A3A; }
+  .wt-fonts input:focus-visible + span { outline:2px solid #C8673E; outline-offset:2px; }
+  .wt-preview { display:grid; gap:18px; }
+  .wt-preview__blanket { position:relative; max-width:320px; padding:14px 14px 0; background:#F6F0E6; border-radius:6px; box-shadow:0 10px 24px -14px rgb(31 49 39 / .55); background-image:repeating-linear-gradient(90deg, rgb(47 74 58 / .05) 0 2px, transparent 2px 5px); }
+  .wt-preview__blanket::after { content:''; position:absolute; left:10px; right:10px; bottom:-10px; height:10px; background:repeating-linear-gradient(90deg, #E3D8C6 0 3px, transparent 3px 7px); }
+  .wt-preview__blanket img { display:block; width:100%; height:auto; aspect-ratio:1; object-fit:cover; border-radius:3px; }
+  .wt-preview__band { display:grid; place-items:center; min-height:58px; padding:8px 6px 12px; text-align:center; color:#2F4A3A; font-size:20px; line-height:1.15; word-break:break-word; }
+  .wt-preview__text.is-empty { opacity:.35; }
+  .wt-preview__blanket img.is-user { cursor:grab; touch-action:none; }
+  .wt-preview__blanket { user-select:none; -webkit-user-select:none; }
+  .wt-preview__busy[hidden], .wt-adjust[hidden] { display:none; }
+  .wt-preview__busy { position:absolute; left:14px; right:14px; top:14px; aspect-ratio:1; display:grid; place-items:center; background:rgb(246 240 230 / .75); font-weight:600; border-radius:3px; }
+  .wt-adjust { display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; font-size:.86em; }
+  .wt-adjust input { vertical-align:middle; accent-color:#2F4A3A; }
+  .wt-adjust__hint { opacity:.7; }
+  .wt-dedication { display:grid; justify-items:center; gap:6px; max-width:320px; padding:22px 18px; text-align:center; background:#FBF8F2; border:1px solid #E3D8C6; border-radius:4px; box-shadow:inset 10px 0 18px -14px rgb(31 49 39 / .35); color:#2F4A3A; }
+  .wt-dedication__label { font-size:.72em; letter-spacing:.16em; text-transform:uppercase; opacity:.6; }
+  .wt-dedication__text { line-height:1.3; word-break:break-word; }
+  .wt-dedication__text.is-empty { opacity:.35; }
+</style>
+<script src="https://woven-tails.vercel.app/theme-assets/wt-stylize.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Great+Vibes&family=Nunito:wght@800&display=swap" rel="stylesheet">
+<script>
+  (() => {
+    document.querySelectorAll('[data-wt-text^="{{ uid }}"]').forEach((wrap) => {
+      if (wrap.dataset.wtBound) return;
+      wrap.dataset.wtBound = '1';
+      const input = wrap.querySelector('[data-wt-input]');
+      const out = wrap.querySelector('[data-wt-out]');
+      const placeholder = out.textContent;
+      const render = () => {
+        const v = input.value.trim();
+        out.textContent = v || placeholder;
+        out.classList.toggle('is-empty', !v);
+      };
+      const form = wrap.closest('form');
+      if (form) form.addEventListener('formdata', (e) => {
+        if (!input.value.trim()) e.formData.delete('properties[Blanket text style]');
+      });
+      wrap.querySelectorAll('[data-wt-font]').forEach((r) => r.addEventListener('change', () => {
+        out.classList.remove('wt-f-classic', 'wt-f-script', 'wt-f-bold');
+        out.classList.add('wt-f-' + r.dataset.wtFont);
+      }));
+      input.addEventListener('input', render);
+      render();
+    });
+  })();
+  (() => {
+    const input = document.getElementById('wt-photo-{{ uid }}');
+    if (!input || input.dataset.wtBound) return;
+    input.dataset.wtBound = '1';
+    input.addEventListener('click', () => window.wtWarmup && window.wtWarmup());
+    input.addEventListener('change', () => {
+      const box = input.closest('.wt-upload');
+      const file = input.files && input.files[0];
+      const img = box.querySelector('img');
+      const svg = box.querySelector('svg');
+      const label = box.querySelector('.wt-upload__label');
+      if (!file) { box.classList.remove('is-filled'); img.hidden = true; svg.style.display = ''; label.textContent = "Upload your pet's photo"; return; }
+      if (file.size > 20 * 1024 * 1024) { alert('That photo is over 20 MB. Please choose a smaller one.'); input.value = ''; return; }
+      box.classList.add('is-filled');
+      label.textContent = '✓ ' + file.name;
+      const url = URL.createObjectURL(file);
+      const probe = new Image();
+      probe.onload = () => {
+        img.src = url; img.hidden = false; svg.style.display = 'none';
+        if (window.wtPreview) window.wtPreview('{{ uid }}', probe);
+      };
+      probe.onerror = () => {
+        const note = document.querySelector('[data-wt-note="{{ uid }}"]');
+        if (note) note.textContent = "Photo uploaded. Your browser can't show a preview of this file type, but we've got it.";
+      };
+      probe.src = url;
+    });
+  })();
+  (() => {
+    if (window.wtPreview) return;
+    const STYLES = [[/royal/i, 'royal'], [/christmas|scarf/i, 'christmas'], [/pop/i, 'pop']];
+    const styleFromPage = () => {
+      for (const r of document.querySelectorAll('input[type=radio]:checked, select option:checked')) {
+        const v = r.value || r.textContent || '';
+        for (const [re, st] of STYLES) if (re.test(v)) return st;
+      }
+      return 'pop';
+    };
+    const state = {};
+    const render = (uid) => {
+      const st = state[uid]; if (!st || !window.wtStylize) return;
+      const busy = document.querySelector('[data-wt-busy="' + uid + '"]');
+      busy.hidden = false;
+      const seq = (st.seq = (st.seq || 0) + 1);
+      setTimeout(async () => {
+        try {
+          const canvas = await window.wtStylize(st.photo, styleFromPage(), st.view);
+          if (seq !== st.seq) return;
+          st.art.src = canvas.toDataURL('image/jpeg', 0.9);
+          st.art.classList.add('is-user');
+          document.dispatchEvent(new CustomEvent('wt:art', { detail: st.art.src }));
+        } finally { if (seq === st.seq) busy.hidden = true; }
+      }, 30);
+    };
+    window.wtPreview = (uid, photo) => {
+      const art = document.querySelector('[data-wt-art="' + uid + '"]');
+      if (!art) return;
+      const fresh = !state[uid];
+      state[uid] = { photo, art, view: { zoom: 1, ox: 0, oy: 0 } };
+      const adjust = document.querySelector('[data-wt-adjust="' + uid + '"]');
+      const note = document.querySelector('[data-wt-note="' + uid + '"]');
+      adjust.hidden = false;
+      adjust.querySelector('[data-wt-zoom]').value = 1;
+      note.textContent = 'Instant preview, made in your browser. Our illustrators hand-finish your final artwork, and you approve it before anything is made.';
+      if (fresh) {
+        adjust.querySelector('[data-wt-zoom]').addEventListener('change', (e) => { state[uid].view.zoom = +e.target.value; render(uid); });
+        let start = null;
+        art.addEventListener('pointerdown', (e) => { if (!art.classList.contains('is-user')) return; start = [e.clientX, e.clientY]; art.setPointerCapture(e.pointerId); });
+        art.addEventListener('pointermove', (e) => { if (start) art.style.transform = 'translate(' + (e.clientX - start[0]) + 'px,' + (e.clientY - start[1]) + 'px)'; });
+        art.addEventListener('pointerup', (e) => {
+          if (!start) return;
+          const st = state[uid], ph = st.photo;
+          const srcPerPx = Math.min(ph.naturalWidth, ph.naturalHeight) / st.view.zoom / art.clientWidth;
+          st.view.ox -= (e.clientX - start[0]) * srcPerPx; st.view.oy -= (e.clientY - start[1]) * srcPerPx;
+          start = null; art.style.transform = ''; render(uid);
+        });
+      }
+      render(uid);
+    };
+    document.addEventListener('change', (e) => {
+      const t = e.target;
+      if (!(t instanceof HTMLInputElement || t instanceof HTMLSelectElement)) return;
+      if (t.closest('.wt-personalize')) return;
+      setTimeout(() => Object.keys(state).forEach(render), 50);
+    });
+  })();
+</script>
+{%- endif -%}

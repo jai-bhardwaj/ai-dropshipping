@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /render
+Sitemap: https://woventails.com/sitemap.xml

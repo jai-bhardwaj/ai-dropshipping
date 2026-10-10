@@ -1,0 +1,14 @@
+{
+  "layout": "woven",
+  "sections": {
+    "main": {
+      "type": "wt-page",
+      "settings": {
+        "page": "blanket"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
