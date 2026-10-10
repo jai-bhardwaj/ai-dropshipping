@@ -19,8 +19,12 @@
 -%}
 {%- if wt_photo -%}
 <div class="wt-personalize">
-  <p class="wt-personalize__title">Personalize it</p>
+  <p class="wt-personalize__title">{% if wt_blanket %}Design your blanket{% else %}Personalize it{% endif %}</p>
 
+  {%- if wt_blanket -%}
+  <div data-wt-editor data-handle="{{ product.handle }}" data-addon="67733051965719"></div>
+  <script src="https://woven-tails.vercel.app/theme-assets/wt-editor.js" defer></script>
+  {%- else -%}
   <label class="wt-upload" for="wt-photo-{{ uid }}">
     <input
       id="wt-photo-{{ uid }}"
@@ -39,37 +43,14 @@
     </span>
   </label>
   <p class="wt-personalize__note">No photo handy? Order now and reply to your confirmation email with it.</p>
+  {%- endif -%}
 
   <label class="wt-field">
     <span>Pet's name{% if wt_story %} <em>(used in the story)</em>{% endif %}</span>
     <input type="text" name="properties[Pet's name]" maxlength="24" autocomplete="off" {% if wt_story %}required{% endif %} placeholder="e.g. Sunny">
   </label>
 
-  {%- if wt_blanket -%}
-  <div class="wt-text" data-wt-text="{{ uid }}">
-    <label class="wt-field">
-      <span>Name or message on the blanket <em>(optional, free)</em></span>
-      <input type="text" name="properties[Blanket text]" maxlength="32" autocomplete="off" placeholder="e.g. Sunny · 2015–2026" data-wt-input>
-    </label>
-    <div class="wt-fonts" role="radiogroup" aria-label="Text style">
-      <label><input type="radio" name="properties[Blanket text style]" value="Classic" checked data-wt-font="classic"><span class="wt-f-classic">Classic</span></label>
-      <label><input type="radio" name="properties[Blanket text style]" value="Script" data-wt-font="script"><span class="wt-f-script">Script</span></label>
-      <label><input type="radio" name="properties[Blanket text style]" value="Bold" data-wt-font="bold"><span class="wt-f-bold">BOLD</span></label>
-    </div>
-    <div class="wt-preview" aria-live="polite">
-      <div class="wt-preview__blanket">
-        <img src="https://woven-tails.vercel.app/img/art-golden-pop.jpg" alt="Blanket preview" loading="lazy" width="600" height="600" data-wt-art="{{ uid }}" draggable="false">
-        <span class="wt-preview__busy" hidden data-wt-busy="{{ uid }}">Drawing your pet…</span>
-        <div class="wt-preview__band"><span class="wt-preview__text wt-f-classic" data-wt-out>Your text here</span></div>
-      </div>
-      <div class="wt-adjust" hidden data-wt-adjust="{{ uid }}">
-        <label>Zoom <input type="range" min="1" max="2.6" step="0.05" value="1" data-wt-zoom></label>
-        <span class="wt-adjust__hint">Drag the picture to center your pet</span>
-      </div>
-      <p class="wt-personalize__note" data-wt-note="{{ uid }}">Preview with a sample pet. Upload your photo above to see yours.</p>
-    </div>
-  </div>
-  {%- endif -%}
+  {%- comment -%} blanket text now lives in the designer {%- endcomment -%}
 
   {%- if wt_story -%}
   <div class="wt-text" data-wt-text="{{ uid }}-book">

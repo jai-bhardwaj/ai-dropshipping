@@ -101,7 +101,8 @@
     return mask;
   }
 
-  window.wtStylize = async function (image, style, view) {
+  window.wtStylize = async function (image, style, view, opts) {
+    opts = opts || {};
     const src = cover(image, view), d = src.data, N = S * S;
     let mask = null;
     const key = JSON.stringify(view || {});
@@ -131,7 +132,7 @@
     acc = 0; for (let v = 255; v >= 0; v--) { acc += hist[v]; if (acc > N * 0.02) { hi = v; break; } }
 
     const bands = style === 'royal' ? 5 : 6, soft = 0.18;
-    const chroma = style === 'royal' ? 0 : 1.75;
+    const chroma = style === 'royal' ? 0 : style === 'memorial' ? 1.15 : 1.75;
     const out = new ImageData(S, S), o = out.data;
     const royalLo = [44, 27, 17], royalHi = [248, 226, 176];
     for (let i = 0; i < N; i++) {
@@ -160,7 +161,22 @@
 
     const bg = style === 'royal' ? [58, 36, 22] : style === 'christmas' ? [168, 36, 44] : [200, 103, 62];
     const rim = style === 'royal' ? [233, 196, 106] : [251, 248, 242];
-    let alpha = mask;
+    let alpha = mask, noPet = false;
+    if (alpha) { let sum = 0; for (let i = 0; i < N; i++) sum += alpha[i]; if (sum / N < 0.03) { alpha = null; noPet = true; } } else noPet = true;
+    if (opts.transparent) {
+      // editor layer: pet only, transparent background (fallback: whole photo in a soft rounded square)
+      if (!alpha) {
+        alpha = new Float32Array(N); const rr = S * 0.08, m = S * 0.02;
+        for (let i = 0; i < N; i++) { const px = i % S, py = (i / S) | 0;
+          const dx = Math.max(m + rr - px, 0, px - (S - m - rr)), dy = Math.max(m + rr - py, 0, py - (S - m - rr));
+          const dd = Math.hypot(dx, dy) - rr; alpha[i] = Math.min(1, Math.max(0, 0.5 - dd / 2)); }
+      }
+      for (let i = 0; i < N; i++) o[i * 4 + 3] = Math.round(255 * alpha[i]);
+      const tc = document.createElement('canvas'); tc.width = tc.height = S;
+      tc.getContext('2d').putImageData(out, 0, 0);
+      tc.wtNoPet = noPet;
+      return tc;
+    }
     if (!alpha) { // fallback: soft oval
       alpha = new Float32Array(N);
       for (let i = 0; i < N; i++) { const px = i % S, py = (i / S) | 0, e = Math.hypot((px - S / 2) / (S * 0.41), (py - S * 0.52) / (S * 0.48)); alpha[i] = e < 0.84 ? 1 : e > 1.02 ? 0 : 1 - (e - 0.84) / 0.18; }

@@ -125,6 +125,8 @@
     document.getElementById("pets").addEventListener("pick", (e) => { state.pet = e.detail; apply(); });
     document.addEventListener("wt:style", (e) => { state.style = e.detail; if (!state.user) apply(); });
     document.addEventListener("wt:art", (e) => { state.user = true; b.setArtURL(e.detail); });
+    document.addEventListener("wt:design", (e) => { state.user = true; b.setArtURL(e.detail, true); });
+    document.addEventListener("wt:theme", (e) => b.setFringe(e.detail.fringe));
     document.getElementById("pets").addEventListener("pick", () => { state.user = false; });
   } catch (err) { console.warn("3D preview unavailable", err); }
 </script>

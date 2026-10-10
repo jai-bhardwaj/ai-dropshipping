@@ -117,11 +117,12 @@ function setup(stage, { fov = 32, pos = [0, 0.4, 7.2], target = [0, 0, 0], floor
 /* ---------- woven textures ---------- */
 
 // Turns square artwork into a jacquard-looking 52x37 in blanket face: limited yarn palette + over/under thread shading.
-async function wovenFace(src, renderer) {
+async function wovenFace(src, renderer, full = false) {
   const img = await loadImage(src);
   const W = 1560, H = 1110; // 52:37
   const c = document.createElement("canvas"); c.width = W; c.height = H;
   const g = c.getContext("2d");
+  if (full) { g.drawImage(img, 0, 0, W, H); return weaveFinish(c, g, W, H, "rgb(200,103,62)", renderer); }
   const probe = document.createElement("canvas"); probe.width = probe.height = 8;
   const pg = probe.getContext("2d"); pg.drawImage(img, 0, 0, 8, 8);
   const [r, gg, b] = pg.getImageData(0, 0, 1, 1).data;
@@ -137,6 +138,10 @@ async function wovenFace(src, renderer) {
     }
   };
   band(14); band(H - 24);
+  return weaveFinish(c, g, W, H, bg, renderer);
+}
+
+function weaveFinish(c, g, W, H, bg, renderer) {
   const d = g.getImageData(0, 0, W, H); const px = d.data;
   const q = (v) => Math.round(v / 36) * 36; // ~8 levels per channel ≈ yarn palette
   for (let y = 0; y < H; y++) {
@@ -239,15 +244,19 @@ export function initBlanket(stage, { art = "golden-pop", base = "tex/" } = {}) {
     if (mat.map) mat.map.dispose();
     mat.map = tex; mat.needsUpdate = true;
   }
-  async function setArtURL(url) {
+  async function setArtURL(url, full = false) {
     const my = ++token;
-    const { tex } = await wovenFace(url, renderer);
+    const { tex } = await wovenFace(url, renderer, full);
     if (my !== token) { tex.dispose(); return; }
     if (mat.map) mat.map.dispose();
     mat.map = tex; mat.needsUpdate = true;
   }
+  function setFringe(hexes) {
+    for (let i = 0; i < N; i++) fringe.setColorAt(i, new THREE.Color(hexes[i % hexes.length]));
+    fringe.instanceColor.needsUpdate = true;
+  }
   setArt(art);
-  return { setArt, setArtURL };
+  return { setArt, setArtURL, setFringe };
 }
 
 /* ---------- storybook ---------- */
