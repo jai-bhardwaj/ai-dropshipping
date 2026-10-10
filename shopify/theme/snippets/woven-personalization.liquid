@@ -58,10 +58,15 @@
     </div>
     <div class="wt-preview" aria-live="polite">
       <div class="wt-preview__blanket">
-        <img src="https://woventails.com/img/art-golden-pop.jpg" alt="Blanket preview with a sample pet" loading="lazy" width="600" height="600">
+        <img src="https://woventails.com/img/art-golden-pop.jpg" alt="Blanket preview" loading="lazy" width="600" height="600" data-wt-art="{{ uid }}" draggable="false">
+        <span class="wt-preview__busy" hidden data-wt-busy="{{ uid }}">Drawing your pet…</span>
         <div class="wt-preview__band"><span class="wt-preview__text wt-f-classic" data-wt-out>Your text here</span></div>
       </div>
-      <p class="wt-personalize__note">Preview with a sample pet. Your text is woven in below the portrait.</p>
+      <div class="wt-adjust" hidden data-wt-adjust="{{ uid }}">
+        <label>Zoom <input type="range" min="1" max="2.6" step="0.05" value="1" data-wt-zoom></label>
+        <span class="wt-adjust__hint">Drag the picture to center your pet</span>
+      </div>
+      <p class="wt-personalize__note" data-wt-note="{{ uid }}">Preview with a sample pet. Upload your photo above to see yours.</p>
     </div>
   </div>
   {%- endif -%}
@@ -127,11 +132,19 @@
   .wt-preview__blanket img { display:block; width:100%; height:auto; aspect-ratio:1; object-fit:cover; border-radius:3px; }
   .wt-preview__band { display:grid; place-items:center; min-height:58px; padding:8px 6px 12px; text-align:center; color:#2F4A3A; font-size:20px; line-height:1.15; word-break:break-word; }
   .wt-preview__text.is-empty { opacity:.35; }
+  .wt-preview__blanket img.is-user { cursor:grab; touch-action:none; }
+  .wt-preview__blanket { user-select:none; -webkit-user-select:none; }
+  .wt-preview__busy[hidden], .wt-adjust[hidden] { display:none; }
+  .wt-preview__busy { position:absolute; left:14px; right:14px; top:14px; aspect-ratio:1; display:grid; place-items:center; background:rgb(246 240 230 / .75); font-weight:600; border-radius:3px; }
+  .wt-adjust { display:flex; flex-wrap:wrap; align-items:center; gap:8px 14px; font-size:.86em; }
+  .wt-adjust input { vertical-align:middle; accent-color:#2F4A3A; }
+  .wt-adjust__hint { opacity:.7; }
   .wt-dedication { display:grid; justify-items:center; gap:6px; max-width:320px; padding:22px 18px; text-align:center; background:#FBF8F2; border:1px solid #E3D8C6; border-radius:4px; box-shadow:inset 10px 0 18px -14px rgb(31 49 39 / .35); color:#2F4A3A; }
   .wt-dedication__label { font-size:.72em; letter-spacing:.16em; text-transform:uppercase; opacity:.6; }
   .wt-dedication__text { line-height:1.3; word-break:break-word; }
   .wt-dedication__text.is-empty { opacity:.35; }
 </style>
+<script src="{{ 'wt-stylize.js' | asset_url }}" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Great+Vibes&family=Nunito:wght@800&display=swap" rel="stylesheet">
 <script>
@@ -173,9 +186,71 @@
       if (file.size > 20 * 1024 * 1024) { alert('That photo is over 20 MB. Please choose a smaller one.'); input.value = ''; return; }
       box.classList.add('is-filled');
       label.textContent = '✓ ' + file.name;
-      if (file.type.startsWith('image/') && !/heic|heif/i.test(file.type)) {
-        img.src = URL.createObjectURL(file); img.hidden = false; svg.style.display = 'none';
+      const url = URL.createObjectURL(file);
+      const probe = new Image();
+      probe.onload = () => {
+        img.src = url; img.hidden = false; svg.style.display = 'none';
+        if (window.wtPreview) window.wtPreview('{{ uid }}', probe);
+      };
+      probe.onerror = () => {
+        const note = document.querySelector('[data-wt-note="{{ uid }}"]');
+        if (note) note.textContent = "Photo uploaded. Your browser can't show a preview of this file type, but we've got it.";
+      };
+      probe.src = url;
+    });
+  })();
+  (() => {
+    if (window.wtPreview) return;
+    const STYLES = [[/royal/i, 'royal'], [/christmas|scarf/i, 'christmas'], [/pop/i, 'pop']];
+    const styleFromPage = () => {
+      for (const r of document.querySelectorAll('input[type=radio]:checked, select option:checked')) {
+        const v = r.value || r.textContent || '';
+        for (const [re, st] of STYLES) if (re.test(v)) return st;
       }
+      return 'pop';
+    };
+    const state = {};
+    const render = (uid) => {
+      const st = state[uid]; if (!st || !window.wtStylize) return;
+      const busy = document.querySelector('[data-wt-busy="' + uid + '"]');
+      busy.hidden = false;
+      setTimeout(() => {
+        const canvas = window.wtStylize(st.photo, styleFromPage(), st.view);
+        st.art.src = canvas.toDataURL('image/jpeg', 0.9);
+        st.art.classList.add('is-user');
+        busy.hidden = true;
+      }, 30);
+    };
+    window.wtPreview = (uid, photo) => {
+      const art = document.querySelector('[data-wt-art="' + uid + '"]');
+      if (!art) return;
+      const fresh = !state[uid];
+      state[uid] = { photo, art, view: { zoom: 1, ox: 0, oy: 0 } };
+      const adjust = document.querySelector('[data-wt-adjust="' + uid + '"]');
+      const note = document.querySelector('[data-wt-note="' + uid + '"]');
+      adjust.hidden = false;
+      adjust.querySelector('[data-wt-zoom]').value = 1;
+      note.textContent = 'Instant preview, made in your browser. Our illustrators hand-finish your final artwork, and you approve it before anything is made.';
+      if (fresh) {
+        adjust.querySelector('[data-wt-zoom]').addEventListener('change', (e) => { state[uid].view.zoom = +e.target.value; render(uid); });
+        let start = null;
+        art.addEventListener('pointerdown', (e) => { if (!art.classList.contains('is-user')) return; start = [e.clientX, e.clientY]; art.setPointerCapture(e.pointerId); });
+        art.addEventListener('pointermove', (e) => { if (start) art.style.transform = 'translate(' + (e.clientX - start[0]) + 'px,' + (e.clientY - start[1]) + 'px)'; });
+        art.addEventListener('pointerup', (e) => {
+          if (!start) return;
+          const st = state[uid], ph = st.photo;
+          const srcPerPx = Math.min(ph.naturalWidth, ph.naturalHeight) / st.view.zoom / art.clientWidth;
+          st.view.ox -= (e.clientX - start[0]) * srcPerPx; st.view.oy -= (e.clientY - start[1]) * srcPerPx;
+          start = null; art.style.transform = ''; render(uid);
+        });
+      }
+      render(uid);
+    };
+    document.addEventListener('change', (e) => {
+      const t = e.target;
+      if (!(t instanceof HTMLInputElement || t instanceof HTMLSelectElement)) return;
+      if (t.closest('.wt-personalize')) return;
+      setTimeout(() => Object.keys(state).forEach(render), 50);
     });
   })();
 </script>
