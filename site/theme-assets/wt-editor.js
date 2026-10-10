@@ -229,6 +229,17 @@
   .wte__warn{margin:0;padding:0;list-style:none;display:grid;gap:6px}
   .wte__warn li{font-size:14px;line-height:1.4;padding:8px 12px;border-radius:10px;background:#FBEFD9;color:#6B4A12}
   .wte__fine{margin:0;font-size:13px;color:#56645A}
+  .wte-viewer{display:grid;gap:12px;min-width:0}
+  .wte-viewer.is-desktop{position:sticky;top:96px;align-self:start}
+  @media (min-width:900px){.hero:has(.wte-viewer.is-desktop){grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:start}}
+  .wte-tabs{display:none;gap:6px;padding:4px;border-radius:999px;background:rgba(31,49,39,.08);justify-self:start}
+  .wte-viewer.is-desktop .wte-tabs{display:inline-flex}
+  .wte-tabs button{font:700 14px Nunito,system-ui,sans-serif;border:0;background:transparent;color:#1F3127;padding:9px 18px;border-radius:999px;cursor:pointer;min-height:40px}
+  .wte-tabs button[aria-selected=true]{background:#1F3127;color:#F4EEE3}
+  .wte-viewer .wte__stage{border-radius:22px}
+  .wte-viewer .stage[hidden],.wte-viewer .wte__stage[hidden]{display:none}
+  .wte-viewer.is-desktop .wte__empty strong{font-size:30px}
+  .wte__hint{margin:0;font-size:13px;color:#56645A}
   `;
   function injectCSS() { if (document.getElementById('wte-css')) return; const s = document.createElement('style'); s.id = 'wte-css'; s.textContent = CSS; document.head.appendChild(s);
     if (!document.getElementById('wte-fonts')) { const l = document.createElement('link'); l.id = 'wte-fonts'; l.rel = 'stylesheet'; l.href = 'https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Fraunces:opsz,wght@9..144,600&family=Great+Vibes&family=Nunito:wght@700;800&display=swap'; document.head.appendChild(l); } }
@@ -266,7 +277,7 @@
       </div>`;
     const cv = root.querySelector('canvas'), g = cv.getContext('2d');
     const $ = (s) => root.querySelector(s);
-    const busyEl = $('.wte__busy');
+    const busyEl = $('.wte__busy'), emptyEl = $('.wte__empty');
 
     // ----- persistence & history -----
     const snapshot = () => JSON.stringify({ style: st.style, popColor: st.popColor, banner: st.banner,
@@ -302,6 +313,7 @@
 
     // ----- rendering -----
     function fit() {
+      if (!cv.parentElement.clientWidth) return;
       const w = cv.parentElement.clientWidth, dpr = Math.min(2, devicePixelRatio || 1);
       cv.style.width = w + 'px'; cv.style.height = (w * DH / DW) + 'px';
       cv.width = Math.round(w * dpr); cv.height = Math.round(w * DH / DW * dpr);
@@ -340,7 +352,7 @@
     function render() {
       g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, cv.width, cv.height);
       g.setTransform(scale(), 0, 0, scale(), 0, 0); paint(g, false);
-      $('.wte__empty').hidden = st.layers.length > 0;
+      emptyEl.hidden = st.layers.length > 0;
       emit3D();
     }
     let t3d;
@@ -445,7 +457,7 @@
           files.set(id, await shrinkFile(file, img));
           st.layers.push({ id, type: 'photo', x: DW / 2, y: DH / 2, w: 900, rot: 0, flip: false, img: raw, name: file.name });
           st.manual = false; relayout(true);
-          st.sel = id;
+          st.sel = id; if (view !== 'design') setView('design');
         } catch (err) {
           console.warn(err); note("We couldn't open that photo. Please try a JPG or PNG.");
         } finally { setBusy(-1); }
@@ -456,7 +468,7 @@
       if (st.layers.filter((L) => L.type === 'text').length >= MAX_TEXT) { note(`Up to ${MAX_TEXT} text boxes.`); return; }
       const colors = TEXT_COLORS[st.style];
       const L = Object.assign({ id: uid(), type: 'text', text: text || "Your pet's name", font: 'classic', color: colors[0], size: 150, rot: 0, curve: 0, x: DW / 2, y: SAFE.y + SAFE.h - 120 }, opts || {});
-      st.layers.push(L); st.sel = L.id; relayout(); commit(); render(); panel(); warnings();
+      st.layers.push(L); st.sel = L.id; if (view !== 'design') setView('design'); relayout(); commit(); render(); panel(); warnings();
       setTimeout(() => { const i = $('.wte__panel textarea'); if (i && !text) { i.focus(); i.select(); } }, 30);
     }
     function remove(L) {
@@ -617,7 +629,37 @@
       }
     });
 
-    new ResizeObserver(fit).observe(cv.parentElement);
+
+    // ----- desktop: preview on the left (sticky) with Design / 3D tabs, controls on the right -----
+    let view = '3d', setView = () => {};
+    (function desktopLayout() {
+      const hero = root.closest('.hero'), stage3d = hero && hero.querySelector(':scope > .stage, :scope > .wte-viewer > .stage');
+      if (!stage3d) return;
+      let viewer = hero.querySelector('.wte-viewer');
+      if (!viewer) {
+        viewer = document.createElement('div'); viewer.className = 'wte-viewer';
+        viewer.innerHTML = '<div class="wte-tabs" role="tablist" aria-label="Preview"><button type="button" role="tab" data-view="design" aria-selected="false">Your design</button><button type="button" role="tab" data-view="3d" aria-selected="true">3D blanket</button></div><p class="wte__hint"></p>';
+        stage3d.parentNode.insertBefore(viewer, stage3d); viewer.insertBefore(stage3d, viewer.querySelector('.wte__hint'));
+      }
+      const edStage = root.querySelector('.wte__stage'), hint = viewer.querySelector('.wte__hint');
+      const mq = matchMedia('(min-width: 900px)');
+      setView = (v) => {
+        view = v;
+        viewer.querySelectorAll('[data-view]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.view === v)));
+        if (!mq.matches) return;
+        edStage.hidden = v !== 'design'; stage3d.hidden = v !== '3d';
+        hint.textContent = v === 'design' ? 'Drag to move · corner handle resizes · top handle rotates · edit with the controls on the right' : 'Drag to turn · this is how your design looks woven';
+        if (v === '3d') requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
+        fit();
+      };
+      viewer.addEventListener('click', (e) => { const b = e.target.closest('[data-view]'); if (b) setView(b.dataset.view); });
+      const apply = () => {
+        if (mq.matches) { viewer.classList.add('is-desktop'); viewer.insertBefore(edStage, stage3d); root.querySelector('.wte__fine').hidden = true; setView(view); }
+        else { viewer.classList.remove('is-desktop'); root.querySelector('.wte').prepend(edStage); edStage.hidden = false; stage3d.hidden = false; root.querySelector('.wte__fine').hidden = false; hint.textContent = ''; fit(); }
+      };
+      (mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply)); apply();
+    })();
+    new ResizeObserver(() => fit()).observe(cv.parentElement);
     if (document.fonts) Promise.all(Object.values(FONTS).map((f) => document.fonts.load(f.css.replace('{s}', '40')).catch(() => {}))).then(() => render());
     if (document.fonts) document.fonts.addEventListener('loadingdone', () => render());
     syncStyleFromPage(false); styleBar(); history = [snapshot()]; fit(); warnings(); load();
