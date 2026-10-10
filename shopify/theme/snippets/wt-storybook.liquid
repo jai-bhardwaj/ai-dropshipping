@@ -96,7 +96,7 @@
 </main>
 <div class="buybar"><div><strong>$42</strong> <span class="muted">· storybook</span></div><a class="btn small" href="#create">Create our book</a></div>
 <script type="module">
-  import { initBook } from "{{ 'wt-scenes.js' | asset_url }}";
+  import { initBook } from "https://woven-tails.vercel.app/theme-assets/wt-scenes.js";
   try {
     const book = initBook(document.getElementById("book-stage"), { base: "https://woven-tails.vercel.app/tex/", variant: "dog" });
     document.getElementById("variant").addEventListener("pick", (e) => book.setVariant(e.detail));

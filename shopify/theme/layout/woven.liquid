@@ -32,7 +32,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Nunito:wght@400;600;700;800&display=swap">
-{{ 'wt-site.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://woven-tails.vercel.app/theme-assets/wt-site.css">
 <script>document.documentElement.classList.add("js")</script>
 {{ content_for_header }}
 </head>
@@ -67,6 +67,6 @@
     <div><h4>Legal</h4><ul><li><a href="/policies/privacy-policy">Privacy</a></li><li><a href="/policies/terms-of-service">Terms</a></li><li><a href="/pages/data-sharing-opt-out">Your privacy choices</a></li></ul></div>
   </div>
 </footer>
-<script src="{{ 'wt-site.js' | asset_url }}" defer></script>
+<script src="https://woven-tails.vercel.app/theme-assets/wt-site.js" defer></script>
 </body>
 </html>

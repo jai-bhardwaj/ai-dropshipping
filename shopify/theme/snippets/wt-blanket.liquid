@@ -117,7 +117,7 @@
 </main>
 <div class="buybar"><div><strong>$64</strong> <span class="muted">· woven blanket</span></div><a class="btn small" href="#create">Create mine</a></div>
 <script type="module">
-  import { initBlanket } from "{{ 'wt-scenes.js' | asset_url }}";
+  import { initBlanket } from "https://woven-tails.vercel.app/theme-assets/wt-scenes.js";
   const state = { pet: "golden", style: "pop" };
   try {
     const b = initBlanket(document.getElementById("blanket-stage"), { base: "https://woven-tails.vercel.app/tex/", art: "golden-pop" });

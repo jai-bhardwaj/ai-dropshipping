@@ -77,7 +77,7 @@
 </main>
 <div class="buybar"><div><strong>$99</strong> <span class="muted">· gift set</span></div><a class="btn small" href="#create">Create the set</a></div>
 <script type="module">
-  import { initGift } from "{{ 'wt-scenes.js' | asset_url }}";
+  import { initGift } from "https://woven-tails.vercel.app/theme-assets/wt-scenes.js";
   try { const g = initGift(document.getElementById("gift-stage"), { base: "https://woven-tails.vercel.app/tex/", art: "golden-pop", cover: "dog-00-cover" }); }
   catch (err) { console.warn("3D preview unavailable", err); }
 </script>

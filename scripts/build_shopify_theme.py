@@ -39,7 +39,7 @@ def rewrite(s, page):
 
 
 def page_script(script):
-    script = script.replace('from "./js/scenes.js"', "from \"{{ 'wt-scenes.js' | asset_url }}\"")
+    script = script.replace('from "./js/scenes.js"', f'from "{MEDIA}theme-assets/wt-scenes.js"')
     script = re.sub(r'(init(?:Blanket|Book|Gift)\([^,]+,\s*\{)', lambda m: m.group(1) + f' base: "{MEDIA}tex/",', script)
     return script
 
@@ -99,7 +99,7 @@ LAYOUT = """<!doctype html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Nunito:wght@400;600;700;800&display=swap">
-{{ 'wt-site.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="__MEDIA__theme-assets/wt-site.css">
 <script>document.documentElement.classList.add("js")</script>
 {{ content_for_header }}
 </head>
@@ -134,7 +134,7 @@ LAYOUT = """<!doctype html>
     <div><h4>Legal</h4><ul><li><a href="/policies/privacy-policy">Privacy</a></li><li><a href="/policies/terms-of-service">Terms</a></li><li><a href="/pages/data-sharing-opt-out">Your privacy choices</a></li></ul></div>
   </div>
 </footer>
-<script src="{{ 'wt-site.js' | asset_url }}" defer></script>
+<script src="__MEDIA__theme-assets/wt-site.js" defer></script>
 </body>
 </html>
 """.replace("__MEDIA__", MEDIA)
@@ -236,6 +236,10 @@ def main():
             {"layout": "woven", "sections": {"main": {"type": "wt-page", "settings": {"page": page}}}, "order": ["main"]}, indent=2))
     (OUT / "assets" / "wt-site.css").write_text((ROOT / "site" / "css" / "site.css").read_text() + EXTRA_CSS)
     (OUT / "assets" / "wt-site.js").write_text((ROOT / "site" / "js" / "site.js").read_text())
+    # mirror theme JS/CSS to the Vercel site so they can be updated without republishing the theme
+    pub = ROOT / "site" / "theme-assets"; pub.mkdir(exist_ok=True)
+    for f in ("wt-site.css", "wt-site.js", "wt-scenes.js", "wt-stylize.js"):
+        (pub / f).write_bytes((OUT / "assets" / f).read_bytes())
     print("theme files written to", OUT)
 
 
