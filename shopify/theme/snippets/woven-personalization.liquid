@@ -1,0 +1,96 @@
+{%- comment -%}
+  Woven Tails: personalization fields inside the product form.
+  Values are saved on the order line as properties (photo = file link in the order).
+{%- endcomment -%}
+{%- liquid
+  assign h = product.handle
+  assign wt_photo = false
+  assign wt_story = false
+  if h contains 'blanket' or h contains 'gift-set' or h == 'personalized-pet-storybook'
+    assign wt_photo = true
+  endif
+  if h == 'personalized-pet-storybook' or h contains 'gift-set'
+    assign wt_story = true
+  endif
+-%}
+{%- if wt_photo -%}
+<div class="wt-personalize">
+  <p class="wt-personalize__title">Personalize it</p>
+
+  <label class="wt-upload" for="wt-photo-{{ uid }}">
+    <input
+      id="wt-photo-{{ uid }}"
+      class="wt-upload__input"
+      type="file"
+      name="properties[Pet photo]"
+      accept="image/jpeg,image/png,image/heic,image/heif,image/webp"
+    >
+    <span class="wt-upload__thumb" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+      <img alt="" hidden>
+    </span>
+    <span class="wt-upload__text">
+      <strong class="wt-upload__label">Upload your pet's photo</strong>
+      <span class="wt-upload__hint">A clear, bright photo of their face. Phone photos are perfect.</span>
+    </span>
+  </label>
+  <p class="wt-personalize__note">No photo handy? Order now and reply to your confirmation email with it.</p>
+
+  <label class="wt-field">
+    <span>Pet's name{% if wt_story %} <em>(used in the story)</em>{% endif %}</span>
+    <input type="text" name="properties[Pet's name]" maxlength="24" autocomplete="off" {% if wt_story %}required{% endif %} placeholder="e.g. Sunny">
+  </label>
+
+  {%- if wt_story -%}
+  <label class="wt-field">
+    <span>Family names <em>(up to 3, optional)</em></span>
+    <input type="text" name="properties[Family names]" maxlength="60" autocomplete="off" placeholder="e.g. Emma, Jake and Grandma Rose">
+  </label>
+  <label class="wt-field">
+    <span>Favorite treat <em>(optional)</em></span>
+    <input type="text" name="properties[Favorite treat]" maxlength="30" autocomplete="off" placeholder="e.g. peanut butter biscuits">
+  </label>
+  {%- endif -%}
+
+  <p class="wt-personalize__note">We email your artwork to approve within 24 hours. Nothing is made until you say yes.</p>
+</div>
+
+<style>
+  .wt-personalize { order:-1; flex:1 0 100%; width:100%; box-sizing:border-box; display:grid; gap:12px; margin:4px 0 18px; padding:16px; border:1px solid rgb(var(--color-foreground-rgb, 47 74 58) / .18); border-radius:14px; background:rgb(255 255 255 / .45); }
+  .wt-personalize__title { margin:0; font-weight:600; font-size:1.05em; }
+  .wt-personalize__note { margin:0; font-size:.86em; opacity:.75; line-height:1.45; }
+  .wt-upload { position:relative; display:flex; align-items:center; gap:14px; padding:14px; border:1.5px dashed rgb(var(--color-foreground-rgb, 47 74 58) / .45); border-radius:12px; cursor:pointer; transition:border-color .2s, background .2s; }
+  .wt-upload:hover, .wt-upload:focus-within { border-color:#C8673E; background:rgb(200 103 62 / .06); }
+  .wt-upload.is-filled { border-style:solid; border-color:#2F4A3A; }
+  .wt-upload__input { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; }
+  .wt-upload__thumb { flex:none; display:grid; place-items:center; width:58px; height:58px; border-radius:10px; background:rgb(var(--color-foreground-rgb, 47 74 58) / .08); overflow:hidden; }
+  .wt-upload__thumb img { width:100%; height:100%; object-fit:cover; }
+  .wt-upload__text { display:grid; gap:2px; line-height:1.35; }
+  .wt-upload__hint { font-size:.86em; opacity:.75; }
+  .wt-field { display:grid; gap:6px; font-size:.92em; }
+  .wt-field em { font-style:normal; opacity:.65; }
+  .wt-field input { font:inherit; padding:11px 12px; border:1px solid rgb(var(--color-foreground-rgb, 47 74 58) / .3); border-radius:10px; background:transparent; color:inherit; }
+  .wt-field input:focus { outline:2px solid #C8673E; outline-offset:1px; }
+</style>
+<script>
+  (() => {
+    const input = document.getElementById('wt-photo-{{ uid }}');
+    if (!input || input.dataset.wtBound) return;
+    input.dataset.wtBound = '1';
+    input.addEventListener('change', () => {
+      const box = input.closest('.wt-upload');
+      const file = input.files && input.files[0];
+      const img = box.querySelector('img');
+      const svg = box.querySelector('svg');
+      const label = box.querySelector('.wt-upload__label');
+      if (!file) { box.classList.remove('is-filled'); img.hidden = true; svg.style.display = ''; label.textContent = "Upload your pet's photo"; return; }
+      if (file.size > 20 * 1024 * 1024) { alert('That photo is over 20 MB. Please choose a smaller one.'); input.value = ''; return; }
+      box.classList.add('is-filled');
+      label.textContent = '✓ ' + file.name;
+      if (file.type.startsWith('image/') && !/heic|heif/i.test(file.type)) {
+        img.src = URL.createObjectURL(file); img.hidden = false; svg.style.display = 'none';
+      }
+    });
+  })();
+</script>
+{%- endif -%}

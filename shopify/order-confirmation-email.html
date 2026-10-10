@@ -1,0 +1,172 @@
+{% comment %}
+  Woven Tails: full order confirmation email.
+  Shopify → Settings → Notifications → Customer notifications → Order confirmation → Edit code.
+  Select ALL the existing code, delete it, paste this whole file, then Save.
+  Subject line can stay: Order {{ name }} confirmed
+{% endcomment %}
+{%- assign has_book = false -%}
+{%- assign has_blanket = false -%}
+{%- assign photo_missing = false -%}
+{%- for line in line_items -%}
+  {%- if line.product.handle contains 'blanket' or line.product.handle contains 'gift-set' or line.product.handle == 'personalized-pet-storybook' -%}
+    {%- assign line_has_photo = false -%}
+    {%- for p in line.properties -%}{%- if p.first == 'Pet photo' and p.last != blank -%}{%- assign line_has_photo = true -%}{%- endif -%}{%- endfor -%}
+    {%- unless line_has_photo -%}{%- assign photo_missing = true -%}{%- endunless -%}
+  {%- endif -%}
+  {%- if line.product.handle contains 'storybook' or line.product.handle contains 'gift-set' -%}{%- assign has_book = true -%}{%- endif -%}
+  {%- if line.product.handle contains 'blanket' or line.product.handle contains 'gift-set' -%}{%- assign has_blanket = true -%}{%- endif -%}
+{%- endfor -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light only">
+  <title>Order {{ order_name }} confirmed</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin:0; padding:0; background:#F4EEE3; }
+    a { color:#B9582F; }
+    @media (max-width:600px) {
+      .wrap { width:100% !important; }
+      .pad { padding-left:20px !important; padding-right:20px !important; }
+      .h1 { font-size:28px !important; }
+    }
+  </style>
+</head>
+<body style="margin:0;padding:0;background:#F4EEE3;">
+<div style="display:none;max-height:0;overflow:hidden;">Thank you! Reply to this email with your pet's photo and we'll send your artwork within 24 hours.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F4EEE3;">
+<tr><td align="center" style="padding:28px 12px;">
+<table role="presentation" class="wrap" width="580" cellpadding="0" cellspacing="0" style="width:580px;max-width:580px;font-family:Nunito,'Segoe UI',Helvetica,Arial,sans-serif;color:#1F3127;">
+
+  <!-- Logo -->
+  <tr><td align="center" style="padding:6px 0 22px;">
+    <a href="https://woventails.com" style="text-decoration:none;"><img src="https://cdn.shopify.com/s/files/1/1034/1803/6503/files/woven-tails-logo-horizontal.png" width="210" alt="Woven Tails" style="display:block;width:210px;height:auto;border:0;"></a>
+  </td></tr>
+
+  <!-- Card -->
+  <tr><td style="background:#FBF8F2;border:1px solid #E3D8C6;border-radius:18px;overflow:hidden;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+
+    <!-- Woven stripe -->
+    <tr><td style="height:6px;line-height:6px;font-size:0;background:#1F3127;background-image:repeating-linear-gradient(90deg,#1F3127 0 14px,#B9582F 14px 20px,#C99A34 20px 24px);">&nbsp;</td></tr>
+
+    <!-- Hero -->
+    <tr><td class="pad" style="padding:34px 40px 8px;">
+      <p style="margin:0 0 8px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B9582F;font-weight:700;">Order {{ order_name }} confirmed</p>
+      <h1 class="h1" style="margin:0 0 12px;font-family:Fraunces,'Iowan Old Style',Georgia,serif;font-weight:600;font-size:34px;line-height:1.15;color:#1F3127;">Thank you{% if customer.first_name %}, {{ customer.first_name }}{% endif %}!</h1>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#56645A;">We can't wait to turn your pet into something you can hold.{% if photo_missing %} There's just one thing we need from you.{% endif %}</p>
+    </td></tr>
+
+    <!-- Photo request / received -->
+    <tr><td class="pad" style="padding:22px 40px 6px;">
+      {% if photo_missing %}
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F4EEE3;border-left:4px solid #B9582F;border-radius:12px;">
+        <tr><td style="padding:20px 22px;">
+          <p style="margin:0 0 8px;font-family:Fraunces,Georgia,serif;font-size:21px;font-weight:600;color:#1F3127;">Reply to this email with your pet's photo</p>
+          <p style="margin:0 0 10px;font-size:15px;line-height:1.6;color:#1F3127;">Attach <strong>1–3 clear photos of your pet's face</strong>: bright light, eye level, no filters. Phone photos are perfect.</p>
+          {% if has_book %}<p style="margin:0;font-size:15px;line-height:1.6;color:#1F3127;">For your storybook, please also tell us anything you haven't already: <strong>your pet's name</strong>, up to <strong>3 family names</strong>, and their <strong>favorite treat</strong>.</p>{% endif %}
+        </td></tr>
+      </table>
+      {% else %}
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F4EEE3;border-left:4px solid #1F3127;border-radius:12px;">
+        <tr><td style="padding:20px 22px;">
+          <p style="margin:0 0 8px;font-family:Fraunces,Georgia,serif;font-size:21px;font-weight:600;color:#1F3127;">✓ We've got your photo</p>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#1F3127;">Nothing else needed right now. Want to send a better photo or change a detail? Just reply to this email.</p>
+        </td></tr>
+      </table>
+      {% endif %}
+    </td></tr>
+
+    <!-- Steps -->
+    <tr><td class="pad" style="padding:22px 40px 4px;">
+      <p style="margin:0 0 12px;font-family:Fraunces,Georgia,serif;font-size:19px;font-weight:600;color:#1F3127;">What happens next</p>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:15px;line-height:1.5;color:#1F3127;">
+        <tr>
+          <td width="36" valign="top" style="padding:0 0 12px;"><div style="width:26px;height:26px;border-radius:13px;background:#1F3127;color:#FBF8F2;font-size:13px;font-weight:700;text-align:center;line-height:26px;">1</div></td>
+          <td valign="top" style="padding:3px 0 12px;"><strong>Art proof within 24 hours.</strong> We email you your pet's illustration to approve or tweak.</td>
+        </tr>
+        <tr>
+          <td width="36" valign="top" style="padding:0 0 12px;"><div style="width:26px;height:26px;border-radius:13px;background:#1F3127;color:#FBF8F2;font-size:13px;font-weight:700;text-align:center;line-height:26px;">2</div></td>
+          <td valign="top" style="padding:3px 0 12px;"><strong>Made in the USA in 1–3 business days</strong> once you say yes.</td>
+        </tr>
+        <tr>
+          <td width="36" valign="top" style="padding:0 0 4px;"><div style="width:26px;height:26px;border-radius:13px;background:#1F3127;color:#FBF8F2;font-size:13px;font-weight:700;text-align:center;line-height:26px;">3</div></td>
+          <td valign="top" style="padding:3px 0 4px;"><strong>Delivered in about 2–5 business days</strong>, with tracking by email.</td>
+        </tr>
+      </table>
+      <p style="margin:12px 0 0;font-size:13px;line-height:1.5;color:#56645A;">🎄 Ordering for Christmas? {% if photo_missing %}Send your photo today and {% endif %}approve your proof quickly.</p>
+    </td></tr>
+
+    <!-- Divider -->
+    <tr><td class="pad" style="padding:24px 40px 0;"><div style="height:1px;background:#E3D8C6;line-height:1px;font-size:0;">&nbsp;</div></td></tr>
+
+    <!-- Order summary -->
+    <tr><td class="pad" style="padding:22px 40px 0;">
+      <p style="margin:0 0 14px;font-family:Fraunces,Georgia,serif;font-size:19px;font-weight:600;color:#1F3127;">Your order</p>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:15px;color:#1F3127;">
+        {% for line in line_items %}
+        <tr>
+          <td width="72" valign="top" style="padding:0 14px 16px 0;">
+            {% if line.image %}<img src="{{ line.image | img_url: 'compact_cropped' }}" width="60" height="60" alt="" style="display:block;width:60px;height:60px;border-radius:10px;border:1px solid #E3D8C6;object-fit:cover;">{% endif %}
+          </td>
+          <td valign="top" style="padding:2px 0 16px;line-height:1.45;">
+            <strong>{{ line.product.title }}</strong>
+            {% if line.variant.title != 'Default Title' %}<br><span style="color:#56645A;font-size:14px;">{{ line.variant.title }}</span>{% endif %}
+            {% if line.quantity > 1 %}<br><span style="color:#56645A;font-size:14px;">Qty {{ line.quantity }}</span>{% endif %}
+            {% for p in line.properties %}{% assign pfirst = p.first | slice: 0 %}{% if p.last != blank and pfirst != '_' %}<br><span style="color:#56645A;font-size:14px;">{{ p.first }}: {% if p.first == 'Pet photo' %}✓ received{% else %}{{ p.last }}{% endif %}</span>{% endif %}{% endfor %}
+          </td>
+          <td valign="top" align="right" style="padding:2px 0 16px 10px;white-space:nowrap;">
+            {% if line.original_line_price != line.final_line_price %}<del style="color:#56645A;font-size:13px;">{{ line.original_line_price | money }}</del><br>{% endif %}
+            {{ line.final_line_price | money }}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:15px;color:#1F3127;border-top:1px solid #E3D8C6;">
+        <tr><td style="padding:12px 0 4px;color:#56645A;">Subtotal</td><td align="right" style="padding:12px 0 4px;">{{ subtotal_price | money }}</td></tr>
+        {% for discount_application in discount_applications %}
+          {% if discount_application.target_selection == 'all' %}
+          <tr><td style="padding:4px 0;color:#B9582F;">Discount{% if discount_application.title %} ({{ discount_application.title }}){% endif %}</td><td align="right" style="padding:4px 0;color:#B9582F;">−{{ discount_application.total_allocated_amount | money }}</td></tr>
+          {% endif %}
+        {% endfor %}
+        <tr><td style="padding:4px 0;color:#56645A;">Shipping</td><td align="right" style="padding:4px 0;">{% if shipping_price == 0 %}Free{% else %}{{ shipping_price | money }}{% endif %}</td></tr>
+        {% if tax_price > 0 %}<tr><td style="padding:4px 0;color:#56645A;">Taxes</td><td align="right" style="padding:4px 0;">{{ tax_price | money }}</td></tr>{% endif %}
+        <tr><td style="padding:12px 0 0;font-family:Fraunces,Georgia,serif;font-size:20px;font-weight:600;border-top:1px solid #E3D8C6;">Total</td><td align="right" style="padding:12px 0 0;font-family:Fraunces,Georgia,serif;font-size:20px;font-weight:600;border-top:1px solid #E3D8C6;">{{ total_price | money_with_currency }}</td></tr>
+      </table>
+    </td></tr>
+
+    <!-- Shipping address + button -->
+    <tr><td class="pad" style="padding:26px 40px 34px;">
+      {% if shipping_address %}
+      <p style="margin:0 0 6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#56645A;font-weight:700;">Shipping to</p>
+      <p style="margin:0 0 22px;font-size:15px;line-height:1.55;color:#1F3127;">
+        {{ shipping_address.name }}<br>
+        {{ shipping_address.address1 }}{% if shipping_address.address2 != blank %}, {{ shipping_address.address2 }}{% endif %}<br>
+        {{ shipping_address.city }}, {{ shipping_address.province_code }} {{ shipping_address.zip }}
+      </p>
+      {% endif %}
+      <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+        <td style="border-radius:999px;background:#1F3127;">
+          <a href="{{ order_status_url }}" style="display:inline-block;padding:13px 26px;font-size:15px;font-weight:700;color:#FBF8F2;text-decoration:none;border-radius:999px;">View your order</a>
+        </td>
+      </tr></table>
+    </td></tr>
+
+  </table>
+  </td></tr>
+
+  <!-- Footer -->
+  <tr><td align="center" style="padding:24px 16px 8px;font-size:13px;line-height:1.6;color:#56645A;">
+    Questions? Just reply, or email <a href="mailto:hello@woventails.com" style="color:#B9582F;">hello@woventails.com</a>. A real person answers.<br>
+    <a href="https://woventails.com" style="color:#56645A;">woventails.com</a> · <a href="https://shop.woventails.com/policies/shipping-policy" style="color:#56645A;">Shipping</a> · <a href="https://shop.woventails.com/policies/refund-policy" style="color:#56645A;">Returns &amp; replacements</a>
+  </td></tr>
+  <tr><td align="center" style="padding:6px 16px 20px;font-size:12px;color:#8A938B;">Made to order with love · Woven Tails</td></tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>
