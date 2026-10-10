@@ -10,7 +10,7 @@ const imgCache = new Map();
 function loadImage(src) {
   if (!imgCache.has(src)) {
     imgCache.set(src, new Promise((res, rej) => {
-      const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = src;
+      const im = new Image(); if (!src.startsWith("data:")) im.crossOrigin = "anonymous"; im.onload = () => res(im); im.onerror = rej; im.src = src;
     }));
   }
   return imgCache.get(src);
@@ -239,8 +239,15 @@ export function initBlanket(stage, { art = "golden-pop", base = "tex/" } = {}) {
     if (mat.map) mat.map.dispose();
     mat.map = tex; mat.needsUpdate = true;
   }
+  async function setArtURL(url) {
+    const my = ++token;
+    const { tex } = await wovenFace(url, renderer);
+    if (my !== token) { tex.dispose(); return; }
+    if (mat.map) mat.map.dispose();
+    mat.map = tex; mat.needsUpdate = true;
+  }
   setArt(art);
-  return { setArt };
+  return { setArt, setArtURL };
 }
 
 /* ---------- storybook ---------- */

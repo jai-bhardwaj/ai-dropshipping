@@ -62,7 +62,7 @@
 
   // ---- background removal: U2-Net (u2netp, Apache-2.0) via onnxruntime-web, all in the browser ----
   const ORT_URL = window.WT_ORT_URL || 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/ort.wasm.min.js';
-  const MODEL_URL = window.WT_MODEL_URL || 'https://woventails.com/models/u2netp.onnx';
+  const MODEL_URL = window.WT_MODEL_URL || 'https://woven-tails.vercel.app/models/u2netp.onnx';
   let sessionP = null;
   function loadScript(src) {
     return new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });

@@ -58,7 +58,7 @@
     </div>
     <div class="wt-preview" aria-live="polite">
       <div class="wt-preview__blanket">
-        <img src="https://woventails.com/img/art-golden-pop.jpg" alt="Blanket preview" loading="lazy" width="600" height="600" data-wt-art="{{ uid }}" draggable="false">
+        <img src="https://woven-tails.vercel.app/img/art-golden-pop.jpg" alt="Blanket preview" loading="lazy" width="600" height="600" data-wt-art="{{ uid }}" draggable="false">
         <span class="wt-preview__busy" hidden data-wt-busy="{{ uid }}">Drawing your pet…</span>
         <div class="wt-preview__band"><span class="wt-preview__text wt-f-classic" data-wt-out>Your text here</span></div>
       </div>
@@ -222,6 +222,7 @@
           if (seq !== st.seq) return;
           st.art.src = canvas.toDataURL('image/jpeg', 0.9);
           st.art.classList.add('is-user');
+          document.dispatchEvent(new CustomEvent('wt:art', { detail: st.art.src }));
         } finally { if (seq === st.seq) busy.hidden = true; }
       }, 30);
     };
