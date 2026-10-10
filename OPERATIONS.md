@@ -129,3 +129,10 @@ Because each order has unique art, create the order manually:
 | Morning | Make artwork for new photos, send proofs | 15 min per blanket, 60–90 min per book |
 | Afternoon | Approved proofs → create Printify orders | 5 min per order |
 | Evening | Add tracking numbers, reply to emails, log numbers in `TRACKER.xlsx` | 15 min |
+
+## Personalization fields on each order (added to the theme)
+Each order line can carry these details (Shopify → Orders → the order → line item):
+- **Pet photo**: a link to the uploaded file. If it's missing, the customer replies to the confirmation email with it.
+- **Pet's name**, **Family names**, **Favorite treat**: used in the storybook text.
+- **Blanket text** + **Blanket text style** (Classic / Script / Bold): add the text below the portrait in the blanket artwork before uploading it to Printify. Fonts: Classic = Fraunces SemiBold, Script = Great Vibes, Bold = Nunito ExtraBold in capitals (all free on Google Fonts).
+- **Book dedication**: put it on the first inside page of the storybook.

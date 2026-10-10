@@ -12,6 +12,10 @@
   if h == 'personalized-pet-storybook' or h contains 'gift-set'
     assign wt_story = true
   endif
+  assign wt_blanket = false
+  if h contains 'blanket' or h contains 'gift-set'
+    assign wt_blanket = true
+  endif
 -%}
 {%- if wt_photo -%}
 <div class="wt-personalize">
@@ -40,6 +44,41 @@
     <span>Pet's name{% if wt_story %} <em>(used in the story)</em>{% endif %}</span>
     <input type="text" name="properties[Pet's name]" maxlength="24" autocomplete="off" {% if wt_story %}required{% endif %} placeholder="e.g. Sunny">
   </label>
+
+  {%- if wt_blanket -%}
+  <div class="wt-text" data-wt-text="{{ uid }}">
+    <label class="wt-field">
+      <span>Name or message on the blanket <em>(optional, free)</em></span>
+      <input type="text" name="properties[Blanket text]" maxlength="32" autocomplete="off" placeholder="e.g. Sunny · 2015–2026" data-wt-input>
+    </label>
+    <div class="wt-fonts" role="radiogroup" aria-label="Text style">
+      <label><input type="radio" name="properties[Blanket text style]" value="Classic" checked data-wt-font="classic"><span class="wt-f-classic">Classic</span></label>
+      <label><input type="radio" name="properties[Blanket text style]" value="Script" data-wt-font="script"><span class="wt-f-script">Script</span></label>
+      <label><input type="radio" name="properties[Blanket text style]" value="Bold" data-wt-font="bold"><span class="wt-f-bold">BOLD</span></label>
+    </div>
+    <div class="wt-preview" aria-live="polite">
+      <div class="wt-preview__blanket">
+        <img src="https://woventails.com/img/art-golden-pop.jpg" alt="Blanket preview with a sample pet" loading="lazy" width="600" height="600">
+        <div class="wt-preview__band"><span class="wt-preview__text wt-f-classic" data-wt-out>Your text here</span></div>
+      </div>
+      <p class="wt-personalize__note">Preview with a sample pet. Your text is woven in below the portrait.</p>
+    </div>
+  </div>
+  {%- endif -%}
+
+  {%- if wt_story -%}
+  <div class="wt-text" data-wt-text="{{ uid }}-book">
+    <label class="wt-field">
+      <span>Dedication on the first page <em>(optional, free)</em></span>
+      <textarea name="properties[Book dedication]" maxlength="120" rows="2" placeholder="e.g. For Emma, the best big sister Sunny could ask for. Love, Mom & Dad" data-wt-input></textarea>
+    </label>
+    <div class="wt-dedication" aria-live="polite">
+      <span class="wt-dedication__label">A note from you</span>
+      <span class="wt-dedication__text wt-f-script" data-wt-out>Your dedication here</span>
+      <span class="wt-dedication__paw" aria-hidden="true">🐾</span>
+    </div>
+  </div>
+  {%- endif -%}
 
   {%- if wt_story -%}
   <label class="wt-field">
@@ -70,9 +109,56 @@
   .wt-field { display:grid; gap:6px; font-size:.92em; }
   .wt-field em { font-style:normal; opacity:.65; }
   .wt-field input { font:inherit; padding:11px 12px; border:1px solid rgb(var(--color-foreground-rgb, 47 74 58) / .3); border-radius:10px; background:transparent; color:inherit; }
-  .wt-field input:focus { outline:2px solid #C8673E; outline-offset:1px; }
+  .wt-field input:focus, .wt-field textarea:focus { outline:2px solid #C8673E; outline-offset:1px; }
+  .wt-field textarea { font:inherit; padding:11px 12px; border:1px solid rgb(var(--color-foreground-rgb, 47 74 58) / .3); border-radius:10px; background:transparent; color:inherit; resize:vertical; }
+  .wt-text { display:grid; gap:10px; }
+  .wt-f-classic { font-family:'Fraunces', Georgia, serif; font-weight:600; }
+  .wt-f-script { font-family:'Great Vibes', 'Snell Roundhand', cursive; font-weight:400; font-size:1.35em; }
+  .wt-f-bold { font-family:'Nunito', 'Segoe UI', sans-serif; font-weight:800; letter-spacing:.14em; text-transform:uppercase; font-size:.85em; }
+  .wt-fonts { display:flex; gap:8px; flex-wrap:wrap; }
+  .wt-fonts label { position:relative; }
+  .wt-fonts input { position:absolute; opacity:0; inset:0; cursor:pointer; }
+  .wt-fonts span { display:inline-flex; align-items:center; min-height:40px; padding:4px 16px; border:1px solid rgb(var(--color-foreground-rgb, 47 74 58) / .3); border-radius:999px; cursor:pointer; }
+  .wt-fonts input:checked + span { background:#2F4A3A; color:#F6F0E6; border-color:#2F4A3A; }
+  .wt-fonts input:focus-visible + span { outline:2px solid #C8673E; outline-offset:2px; }
+  .wt-preview { display:grid; gap:18px; }
+  .wt-preview__blanket { position:relative; max-width:320px; padding:14px 14px 0; background:#F6F0E6; border-radius:6px; box-shadow:0 10px 24px -14px rgb(31 49 39 / .55); background-image:repeating-linear-gradient(90deg, rgb(47 74 58 / .05) 0 2px, transparent 2px 5px); }
+  .wt-preview__blanket::after { content:''; position:absolute; left:10px; right:10px; bottom:-10px; height:10px; background:repeating-linear-gradient(90deg, #E3D8C6 0 3px, transparent 3px 7px); }
+  .wt-preview__blanket img { display:block; width:100%; height:auto; aspect-ratio:1; object-fit:cover; border-radius:3px; }
+  .wt-preview__band { display:grid; place-items:center; min-height:58px; padding:8px 6px 12px; text-align:center; color:#2F4A3A; font-size:20px; line-height:1.15; word-break:break-word; }
+  .wt-preview__text.is-empty { opacity:.35; }
+  .wt-dedication { display:grid; justify-items:center; gap:6px; max-width:320px; padding:22px 18px; text-align:center; background:#FBF8F2; border:1px solid #E3D8C6; border-radius:4px; box-shadow:inset 10px 0 18px -14px rgb(31 49 39 / .35); color:#2F4A3A; }
+  .wt-dedication__label { font-size:.72em; letter-spacing:.16em; text-transform:uppercase; opacity:.6; }
+  .wt-dedication__text { line-height:1.3; word-break:break-word; }
+  .wt-dedication__text.is-empty { opacity:.35; }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Great+Vibes&family=Nunito:wght@800&display=swap" rel="stylesheet">
 <script>
+  (() => {
+    document.querySelectorAll('[data-wt-text^="{{ uid }}"]').forEach((wrap) => {
+      if (wrap.dataset.wtBound) return;
+      wrap.dataset.wtBound = '1';
+      const input = wrap.querySelector('[data-wt-input]');
+      const out = wrap.querySelector('[data-wt-out]');
+      const placeholder = out.textContent;
+      const render = () => {
+        const v = input.value.trim();
+        out.textContent = v || placeholder;
+        out.classList.toggle('is-empty', !v);
+      };
+      const form = wrap.closest('form');
+      if (form) form.addEventListener('formdata', (e) => {
+        if (!input.value.trim()) e.formData.delete('properties[Blanket text style]');
+      });
+      wrap.querySelectorAll('[data-wt-font]').forEach((r) => r.addEventListener('change', () => {
+        out.classList.remove('wt-f-classic', 'wt-f-script', 'wt-f-bold');
+        out.classList.add('wt-f-' + r.dataset.wtFont);
+      }));
+      input.addEventListener('input', render);
+      render();
+    });
+  })();
   (() => {
     const input = document.getElementById('wt-photo-{{ uid }}');
     if (!input || input.dataset.wtBound) return;
