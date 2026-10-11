@@ -70,5 +70,20 @@
       "destination": "/",
       "permanent": false
     }
-  ]
+  ],
+  "crons": [
+    {
+      "path": "/api/social?slot=am",
+      "schedule": "0 16 * * *"
+    },
+    {
+      "path": "/api/social?slot=pm",
+      "schedule": "0 23 * * *"
+    }
+  ],
+  "functions": {
+    "api/social.mjs": {
+      "maxDuration": 60
+    }
+  }
 }

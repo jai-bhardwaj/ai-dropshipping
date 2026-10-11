@@ -2,4 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /render
 Disallow: /store-preview
+Disallow: /api
+Disallow: /social
 Sitemap: https://woventails.com/sitemap.xml
