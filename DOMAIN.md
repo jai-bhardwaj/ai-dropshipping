@@ -14,6 +14,8 @@
 | CNAME | `www` | `shops.myshopify.com` |
 | CNAME | `shop` | `cname.vercel-dns.com` |
 
+Shopify email authentication (Settings → Notifications → Email domain authentication): 6 CNAMEs `mailersfh`, `sfh._domainkey`, `sfh2._domainkey`, `mailerp76`, `pdk1._domainkey.mailerp76`, `pdk2._domainkey.mailerp76` → `*.email.myshopify.com` (exact values in Shopify).
+
 Shopify set the `@` and `www` records itself when the domain was connected (Settings → Domains).
 
 ## Email
