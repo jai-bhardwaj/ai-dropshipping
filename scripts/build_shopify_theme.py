@@ -16,6 +16,9 @@ import json, re, pathlib
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SRC, OUT = ROOT / "site" / "src", ROOT / "shopify" / "theme"
 MEDIA = "https://woven-tails.vercel.app/"
+# versioned so a new theme can ship new JS/CSS without changing the theme that is live right now
+ASSET_VER = "v6"
+ASSETS = MEDIA + f"theme-assets/{ASSET_VER}/"
 HANDLES = {"blanket": "custom-pet-portrait-woven-blanket", "storybook": "personalized-pet-storybook", "gift-set": "pet-portrait-gift-set"}
 
 
@@ -39,7 +42,7 @@ def rewrite(s, page):
 
 
 def page_script(script):
-    script = script.replace('from "./js/scenes.js"', f'from "{MEDIA}theme-assets/wt-scenes.js"')
+    script = script.replace('from "./js/scenes.js"', f'from "{ASSETS}wt-scenes.js"')
     script = re.sub(r'(init(?:Blanket|Book|Gift)\([^,]+,\s*\{)', lambda m: m.group(1) + f' base: "{MEDIA}tex/",', script)
     return script
 
@@ -122,7 +125,7 @@ LAYOUT = """<!doctype html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..700,0..100,0..1;1,9..144,400..700,0..100,0..1&family=Nunito:wght@400;600;700;800&display=swap">
-<link rel="stylesheet" href="__MEDIA__theme-assets/wt-site.css">
+<link rel="stylesheet" href="__ASSETS__wt-site.css">
 <script>document.documentElement.classList.add("js")</script>
 {{ content_for_header }}
 </head>
@@ -167,10 +170,10 @@ LAYOUT = """<!doctype html>
     <div><h4>Legal</h4><ul><li><a href="/policies/privacy-policy">Privacy</a></li><li><a href="/policies/terms-of-service">Terms</a></li><li><a href="/pages/data-sharing-opt-out">Your privacy choices</a></li></ul></div>
   </div>
 </footer>
-<script src="__MEDIA__theme-assets/wt-site.js" defer></script>
+<script src="__ASSETS__wt-site.js" defer></script>
 </body>
 </html>
-""".replace("__MEDIA__", MEDIA)
+""".replace("__ASSETS__", ASSETS).replace("__MEDIA__", MEDIA)
 
 BUY = (ROOT / "shopify" / "theme-src" / "wt-buy.liquid").read_text()
 
@@ -337,7 +340,7 @@ def main():
     if "--publish-assets" not in sys.argv:
         print("theme files written to", OUT, "(theme-assets on Vercel left as they are; pass --publish-assets to update them)")
         return
-    pub = ROOT / "site" / "theme-assets"; pub.mkdir(exist_ok=True)
+    pub = ROOT / "site" / "theme-assets" / ASSET_VER; pub.mkdir(parents=True, exist_ok=True)
     for f in ("wt-site.css", "wt-site.js", "wt-scenes.js", "wt-stylize.js", "wt-editor.js"):
         (pub / f).write_bytes((OUT / "assets" / f).read_bytes())
     print("theme files written to", OUT)

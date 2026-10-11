@@ -117,7 +117,7 @@ def links(html):
             return f'{m.group(1)}="{BASE}404"'
         return m.group(0)
     html = re.sub(r'(href|action)="(/[^"]*)"', fix, html)
-    html = html.replace(MEDIA + "theme-assets/wt-editor.js", BASE + "assets/wt-editor.js").replace(MEDIA + "theme-assets/wt-site.css", BASE + "assets/wt-site.css").replace(MEDIA + "theme-assets/wt-site.js", BASE + "assets/wt-site.js")
+    html = re.sub(re.escape(MEDIA) + r"theme-assets/(?:v\d+/)?(wt-editor\.js|wt-site\.css|wt-site\.js)", BASE + r"assets/\1", html)
     html = re.sub(r"(<body[^>]*>)", r"\1" + BANNER, html, count=1)
     return html.replace("</head>", PREVIEW_JS + "\n</head>", 1)
 
