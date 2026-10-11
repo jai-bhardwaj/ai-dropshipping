@@ -532,7 +532,7 @@
           files.set(id, await shrinkFile(file, img));
           st.layers.push({ id, type: 'photo', x: DW / 2, y: DH / 2, w: 900, rot: 0, flip: false, img: raw, name: file.name });
           st.manual = false; relayout(true);
-          st.sel = id; if (view !== 'design') setView('design');
+          st.sel = null; if (view !== 'design') setView('design');
         } catch (err) {
           console.warn(err); note("We couldn't open that photo. Please try a JPG or PNG.");
         } finally { setBusy(-1); }
