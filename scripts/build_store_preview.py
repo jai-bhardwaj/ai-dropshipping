@@ -92,7 +92,7 @@ EMPTY_CART = {"item_count": 0, "total_price": 0, "items": []}
 LINKS = {
     "/products/custom-pet-portrait-woven-blanket": "blanket.html", "/products/personalized-pet-storybook": "storybook.html",
     "/products/pet-portrait-gift-set": "gift-set.html", "/products/extra-storybook-copy": "extra-copy.html",
-    "/cart": "cart.html", "/pages/faq": "faq.html", "/pages/contact": "contact.html", "/pages/about": "about.html",
+    "/cart": "cart.html", "/account": "account.html", "/pages/faq": "faq.html", "/pages/contact": "contact.html", "/pages/about": "about.html",
     "/pages/send-your-photo": "send-your-photo.html", "/pages/data-sharing-opt-out": "privacy-choices.html",
     "/collections/all": "shop.html", "/search": "search.html",
     "/policies/privacy-policy": "privacy.html", "/policies/terms-of-service": "terms.html",
@@ -140,7 +140,7 @@ def main():
     ed.write_text(ed.read_text().replace("location.href = '/checkout'", "location.href = '/store-preview/checkout'"))
 
     base = {"shop": {"name": "Woven Tails"}, "request": {"locale": {"iso_code": "en"}}, "settings": {}, "canonical_url": "",
-            "routes": {"cart_url": "/cart", "search_url": "/search"}, "all_products": PRODUCTS, "cart": EMPTY_CART}
+            "routes": {"cart_url": "/cart", "search_url": "/search", "account_url": "/account"}, "all_products": PRODUCTS, "cart": EMPTY_CART}
 
     def ctx(**kw):
         c = dict(base); c.update(kw); return c
@@ -166,6 +166,9 @@ def main():
         body = (ROOT / "shopify" / src).read_text() if src else POLICY_TEXT[file]
         policy = f'<div class="shopify-policy__container"><div class="shopify-policy__title"><h1>{title}</h1></div><div class="shopify-policy__body"><div class="rte">{body}</div></div></div>'
         render(file, policy, ctx(page_title=title, template={"name": "policy"}))
+    render("account.html", """<main class="wrap wt-shell wt-shell--center"><span class="eyebrow">Preview</span><h1>Here customers see <em>their orders.</em></h1>
+      <p class="lede">On the live store this opens the Shopify account page. Customers sign in with a code sent to their email (no password) and see every order, its status and tracking.</p>
+      <a class="btn" href="/store-preview/">Back to the shop</a></main>""", ctx(page_title="My orders", template={"name": "page"}))
     render("checkout.html", """<main class="wrap wt-shell wt-shell--center"><span class="eyebrow">Preview</span><h1>Here the live store opens <em>Shopify checkout.</em></h1>
       <p class="lede">Your design, photos and text are saved on the order. In this preview nothing is sent or charged.</p>
       <a class="btn" href="/store-preview/blanket">Back to the blanket</a></main>""", ctx(page_title="Checkout", template={"name": "page"}))
