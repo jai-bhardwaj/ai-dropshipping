@@ -95,7 +95,8 @@ LAYOUT = """<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{{ page_title }}{% unless page_title contains shop.name %} · {{ shop.name }}{% endunless %}</title>
-{%- if page_description %}<meta name="description" content="{{ page_description | escape }}">{% endif %}
+{%- assign wt_desc = page_description | default: 'Your dog or cat, cut out from your photo and woven into a 100% cotton blanket, or the hero of their own hardcover storybook. Design it yourself, approve a proof, free US shipping.' -%}
+<meta name="description" content="{{ wt_desc | escape }}">
 <link rel="canonical" href="{{ canonical_url }}">
 {%- liquid
   assign og_image = '__MEDIA__img/og-home.jpg'
@@ -112,7 +113,7 @@ LAYOUT = """<!doctype html>
 -%}
 <meta property="og:site_name" content="{{ shop.name }}">
 <meta property="og:title" content="{{ page_title | escape }}">
-<meta property="og:description" content="{{ page_description | escape }}">
+<meta property="og:description" content="{{ wt_desc | escape }}">
 <meta property="og:url" content="{{ canonical_url }}">
 <meta property="og:image" content="{{ og_image }}">
 <meta property="og:type" content="{% if product %}product{% else %}website{% endif %}">
@@ -129,7 +130,7 @@ LAYOUT = """<!doctype html>
 </head>
 <body data-page="{% if product %}{{ product.handle }}{% else %}{{ template.name }}{% endif %}">
 <a class="skip" href="#main">Skip to content</a>
-<div class="announce">Order by Dec 10 for Christmas · Free US shipping<span class="hide-sm"> · You approve the art first</span></div>
+<a class="announce" href="/discount/WELCOME10?redirect=%2Fproducts%2Fcustom-pet-portrait-woven-blanket">10% off your first order: <b>WELCOME10</b> (applied for you) · Free US shipping<span class="hide-sm"> · Order by Dec 10 for Christmas</span></a>
 <header class="site-head">
   <div class="wrap">
     <a class="brand" href="/" aria-label="Woven Tails home">
@@ -202,6 +203,8 @@ EXTRA_CSS = """
 /* ---- Shopify store additions ---- */
 .skip { position: absolute; left: -9999px; }
 .skip:focus { left: 16px; top: 16px; z-index: 99; background: var(--raised); padding: 8px 12px; border-radius: 8px; }
+a.announce { display: block; text-decoration: none; color: inherit; }
+a.announce b { letter-spacing: .06em; }
 .cart-link { position: relative; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; }
 .cart-link svg, .menu summary svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .cart-count { position: absolute; top: 2px; right: 0; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--thread); color: var(--on-thread); font: 800 11px/18px var(--body); text-align: center; }
