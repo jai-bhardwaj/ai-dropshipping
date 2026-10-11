@@ -835,6 +835,7 @@
     if (document.fonts) Promise.all(Object.values(FONTS).map((f) => document.fonts.load(f.css.replace('{s}', '40')).catch(() => {}))).then(() => render());
     if (document.fonts) document.fonts.addEventListener('loadingdone', () => render());
     syncStyleFromPage(false); styleBar(); history = [snapshot()]; fit(); warnings(); load();
+    root.wtState = st;                                   // for automated checks
     return { st };
   }
 
