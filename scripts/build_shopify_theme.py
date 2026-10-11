@@ -210,7 +210,9 @@ EXTRA_CSS = """
 .menu__panel a { display: flex; justify-content: space-between; gap: 16px; padding: 12px 14px; border-radius: 10px; font-size: var(--step-0) !important; }
 .menu__panel a:hover { background: var(--surface); }
 .menu__panel span { color: var(--muted); font-weight: 600; }
-@media (max-width: 720px) { .menu { display: block; } .nav { gap: 6px; flex-wrap: nowrap; } .site-head .brand { font-size: 1.05rem; } }
+.site-head .brand, .nav .btn { white-space: nowrap; }
+@media (max-width: 720px) { .menu { display: block; } .nav { gap: 4px; flex-wrap: nowrap; } .site-head .brand { font-size: 1.05rem; gap: 8px; } .nav .btn.small { padding: .65em .95em; } .announce { font-size: .68rem; letter-spacing: .02em; } }
+@media (max-width: 370px) { .site-head .brand { font-size: 0; gap: 0; } }
 /* store pages */
 .sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .wt-shell { display: grid; gap: clamp(20px, 3vw, 32px); padding-block: clamp(28px, 5vw, 64px) clamp(48px, 7vw, 96px); }
