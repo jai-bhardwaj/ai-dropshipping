@@ -322,7 +322,7 @@
           <div class="wte__style"></div>
         </section>
         <section class="wte-step" data-step="name">
-          <h3 class="wte-step__h"><span class="wte-step__n">3</span>${needName ? "Your pet's name" : 'Add a name'} <em>${needName ? '(for the story and the blanket)' : '(optional)'}</em></h3>
+          <h3 class="wte-step__h"><span class="wte-step__n">3</span>${needName ? "Your pet's name" : 'Add a name'} <em>${needName ? '(book + blanket)' : '(optional)'}</em></h3>
           <input class="wte-name" type="text" name="properties[Pet's name]" maxlength="${MAX_CHARS}" autocomplete="off" placeholder="e.g. Biscuit" ${needName ? 'required' : ''} aria-label="Pet's name">
           <div class="wte-fonts">${Object.entries(FONTS).map(([k, f]) => `<button type="button" class="wte__chip wte__f-${k}" data-name-font="${k}">${f.label}</button>`).join('')}</div>
           <button type="button" class="wte-link" data-add-text>+ Add another line of text</button>
@@ -817,7 +817,7 @@
         edStage.hidden = v !== 'design'; stage3d.hidden = v !== '3d';
         const has = st.layers.some((L) => L.type === 'photo');
         hint.textContent = v === 'design' ? 'Tap a pet or text, then drag to move it. We polish your art and email a proof before anything is woven.'
-          : has ? 'Drag to turn. A guide to the woven look: real thread colors are a little softer.' : 'Example blanket. Add your photo to see yours.';
+          : has ? 'Drag to turn. A guide to the woven look: real thread colors are a little softer.' : 'Example. Add your photo to see yours.';
         if (v === '3d') requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
         fit();
       };
@@ -837,6 +837,11 @@
     if (document.fonts) Promise.all(Object.values(FONTS).map((f) => document.fonts.load(f.css.replace('{s}', '40')).catch(() => {}))).then(() => render());
     if (document.fonts) document.fonts.addEventListener('loadingdone', () => render());
     syncStyleFromPage(false); styleBar(); history = [snapshot()]; fit(); warnings(); load();
+    const conn = navigator.connection || {};
+    if (!conn.saveData && !/2g/.test(conn.effectiveType || '')) {
+      const warm = () => window.wtWarmup && window.wtWarmup();
+      ('requestIdleCallback' in window) ? requestIdleCallback(() => setTimeout(warm, 2500)) : setTimeout(warm, 4000);
+    }
     root.wtState = st;                                   // for automated checks
     return { st };
   }

@@ -56,9 +56,7 @@ THEME_COPY = {
         ("We send the illustration within 24 hours. Ask for up to 2 changes, free.", "We email your proof within 24 hours. Ask for up to 2 changes, free."),
         ("Add it in the order note and we'll place it under the portrait.", "Add it in the designer above: up to 3 lines of text, placed and angled anywhere."),
     ],
-    "gift-set": [
-        ("You approve the blanket art and the storybook character in one email.", "Upload it once in the designer above. You approve the blanket art and the storybook character in one email."),
-    ],
+    "gift-set": [],
     "storybook": [
         ("Reply to our email with your pet's photo, up to 3 family names and their favorite treat.", "Upload your pet's photo and add up to 3 family names and their favorite treat above."),
     ],
@@ -304,6 +302,8 @@ EXTRA_CSS = """
 .wt-trust b { color:var(--fg); }
 .wt-trust svg { flex:none; width:22px; height:22px; fill:none; stroke:var(--thread); stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
 .wt-buy__btn[disabled] { opacity: .6; cursor: progress; }
+.wt-secure { display: flex; gap: 8px; align-items: center; justify-content: center; margin: -4px 0 0; font-size: 13px; color: var(--muted); text-align: center; }
+.wt-secure svg { flex: none; width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .wt-buy .wt-personalize { margin: 0; background: var(--raised); border-color: var(--line); }
 """
 

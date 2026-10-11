@@ -211,6 +211,7 @@ document.addEventListener('submit',function(e){var a=e.target.getAttribute('acti
 </script>
     <div class="wt-buy__cta">
       <button type="submit" class="btn wt-buy__btn" >Buy now · <span data-wt-price>$64</span></button>
+      <p class="wt-secure"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Secure checkout with PayPal or card</p>
       <ul class="wt-trust">
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><span><b>Free US shipping</b> with tracking</span></li>
         <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 10.5l2.5 2.5L16 8"/></svg><span><b>Proof in 24 hours.</b> Nothing is made until you approve</span></li>
@@ -234,10 +235,12 @@ document.addEventListener('submit',function(e){var a=e.target.getAttribute('acti
       root.addEventListener('change', (e) => { if (e.target.classList.contains('wt-opt')) sync(); });
       root.querySelector('form').addEventListener('submit', (e) => { if (e.defaultPrevented) return; btn.disabled = true; btn.textContent = 'Taking you to checkout…'; });
       // phones: the bottom bar's button buys (or jumps to the first unfinished step)
-      document.querySelectorAll('.buybar a[href="#create"]').forEach((a) => {
+      const wireBar = () => document.querySelectorAll('.buybar a[href="#create"]').forEach((a) => {
+        if (a.dataset.wtWired) return; a.dataset.wtWired = '1';
         a.textContent = 'Buy now';
         a.addEventListener('click', (e) => { e.preventDefault(); const f = root.querySelector('form'); if (f.requestSubmit) f.requestSubmit(btn); else btn.click(); });
       });
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wireBar); else wireBar();
     })();
   </script>
 </div>
@@ -314,7 +317,8 @@ document.addEventListener('submit',function(e){var a=e.target.getAttribute('acti
   <section class="section wrap split" style="padding-top: 0; align-items: start">
     <div class="stack reveal"><span class="eyebrow">Questions</span><h2>Before you order.</h2></div>
     <div class="faq reveal">
-      <details><summary>What photo should I send?</summary><p>A clear, well-lit photo of your pet's face with the eyes visible. Phone photos work well. Send 2–3 if you can.</p></details>
+      <details><summary>What photo works best?</summary><p>A clear, bright photo where your pet fills most of the picture. Phone photos are perfect, and iPhone photos work too. We cut your pet out of the background automatically.</p></details>
+      <details><summary>Can I put more than one pet on it?</summary><p>Yes, up to 4. One or two pets are included. For 3 or 4 pets we add a $10 collage upgrade at checkout.</p></details>
       <details><summary>Will it look exactly like my photo?</summary><p>It's an illustration of your pet, not a photo. We keep their real markings, colors and expression in a bold style that weaves well, and you approve it before anything is made.</p></details>
       <details><summary>Is the art made with AI?</summary><p>Yes. We use AI-assisted illustration, then check every image by hand against your photo and fix anything that's off.</p></details>
       <details><summary>Can you add my pet's name?</summary><p>Yes. Add it in the designer above: up to 3 lines of text, placed and angled anywhere.</p></details>
