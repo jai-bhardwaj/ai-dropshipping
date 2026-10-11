@@ -14,11 +14,11 @@ All images are in `assets/social/`, videos in `assets/videos/`. Everything uses 
 | Action button | n/a | "Shop now" → woventails.com |
 
 **Bio (Instagram, 150 characters max):**
-> Your pet, illustrated from your photo 🐾
-> Woven into 100% cotton or starring in their own book
-> Made in the USA · Order by Dec 10 for Christmas ⬇️
+> Your pet, woven into a cotton blanket 🐾
+> Upload a photo, design it in a minute
+> Made to order in the USA · 10% off first order ⬇️
 
-**Facebook "About":** Woven Tails turns your pet's photo into an illustrated portrait, woven into a 100% cotton jacquard blanket or printed as a 24-page hardcover storybook starring them. You approve the art before anything is made. Made to order in the USA.
+**Facebook "About":** Woven Tails turns your pet's photo into a portrait woven into a 100% cotton jacquard blanket, or a 24-page hardcover storybook starring them. You design it on our site in a minute, we polish it and send a proof, and nothing is made until you approve. Woven and printed to order in the USA.
 
 ## 2. Story highlights (covers in `assets/social/highlight-*.jpg`)
 
@@ -60,32 +60,32 @@ Rules: first line is the hook (it shows before "more"); price + "link in bio" in
 
 **Post 1, intro**
 > Your pet, woven into something you can hold. 🧶
-> Send us one photo. We illustrate your dog or cat, you approve the art, and we weave it into a 100% cotton blanket, or make them the hero of their own storybook.
+> Upload one photo, pick a style, add their name. We polish it, you approve the proof, and we weave it into a 100% cotton blanket. Or make them the hero of their own storybook.
 > Made to order in the USA. Link in bio.
 > #custompetportrait #petportrait #doglovers #catlovers #petgifts #wovenblanket
 
 **Post 2, how it works (carousel)**
 > How one phone photo becomes a woven blanket 👇 (swipe)
-> 1. Send any clear photo of your pet's face
-> 2. We illustrate it. You approve it (2 free changes)
-> 3. It's woven into 100% cotton in the USA
+> 1. Upload any phone photo of your pet
+> 2. Pick a style and add their name
+> 3. Approve your proof, then we weave it in 100% cotton
 > 4. Delivered in about 4–7 business days
 > $64 · free US shipping · order by Dec 10 for Christmas. Link in bio.
 > #custompetportrait #petgifts #dogmom #catdad #giftideas
 
 **Post 3, pick a style (carousel)**
 > Same cat. Three styles. Which one would you pick? Comment 1, 2 or 3 👇
-> Bold Pop, Christmas scarf or Royal. All woven into a 100% cotton blanket from your own pet's photo. Link in bio.
+> Bold Pop, Christmas or Royal (and a gentle Memorial style too). Try your own pet in every style on our site. Link in bio.
 > #catsofinstagram #catlovers #custompetportrait #petportrait #christmasgifts
 
 **Post 4, woven vs printed (carousel)**
 > Woven, not printed. Here's the difference 🧵
-> On our blankets the picture is made of colored cotton threads, not ink on top. That's also why we illustrate your photo first: bold art weaves beautifully. Link in bio.
+> On our blankets the picture is made of colored cotton threads, not ink on top. That's why every design gets a bold style first: bold art weaves beautifully. Link in bio.
 > #wovenblanket #jacquard #petportrait #handmadegifts #doglovers
 
 **Post 5, storybook (carousel)**
 > What if your dog was the hero of a book? 📖
-> "Sunny and the Very Big Day": 24 illustrated pages, drawn from your photo, with your family's names in the story. Hardcover, printed in the USA. $42. Link in bio.
+> "Sunny and the Very Big Day": 24 illustrated pages starring your pet, with your family's names in the story. Hardcover, printed to order in the USA. $42. Link in bio.
 > #personalizedbook #doglovers #kidsbooks #petgifts #bedtimestory
 
 **Post 6, cat book**
@@ -95,12 +95,12 @@ Rules: first line is the hook (it shows before "more"); price + "link in bio" in
 
 **Post 7, gift set**
 > One photo. Two gifts. $99. 🎁
-> The woven portrait blanket + the storybook starring their pet. Approved once, shipped together. Order by Dec 10 for Christmas. Link in bio.
+> The woven portrait blanket + the storybook starring their pet, from one photo, approved once. Order by Dec 10 for Christmas. Link in bio.
 > #giftsforher #petgifts #christmasgiftideas #dogmom #giftguide
 
 **Post 8, deadline (from Dec 1)**
 > Order by Dec 10 for Christmas delivery 🎄
-> Art proof in 24 hours, made in the USA, delivered with tracking. Link in bio.
+> Art proof in 24 hours, woven to order in the USA, delivered with tracking. Link in bio.
 > #christmasgifts #lastminutegifts #petgifts #custompetportrait
 
 **Post 9, four pets**
@@ -124,10 +124,10 @@ Rules: first line is the hook (it shows before "more"); price + "link in bio" in
 | They say | You reply |
 |---|---|
 | "How much?" / "Price?" | "$64 for the woven blanket, $42 for the storybook, $99 for both. Free US shipping. Link in our bio 🐾" |
-| "Is this AI?" | "We use AI-assisted illustration, then check every portrait by hand against your photo. You approve it before anything is made." |
+| "Is this AI?" | "Our designer cuts your pet out of your photo automatically, then we check and polish every design by hand. You approve it before anything is made." |
 | "Do you ship to [country]?" | "Right now we ship to the US only. We'll announce new countries here first!" |
 | "Will it arrive by Christmas?" | "Yes if you order by Dec 10 (US standard shipping)." |
-| "Can you do two pets?" | "Not yet, one pet per piece for now. Want us to message you when two-pet blankets launch?" |
+| "Can you do two pets?" | "Yes! Up to 4 pets on one blanket. 1–2 pets are included, 3–4 add $10. Link in bio 🐾" |
 | Complaint | "So sorry about that! Please DM us your order number and a photo, and we'll make it right." (Move to DM/email, never argue in comments.) |
 
 ## 6. Pinterest

@@ -166,9 +166,9 @@ save(slide_photo(A + "lifestyle/blanket-sofa-golden.jpg", "Your pet, woven into 
 
 # Post 2: how it works carousel
 save(slide_text("How a photo becomes a blanket", "Swipe to see the 4 steps", "How it works", n="1/5"), "post-02-how-1.jpg")
-save(slide_image_card(A + "pets/golden.jpg", "1 · Send us any clear photo of your pet's face", "2/5"), "post-02-how-2.jpg")
-save(slide_image_card(A + "blanket-art/golden-pop.jpg", "2 · We illustrate it. You approve it (2 free changes)", "3/5"), "post-02-how-3.jpg")
-save(slide_image_card(A + "lifestyle/blanket-weave-closeup.jpg", "3 · Woven into 100% cotton in the USA", "4/5"), "post-02-how-4.jpg")
+save(slide_image_card(A + "pets/golden.jpg", "1 · Upload any phone photo of your pet", "2/5"), "post-02-how-2.jpg")
+save(slide_image_card(A + "blanket-art/golden-pop.jpg", "2 · Pick a style and add their name", "3/5"), "post-02-how-3.jpg")
+save(slide_image_card(A + "lifestyle/blanket-weave-closeup.jpg", "3 · Approve your proof. We weave it in 100% cotton", "4/5"), "post-02-how-4.jpg")
 save(slide_text("4 · Delivered in about 4–7 business days", "Order by Dec 10 for Christmas. $64, free US shipping. Link in bio.", "Then", bg=INK, fg=CREAM, accent=WELD, n="5/5"), "post-02-how-5.jpg")
 
 # Post 3: pick a style carousel
@@ -179,7 +179,7 @@ for i, (s, lab) in enumerate((("pop", "1 · Bold Pop"), ("christmas", "2 · Chri
 # Post 4: woven vs printed
 save(slide_text("Woven, not printed.", "On our blankets the picture is made of colored cotton threads, not ink on top.", "What makes it different", n="1/3"), "post-04-woven-1.jpg")
 save(slide_image_card(A + "lifestyle/blanket-weave-closeup.jpg", "The loom builds the portrait thread by thread", "2/3"), "post-04-woven-2.jpg")
-save(slide_text("Why we illustrate first", "Raw photos weave muddy. Bold, simple art weaves beautifully, so we draw your pet before it goes on the loom.", "The secret", bg=INK, fg=CREAM, accent=WELD, n="3/3"), "post-04-woven-3.jpg")
+save(slide_text("Why bold art weaves best", "Raw photos weave muddy. Bold, simple shapes weave beautifully, so every design gets a bold style and a hand check before it goes on the loom.", "The secret", bg=INK, fg=CREAM, accent=WELD, n="3/3"), "post-04-woven-3.jpg")
 
 # Post 5: storybook sneak peek
 save(slide_photo(A + "lifestyle/book-table.jpg", "Your pet is the hero of the story.", "New: the storybook", "Illustration of the product"), "post-05-book-1.jpg")
@@ -193,7 +193,7 @@ save(slide_photo(A + "lifestyle/book-bed-tabby.jpg", "Your cat already thinks th
 save(slide_photo(A + "lifestyle/bundle-giftbox.jpg", "One photo. Two gifts. $99.", "Gift set", "Illustration of the product"), "post-07-gift-set.jpg")
 
 # Post 8: Christmas deadline
-save(slide_text("Order by Dec 10 for Christmas.", "Art proof in 24 hours. Made in the USA. Delivered with tracking.", "Holiday deadline", bg=MADDER, fg=CREAM, accent=WELD), "post-08-deadline.jpg")
+save(slide_text("Order by Dec 10 for Christmas.", "Art proof in 24 hours. Woven to order in the USA. Delivered with tracking.", "Holiday deadline", bg=MADDER, fg=CREAM, accent=WELD), "post-08-deadline.jpg")
 
 # Post 9: four pets grid
 grid = Image.new("RGB", (W, H), CREAM)
