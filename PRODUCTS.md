@@ -46,6 +46,7 @@ Photo blankets, canvases, puzzles, ornaments, snow globes and star maps all **fa
 - **Size tolerance:** ±2.5" (say "approx. 52×37 in" on the page)
 - **Production:** ~1.2 days average (Printify Choice); **shipping** 2–5 business days → **~4–7 business days total**
 - **Shipping cost:** $10.39 first item, +$4.99 each additional blanket
+- **Re-checked 2026-10-11 (live catalog):** 3 US providers weave it: Printify Choice ($28.85, quality 9.65/10, 1.2 days), Pure Country, Inc. ($27.86, quality 7.1/10, 1.5 days), MWW On Demand ($28.89). Use **Printify Choice**. Printify's own notes: fringe colors extend the image edge, fringe length varies by provider, mockups don't fully show the final product. Store copy says "woven to order in the USA" (not "Made in USA", which the FTC reserves for all-US materials).
 
 ### Storybook: Printify blueprint 2737 (Hardcover Photo Book)
 - **Size:** 8×8", 24 pages, case-bound hardcover (98pt chipboard), glossy or matte laminated cover
