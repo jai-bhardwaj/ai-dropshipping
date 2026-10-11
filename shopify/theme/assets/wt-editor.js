@@ -20,6 +20,7 @@
     royal: ['#E9C46A', '#F4E6C8', '#FBF8F2'],
     memorial: ['#5B4A3A', '#8A6E4B', '#2F4A3A'],
   };
+  const STYLES = { pop: { name: 'Bold Pop', sub: 'Bright color' }, christmas: { name: 'Christmas', sub: 'Red & snow' }, royal: { name: 'Royal', sub: 'Gold frame' }, memorial: { name: 'Memorial', sub: 'Soft & gentle' } };
   const STYLE_FROM = [[/royal/i, 'royal'], [/christmas|scarf/i, 'christmas'], [/memorial/i, 'memorial'], [/pop/i, 'pop']];
   const EMOJI = /\p{Extended_Pictographic}|️|‍/gu;
   const uid = () => Math.random().toString(36).slice(2, 9);
@@ -198,48 +199,85 @@
 
   // ---------- styles ----------
   const CSS = `
-  .wte{display:grid;gap:12px}
-  .wte__stage{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 18px 40px -22px rgba(31,49,39,.6);background:#eee}
+  .wte{display:grid;gap:14px;font-family:Nunito,system-ui,sans-serif;color:#1F3127}
+  .wte-step{display:grid;gap:12px;padding:16px;border:1px solid rgba(31,49,39,.14);border-radius:16px;background:#FFFDF8}
+  .wte-step__h{display:flex;align-items:center;gap:10px;margin:0;font:800 17px/1.2 Nunito,system-ui,sans-serif;color:#1F3127}
+  .wte-step__h em{font-style:normal;font-weight:600;color:#56645A;font-size:14px}
+  .wte-step__n{flex:none;display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#1F3127;color:#F4EEE3;font-size:14px}
+  .wte-step.is-done .wte-step__n{background:#2F7A4A;font-size:0}.wte-step.is-done .wte-step__n::after{content:"✓";font-size:15px}
+  .wte-step.is-alert{border-color:#B9582F;box-shadow:0 0 0 3px rgba(185,88,47,.18)}
+  .wte-drop{position:relative;display:grid;justify-items:center;gap:4px;padding:22px 16px;border:2px dashed rgba(31,49,39,.3);border-radius:14px;background:#FBF8F2;text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
+  .wte-drop:hover,.wte-drop.is-over,.wte-drop:focus-within{border-color:#B9582F;background:#FCF1EA}
+  .wte-drop svg{color:#B9582F;margin-bottom:2px}
+  .wte-drop strong{font:800 16px Nunito,system-ui,sans-serif}
+  .wte-drop span{font-size:13px;color:#56645A;line-height:1.35}
+  .wte-drop input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+  .wte-step.has-pets .wte-drop{grid-auto-flow:column;justify-content:center;align-items:center;gap:8px;padding:12px}
+  .wte-step.has-pets .wte-drop span,.wte-step.has-pets .wte-drop svg{display:none}
+  .wte-step.is-full .wte-drop{display:none}
+  .wte-pets{display:flex;flex-wrap:wrap;gap:12px}.wte-pets:empty{display:none}
+  .wte-pet{position:relative;width:76px;height:76px;border-radius:12px;border:1px solid rgba(31,49,39,.15);background:#EFE7DA center/contain no-repeat}
+  .wte-pet button{position:absolute;top:-9px;right:-9px;width:28px;height:28px;border-radius:50%;border:2px solid #FFFDF8;background:#1F3127;color:#fff;font:700 16px/1 Nunito,sans-serif;cursor:pointer}
+  .wte-small{margin:0;font-size:13px;line-height:1.4;color:#56645A}
+  .wte-later{display:grid;gap:8px;padding:12px;border-radius:12px;background:#FCF1EA;font-size:14px}
+  .wte-later[hidden]{display:none}
+  .wte-styles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  @media (min-width:430px){.wte-styles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+  .wte-tile{display:grid;gap:5px;align-content:start;padding:6px 6px 9px;border:2px solid transparent;border-radius:12px;background:#F4EEE3;cursor:pointer;text-align:left;font:inherit;color:#1F3127}
+  .wte-tile canvas{display:block;width:100%;aspect-ratio:2600/1850;border-radius:8px;background:#ddd}
+  .wte-tile b{font:800 14px Nunito,system-ui,sans-serif;padding:0 2px}
+  .wte-tile small{font-size:12px;line-height:1.25;color:#56645A;padding:0 2px}
+  .wte-tile:hover{border-color:rgba(185,88,47,.45)}
+  .wte-tile[aria-pressed=true]{border-color:#B9582F;background:#FCF1EA}
+  .wte-name{box-sizing:border-box;width:100%;font:700 17px Nunito,system-ui,sans-serif;padding:13px 14px;border:1.5px solid rgba(31,49,39,.3);border-radius:12px;background:#fff;color:#1F3127}
+  .wte-name:focus{outline:none;border-color:#B9582F;box-shadow:0 0 0 3px rgba(185,88,47,.18)}
+  .wte-link{justify-self:start;border:0;background:none;padding:4px 0;font:700 14px Nunito,system-ui,sans-serif;color:#B9582F;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+  .wte-more{border:1px solid rgba(31,49,39,.14);border-radius:16px;background:#FFFDF8}
+  .wte-more>summary{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;cursor:pointer;list-style:none;font:800 15px Nunito,system-ui,sans-serif}
+  .wte-more>summary::-webkit-details-marker{display:none}
+  .wte-more>summary::after{content:"+";font-size:22px;line-height:1;color:#B9582F}
+  .wte-more[open]>summary::after{content:"–"}
+  .wte-more__body{display:grid;gap:12px;padding:0 16px 16px}
+  .wte__stage{position:relative;border-radius:18px;overflow:hidden;box-shadow:0 18px 40px -22px rgba(31,49,39,.6);background:#eee}
   .wte__canvas{display:block;width:100%;touch-action:none;cursor:grab;outline:none}
   .wte__canvas:focus-visible{outline:3px solid #B9582F;outline-offset:2px}
   .wte__empty{position:absolute;inset:0;display:grid;place-content:center;gap:4px;text-align:center;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.4);pointer-events:none;font-size:15px}
-  .wte__empty strong{font:600 22px Fraunces,Georgia,serif}
+  .wte__empty strong{font:600 24px Fraunces,Georgia,serif}
   .wte__empty[hidden],.wte__busy[hidden],.wte__panel[hidden]{display:none}
-  .wte__busy{position:absolute;inset:0;display:grid;place-items:center;background:rgba(246,240,230,.72);font-weight:700}
+  .wte__busy{position:absolute;inset:0;display:grid;place-items:center;background:rgba(246,240,230,.78);font-weight:800}
   .wte__busy span::before{content:"";display:inline-block;width:14px;height:14px;margin-right:8px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:wtespin .8s linear infinite;vertical-align:-2px}
   @keyframes wtespin{to{transform:rotate(360deg)}}
-  .wte__bar,.wte__row,.wte__style{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-  .wte__bar .wte__btn{flex:1 1 auto;justify-content:center}
-  @media (max-width:520px){.wte__sep{display:none}.wte__bar .wte__btn--primary{flex-basis:100%}.wte__panel{padding:12px}.wte__btn,.wte__chip{min-height:44px}.wte__sw{width:40px;height:40px}}
-  .wte__sep{width:1px;height:26px;background:rgba(31,49,39,.18)}
-  .wte__btn,.wte__chip{font:700 14px Nunito,system-ui,sans-serif;min-height:40px;padding:6px 14px;border-radius:999px;border:1px solid rgba(31,49,39,.28);background:#FBF8F2;color:#1F3127;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+  .wte__bar,.wte__row,.wte__style,.wte-fonts{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .wte__style:empty{display:none}
+  .wte__btn,.wte__chip{font:700 14px Nunito,system-ui,sans-serif;min-height:42px;padding:6px 14px;border-radius:999px;border:1px solid rgba(31,49,39,.28);background:#FBF8F2;color:#1F3127;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px}
   .wte__btn:hover,.wte__chip:hover{border-color:#B9582F}
-  .wte__btn--primary{background:#1F3127;color:#F4EEE3;border-color:#1F3127}
   .wte__btn--danger{color:#A8242C}
   .wte__chip.is-on{background:#1F3127;color:#F4EEE3;border-color:#1F3127}
   .wte__f-classic{font-family:Fraunces,Georgia,serif}.wte__f-script{font-family:"Great Vibes",cursive;font-weight:400;font-size:19px}.wte__f-bold{letter-spacing:.1em}.wte__f-hand{font-family:Caveat,cursive;font-size:18px}
-  .wte__sw{width:34px;height:34px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(31,49,39,.3);background:var(--c);cursor:pointer;padding:0}
+  .wte__sw{width:36px;height:36px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(31,49,39,.3);background:var(--c);cursor:pointer;padding:0}
   .wte__sw.is-on{box-shadow:0 0 0 3px #B9582F}
-  .wte__lbl{font:500 12px/1.3 "DM Mono",ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase;color:#56645A;display:grid;gap:6px}
-  .wte__check{display:flex;gap:8px;align-items:center;font-weight:700}
+  .wte__lbl{font:600 13px/1.3 Nunito,system-ui,sans-serif;color:#56645A}
+  .wte__check{display:flex;gap:8px;align-items:center;font-weight:700;font-size:15px}
+  .wte__check input{width:20px;height:20px;accent-color:#1F3127}
   .wte__panel{display:grid;gap:10px;padding:14px;border:1px solid rgba(31,49,39,.16);border-radius:14px;background:#FBF8F2}
   .wte__panel label{display:grid;gap:4px;font-size:14px;font-weight:700}
   .wte__panel input[type=range]{width:100%;accent-color:#1F3127}
   .wte__panel textarea{font:600 16px Nunito,system-ui,sans-serif;padding:10px 12px;border:1px solid rgba(31,49,39,.3);border-radius:10px;background:#fff;color:#1F3127;resize:vertical;text-transform:none;letter-spacing:0}
-  .wte__warn{margin:0;padding:0;list-style:none;display:grid;gap:6px}
-  .wte__warn li{font-size:14px;line-height:1.4;padding:8px 12px;border-radius:10px;background:#FBEFD9;color:#6B4A12}
-  .wte__fine{margin:0;font-size:13px;color:#56645A}
-  .wte-viewer{display:grid;gap:12px;min-width:0}
-  .wte-viewer.is-desktop{position:sticky;top:96px;align-self:start}
-  @media (min-width:900px){.hero:has(.wte-viewer.is-desktop){grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:start}}
-  .wte-tabs{display:none;gap:6px;padding:4px;border-radius:999px;background:rgba(31,49,39,.08);justify-self:start}
-  .wte-viewer.is-desktop .wte-tabs{display:inline-flex}
-  .wte-tabs button{font:700 14px Nunito,system-ui,sans-serif;border:0;background:transparent;color:#1F3127;padding:9px 18px;border-radius:999px;cursor:pointer;min-height:40px}
-  .wte-tabs button[aria-selected=true]{background:#1F3127;color:#F4EEE3}
-  .wte-viewer .wte__stage{border-radius:22px}
+  .wte__warn{margin:0;padding:0;list-style:none;display:grid;gap:6px}.wte__warn:empty{display:none}
+  .wte__warn li{font-size:14px;line-height:1.4;padding:9px 12px;border-radius:10px;background:#FBEFD9;color:#6B4A12}
+  @media (max-width:520px){.wte-step,.wte-more__body{padding-left:14px;padding-right:14px}.wte__btn,.wte__chip{min-height:44px}.wte__sw{width:40px;height:40px}}
+  .wte-viewer{display:grid;gap:10px;min-width:0;align-content:start}
   .wte-viewer .stage[hidden],.wte-viewer .wte__stage[hidden]{display:none}
-  .wte-viewer.is-desktop .wte__empty strong{font-size:30px}
-  .wte__hint{margin:0;font-size:13px;color:#56645A}
+  .wte-viewer .stage{aspect-ratio:2600/1850!important;border-radius:18px}
+  .wte-tabs{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:rgba(31,49,39,.08);justify-self:start}
+  .wte-tabs button{font:800 14px Nunito,system-ui,sans-serif;border:0;background:transparent;color:#1F3127;padding:8px 16px;border-radius:999px;cursor:pointer;min-height:38px}
+  .wte-tabs button[aria-selected=true]{background:#1F3127;color:#F4EEE3}
+  .wte__hint{margin:0;font-size:13px;line-height:1.4;color:#56645A}
+  @media (min-width:900px){
+    .hero:has(.wte-viewer){grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:start}
+    .wte-viewer{position:sticky;top:88px}
+    .wte__empty strong{font-size:30px}
+  }
   `;
   function injectCSS() { if (document.getElementById('wte-css')) return; const s = document.createElement('style'); s.id = 'wte-css'; s.textContent = CSS; document.head.appendChild(s);
     if (!document.getElementById('wte-fonts')) { const l = document.createElement('link'); l.id = 'wte-fonts'; l.rel = 'stylesheet'; l.href = 'https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Fraunces:opsz,wght@9..144,600&family=Great+Vibes&family=Nunito:wght@700;800&display=swap'; document.head.appendChild(l); } }
@@ -255,25 +293,49 @@
     const files = new Map();                              // photo layer id -> original File
     let history = [], future = [], busy = 0, guides = { v: false, h: false };
 
+    const needName = root.dataset.requireName === 'true';
     root.innerHTML = `
       <div class="wte">
-        <div class="wte__stage"><canvas class="wte__canvas" tabindex="0" aria-label="Blanket design canvas. Drag to move, use the controls below to edit."></canvas>
-          <div class="wte__empty"><strong>Design your blanket</strong><span>Add your pet's photo to start. Up to 4 pets.</span></div>
+        <div class="wte__stage"><canvas class="wte__canvas" tabindex="0" aria-label="Your blanket design. Drag to move things around."></canvas>
+          <div class="wte__empty"><strong>Your design appears here</strong><span>Start by adding your pet's photo</span></div>
           <div class="wte__busy" hidden><span></span></div></div>
-        <div class="wte__bar">
-          <label class="wte__btn wte__btn--primary"><input type="file" accept="image/*,.heic,.heif" multiple hidden data-add-photo>+ Pet photo</label>
-          <button type="button" class="wte__btn" data-add-text>+ Text</button>
-          <span class="wte__sep"></span>
-          <button type="button" class="wte__btn" data-layout="row" title="Arrange pets in a row">Row</button>
-          <button type="button" class="wte__btn" data-layout="grid" title="Arrange pets in a grid">Grid</button>
-          <span class="wte__sep"></span>
-          <button type="button" class="wte__btn" data-undo aria-label="Undo">↶</button>
-          <button type="button" class="wte__btn" data-redo aria-label="Redo">↷</button>
-        </div>
-        <div class="wte__style"></div>
-        <div class="wte__panel" hidden></div>
+        <section class="wte-step" data-step="photo">
+          <h3 class="wte-step__h"><span class="wte-step__n">1</span>Add your pet's photo</h3>
+          <div class="wte-pets"></div>
+          <label class="wte-drop">
+            <input type="file" accept="image/*,.heic,.heif" multiple data-add-photo aria-label="Upload your pet's photo">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h3l2-2h6l2 2h3v12H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+            <strong data-drop-label>Upload a photo</strong>
+            <span>Any phone photo works. We cut your pet out automatically.</span>
+          </label>
+          <p class="wte-small" data-pets-note>Up to 4 pets. 1–2 pets included, 3–4 pets add $10.</p>
+          <div class="wte-later" hidden><span>Please add your pet's photo first so we can make your design.</span><button type="button" class="wte-link" data-later>No photo handy? Order now and email it later</button></div>
+        </section>
+        <section class="wte-step" data-step="style">
+          <h3 class="wte-step__h"><span class="wte-step__n">2</span>Choose a style</h3>
+          <div class="wte-styles">${Object.entries(STYLES).map(([k, v]) => `<button type="button" class="wte-tile" data-style="${k}" aria-pressed="false"><canvas width="208" height="148" aria-hidden="true"></canvas><b>${v.name}</b><small>${v.sub}</small></button>`).join('')}</div>
+          <div class="wte__style"></div>
+        </section>
+        <section class="wte-step" data-step="name">
+          <h3 class="wte-step__h"><span class="wte-step__n">3</span>${needName ? "Your pet's name" : 'Add a name'} <em>${needName ? '(for the story and the blanket)' : '(optional)'}</em></h3>
+          <input class="wte-name" type="text" name="properties[Pet's name]" maxlength="${MAX_CHARS}" autocomplete="off" placeholder="e.g. Biscuit" ${needName ? 'required' : ''} aria-label="Pet's name">
+          <div class="wte-fonts">${Object.entries(FONTS).map(([k, f]) => `<button type="button" class="wte__chip wte__f-${k}" data-name-font="${k}">${f.label}</button>`).join('')}</div>
+          <button type="button" class="wte-link" data-add-text>+ Add another line of text</button>
+        </section>
+        <details class="wte-more">
+          <summary>Fine-tune the layout <span class="wte-small">(optional)</span></summary>
+          <div class="wte-more__body">
+            <p class="wte-small">Drag pets and text right on the picture. Tap something to resize, rotate or curve it here. Two fingers pinch on phones.</p>
+            <div class="wte__bar">
+              <button type="button" class="wte__btn" data-layout="row">Pets in a row</button>
+              <button type="button" class="wte__btn" data-layout="grid">Pets in a grid</button>
+              <button type="button" class="wte__btn" data-undo>↶ Undo</button>
+              <button type="button" class="wte__btn" data-redo>↷ Redo</button>
+            </div>
+            <div class="wte__panel" hidden></div>
+          </div>
+        </details>
         <ul class="wte__warn" aria-live="polite"></ul>
-        <p class="wte__fine">Drag to move · corner handle resizes · top handle rotates · pinch on phones. We polish your pet's art and email a proof before weaving. The preview is a guide: woven colors come out a little softer and tiny details are simplified.</p>
       </div>`;
     const cv = root.querySelector('canvas'), g = cv.getContext('2d');
     const $ = (s) => root.querySelector(s);
@@ -308,6 +370,7 @@
       history = [snapshot()];
       syncStyleFromPage(false);
       render(); panel(); styleBar(); warnings();
+      if (st.layers.some((L) => L.type === 'photo')) setView('design');
       if (st.layers.some((L) => L.type === 'photo')) note('Restored your last design. Re-add photos if you want us to get the original files too.');
     }
 
@@ -361,11 +424,22 @@
       clearTimeout(t3d);
       t3d = setTimeout(() => {
         document.dispatchEvent(new CustomEvent('wt:theme', { detail: { fringe: FRINGE[st.style]() } }));
+        drawThumbs();
         if (!st.layers.length && !st.touched) return;
         const c = document.createElement('canvas'); c.width = 1040; c.height = 740;
         const x = c.getContext('2d'); x.scale(c.width / DW, c.height / DH); paint(x, true);
         document.dispatchEvent(new CustomEvent('wt:design', { detail: c.toDataURL('image/jpeg', 0.85) }));
       }, 500);
+    }
+    function drawThumbs() {                                // live mini previews on the style tiles
+      const keep = st.style;
+      root.querySelectorAll('.wte-tile canvas').forEach((c) => {
+        const x = c.getContext('2d'); st.style = c.parentElement.dataset.style;
+        x.setTransform(c.width / DW, 0, 0, c.height / DH, 0, 0); drawBackground(x, st);
+        for (const L of st.layers) if (L.type === 'photo') { const b = layerBox(x, L); x.save(); x.translate(L.x, L.y); x.rotate(rad(L.rot)); if (L.flip) x.scale(-1, 1); x.drawImage(photoCanvas(L), -b.w / 2, -b.h / 2, b.w, b.h); x.restore(); }
+        drawForeground(x, st);
+      });
+      st.style = keep;
     }
     function exportBlob() {
       const c = document.createElement('canvas'); c.width = DW; c.height = DH;
@@ -402,7 +476,7 @@
         drag = { mode: 'pinch', L, d0: Math.hypot(a[0] - b[0], a[1] - b[1]), a0: Math.atan2(b[1] - a[1], b[0] - a[0]), w0: L.w, size0: L.size, rot0: L.rot }; return; }
       const [px, py] = pts.get(e.pointerId), h = hit(px, py);
       if (!h) { st.sel = null; drag = null; render(); panel(); return; }
-      st.sel = h.L.id; const L = h.L, b = layerBox(g, L);
+      st.sel = h.L.id; const L = h.L, b = layerBox(g, L); $('.wte-more').open = true;
       drag = { mode: h.mode, L, px, py, x0: L.x, y0: L.y, w0: L.w, size0: L.size, rot0: L.rot, r0: Math.hypot(px - L.x, py - L.y), diag0: Math.hypot(b.w / 2, b.h / 2), a0: Math.atan2(py - L.y, px - L.x) };
       // bring tapped layer's panel up
       render(); panel(); e.preventDefault();
@@ -443,8 +517,9 @@
       const room = MAX_PHOTOS - st.layers.filter((L) => L.type === 'photo').length;
       const arr = [...list].slice(0, Math.max(0, room));
       if (list.length > room) note(`Up to ${MAX_PHOTOS} pets per blanket. Added the first ${room}.`);
+      if (arr.length && view !== 'design') setView('design');
       for (const file of arr) {
-        setBusy(+1, 'Cutting out your pet…');
+        setBusy(+1, 'Cutting out your pet… (about 5 seconds)');
         try {
           const img = await decode(file);
           if (Math.min(img.width, img.height) < 600) note('That photo is quite small, so the woven portrait may look soft. A larger photo works best.');
@@ -473,6 +548,7 @@
     }
     function remove(L) {
       st.layers = st.layers.filter((M) => M !== L); files.delete(L.id); st.sel = null;
+      if (L.type === 'photo') relayout();
       commit(); render(); panel(); warnings();
     }
     function setBusy(d, msg) { busy += d; busyEl.hidden = busy <= 0; if (msg) busyEl.querySelector('span').textContent = msg; }
@@ -540,7 +616,7 @@
         let v = e.target.value.replace(EMOJI, ''); const lines = v.split('\n').slice(0, 2); v = lines.join('\n');
         if (v.length > MAX_CHARS) v = v.slice(0, MAX_CHARS);
         if (v !== e.target.value) { e.target.value = v; note('Emoji and very long text can\'t be woven, so we kept letters, numbers and simple symbols (max 40 characters, 2 lines).'); }
-        L.text = v;
+        L.text = v; if (L.main) nameIn.value = v.replace(/\n/g, ' ');
       } else if (k === 'size') { if (L.type === 'photo') L.w = +e.target.value; else L.size = +e.target.value; }
       else if (k === 'rot') L.rot = +e.target.value; else if (k === 'curve') L.curve = +e.target.value;
       render();
@@ -549,7 +625,11 @@
     root.addEventListener('click', (e) => {
       const t = e.target.closest('button, input[type=checkbox]'); if (!t) return;
       const L = selected();
-      if (t.dataset.addText !== undefined) return addText();
+      if (t.dataset.addText !== undefined) { $('.wte-more').open = true; return addText(); }
+      if (t.dataset.style) return chooseStyle(t.dataset.style);
+      if (t.dataset.nameFont) { nameFont = t.dataset.nameFont; const M = mainText(); if (M) { M.font = nameFont; commit(); render(); panel(); warnings(); } else steps(); return; }
+      if (t.dataset.removePet) { const P = st.layers.find((M) => M.id === t.dataset.removePet); if (P) remove(P); return; }
+      if (t.dataset.later !== undefined) { form.dataset.later = '1'; if (form.requestSubmit) form.requestSubmit(); else form.submit(); return; }
       if (t.dataset.layout) { st.mode = t.dataset.layout; st.manual = false; relayout(true); commit(); render(); warnings(); return; }
       if (t.dataset.undo !== undefined) { if (history.length > 1) { future.push(history.pop()); restore(history[history.length - 1]); styleBar(); render(); panel(); warnings(); save(); } return; }
       if (t.dataset.redo !== undefined) { const s = future.pop(); if (s) { history.push(s); restore(s); styleBar(); render(); panel(); warnings(); save(); } return; }
@@ -596,16 +676,72 @@
       if (photos.length >= 3) out.push(`Collage of ${photos.length} pets: a $10 collage upgrade is added at checkout.`);
       $('.wte__warn').innerHTML = [...new Set(out)].map((m) => `<li>${m.replace(/</g, '&lt;')}</li>`).join('');
       root.dispatchEvent(new CustomEvent('wt:count', { bubbles: true, detail: photos.length }));
+      steps();
     }
+
+    // ----- the three steps -----
+    const nameIn = $('.wte-name'), thumbs = new Map();
+    let nameFont = 'classic';
+    const mainText = () => st.layers.find((L) => L.main);
+    function steps() {
+      const photos = st.layers.filter((L) => L.type === 'photo');
+      const s1 = $('[data-step="photo"]');
+      s1.classList.toggle('has-pets', photos.length > 0); s1.classList.toggle('is-full', photos.length >= MAX_PHOTOS);
+      s1.classList.toggle('is-done', photos.length > 0);
+      if (photos.length) { s1.classList.remove('is-alert'); $('.wte-later').hidden = true; }
+      $('[data-drop-label]').textContent = photos.length ? '+ Add another pet' : 'Upload a photo';
+      $('.wte-pets').innerHTML = photos.map((L, i) => {
+        if (!thumbs.has(L.id)) { const c = document.createElement('canvas'), r = imgs.get(L.id).raw, k = 160 / Math.max(r.width, r.height); c.width = r.width * k; c.height = r.height * k; c.getContext('2d').drawImage(r, 0, 0, c.width, c.height); thumbs.set(L.id, c.toDataURL('image/png')); }
+        return `<div class="wte-pet" style="background-image:url(${thumbs.get(L.id)})"><button type="button" data-remove-pet="${L.id}" aria-label="Remove pet ${i + 1}">×</button></div>`;
+      }).join('');
+      root.querySelectorAll('.wte-tile').forEach((t) => t.setAttribute('aria-pressed', String(t.dataset.style === st.style)));
+      $('[data-step="style"]').classList.toggle('is-done', !!st.touched || photos.length > 0);
+      const M = mainText();
+      if (M && document.activeElement !== nameIn) nameIn.value = M.text || '';
+      if (!M && document.activeElement !== nameIn && !needName) nameIn.value = '';
+      if (M) nameFont = M.font;
+      root.querySelectorAll('[data-name-font]').forEach((b) => b.classList.toggle('is-on', b.dataset.nameFont === nameFont));
+      $('[data-step="name"]').classList.toggle('is-done', !!(M && M.text));
+    }
+    nameIn.addEventListener('input', () => {
+      let v = nameIn.value.replace(EMOJI, '').replace(/\s+/g, ' ').slice(0, MAX_CHARS);
+      if (v !== nameIn.value) nameIn.value = v;
+      let M = mainText();
+      if (!v.trim()) { if (M) { st.layers = st.layers.filter((L) => L !== M); if (st.sel === M.id) st.sel = null; relayout(); } }
+      else if (!M) {
+        st.layers.push({ id: uid(), type: 'text', main: true, text: v, font: nameFont, color: TEXT_COLORS[st.style][0], size: 170, rot: 0, curve: 0, x: DW / 2, y: SAFE.y + SAFE.h - 120 });
+        relayout(); if (view !== 'design') setView('design');
+      } else M.text = v;
+      render(); syncPanel(); warnings();
+    });
+    nameIn.addEventListener('change', () => commit());
+    if (form) form.addEventListener('formdata', (e) => { if (!String(e.formData.get("properties[Pet's name]") || '').trim()) e.formData.delete("properties[Pet's name]"); });
+    function chooseStyle(style) {
+      const radio = [...document.querySelectorAll('.wt-opt')].find((r) => STYLE_FROM.some(([re, s2]) => s2 === style && re.test(r.value)));
+      if (radio) { radio.checked = true; radio.dispatchEvent(new Event('change', { bubbles: true })); }
+      else setStyle(style);
+    }
+    const drop = $('.wte-drop');
+    ['dragenter', 'dragover'].forEach((t) => drop.addEventListener(t, (e) => { e.preventDefault(); drop.classList.add('is-over'); }));
+    ['dragleave', 'drop'].forEach((t) => drop.addEventListener(t, () => drop.classList.remove('is-over')));
+    drop.addEventListener('drop', (e) => { e.preventDefault(); if (e.dataTransfer && e.dataTransfer.files.length) { if (window.wtWarmup) window.wtWarmup(); addPhotos(e.dataTransfer.files); } });
 
     // ----- checkout: design file + originals + layout data, then collage add-on, then checkout -----
     if (form) form.addEventListener('submit', async (e) => {
-      if (!st.layers.length) return;                    // no design: normal submit (photo by email)
-      e.preventDefault();
+      const hasPet = st.layers.some((L) => L.type === 'photo');
+      if (!hasPet) {
+        if (form.dataset.later) return;                 // chose "email it later": plain submit
+        e.preventDefault(); e.stopImmediatePropagation();
+        const s1 = $('[data-step="photo"]'); s1.classList.add('is-alert'); $('.wte-later').hidden = false;
+        s1.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      e.preventDefault(); e.stopImmediatePropagation();
       const btn = form.querySelector('[type=submit]'); const label = btn && btn.innerHTML;
       if (btn) { btn.disabled = true; btn.textContent = 'Saving your design…'; }
       try {
         const fd = new FormData(form); fd.delete('return_to'); fd.delete('properties[Pet photo]');
+        if (!String(fd.get("properties[Pet's name]") || '').trim()) fd.delete("properties[Pet's name]");
         const blob = await exportBlob();
         fd.append('properties[Design]', new File([blob], 'woven-tails-design.jpg', { type: 'image/jpeg' }));
         let n = 0; for (const L of st.layers) if (L.type === 'photo' && files.get(L.id)) fd.append(`properties[Pet photo ${++n}]`, files.get(L.id));
@@ -627,37 +763,36 @@
         if (btn) { btn.disabled = false; btn.innerHTML = label; }
         note('Something went wrong saving your design: ' + err.message + '. Please try again, or email hello@woventails.com.');
       }
-    });
+    }, true);
 
 
-    // ----- desktop: preview on the left (sticky) with Design / 3D tabs, controls on the right -----
+    // ----- preview: "Your design" / "3D" tabs (left column on desktop, top of the page on phones) -----
     let view = '3d', setView = () => {};
-    (function desktopLayout() {
+    (function viewerLayout() {
       const hero = root.closest('.hero'), stage3d = hero && hero.querySelector(':scope > .stage, :scope > .wte-viewer > .stage');
-      if (!stage3d) return;
+      const edStage = root.querySelector('.wte__stage');
+      if (!stage3d) { view = 'design'; return; }
       let viewer = hero.querySelector('.wte-viewer');
       if (!viewer) {
         viewer = document.createElement('div'); viewer.className = 'wte-viewer';
-        viewer.innerHTML = '<div class="wte-tabs" role="tablist" aria-label="Preview"><button type="button" role="tab" data-view="design" aria-selected="false">Your design</button><button type="button" role="tab" data-view="3d" aria-selected="true">3D blanket</button></div><p class="wte__hint"></p>';
+        viewer.innerHTML = '<div class="wte-tabs" role="tablist" aria-label="Preview"><button type="button" role="tab" data-view="design" aria-selected="false">Your design</button><button type="button" role="tab" data-view="3d" aria-selected="true">3D view</button></div><p class="wte__hint"></p>';
         stage3d.parentNode.insertBefore(viewer, stage3d); viewer.insertBefore(stage3d, viewer.querySelector('.wte__hint'));
       }
-      const edStage = root.querySelector('.wte__stage'), hint = viewer.querySelector('.wte__hint');
-      const mq = matchMedia('(min-width: 900px)');
+      viewer.insertBefore(edStage, stage3d);
+      const hint = viewer.querySelector('.wte__hint');
+      stage3d.querySelectorAll('.hint').forEach((h) => h.remove());
       setView = (v) => {
         view = v;
         viewer.querySelectorAll('[data-view]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.view === v)));
-        if (!mq.matches) return;
         edStage.hidden = v !== 'design'; stage3d.hidden = v !== '3d';
-        hint.textContent = v === 'design' ? 'Drag to move · corner handle resizes · top handle rotates · we polish your art and email a proof before weaving' : 'Drag to turn · a guide to the woven look: real thread colors are a little softer and tiny details are simplified';
+        const has = st.layers.some((L) => L.type === 'photo');
+        hint.textContent = v === 'design' ? 'Drag to move things. We polish your art and email a proof before anything is woven.'
+          : has ? 'Drag to turn. A guide to the woven look: real thread colors are a little softer.' : 'Example blanket. Add your photo to see yours.';
         if (v === '3d') requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
         fit();
       };
       viewer.addEventListener('click', (e) => { const b = e.target.closest('[data-view]'); if (b) setView(b.dataset.view); });
-      const apply = () => {
-        if (mq.matches) { viewer.classList.add('is-desktop'); viewer.insertBefore(edStage, stage3d); root.querySelector('.wte__fine').hidden = true; setView(view); }
-        else { viewer.classList.remove('is-desktop'); root.querySelector('.wte').prepend(edStage); edStage.hidden = false; stage3d.hidden = false; root.querySelector('.wte__fine').hidden = false; hint.textContent = ''; fit(); }
-      };
-      (mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply)); apply();
+      setView(view);
     })();
     new ResizeObserver(() => fit()).observe(cv.parentElement);
     if (document.fonts) Promise.all(Object.values(FONTS).map((f) => document.fonts.load(f.css.replace('{s}', '40')).catch(() => {}))).then(() => render());

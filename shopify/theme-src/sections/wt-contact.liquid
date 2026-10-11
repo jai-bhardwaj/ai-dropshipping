@@ -1,0 +1,23 @@
+<main class="wrap wt-shell">
+  <header class="wt-shell__head">
+    <span class="eyebrow">We reply within one business day</span>
+    <h1>{{ page.title | default: 'Contact us' }}</h1>
+    <p class="lede">Questions about your order, your artwork or a gift? Write to us here or at <a href="mailto:hello@woventails.com">hello@woventails.com</a>.</p>
+  </header>
+  {%- if page.content != blank -%}<div class="rte">{{ page.content }}</div>{%- endif -%}
+  {%- form 'contact', class: 'wt-form' -%}
+    {%- if form.posted_successfully? -%}
+      <p class="wt-alert wt-alert--ok" role="status">Thanks! Your message is on its way. We'll reply within one business day.</p>
+    {%- elsif form.errors -%}
+      <p class="wt-alert" role="alert">Please check: {{ form.errors | default_errors }}</p>
+    {%- endif -%}
+    <div class="wt-form__row">
+      <label class="wt-field"><span>Your name</span><input type="text" name="contact[name]" autocomplete="name" value="{{ form.name }}"></label>
+      <label class="wt-field"><span>Email</span><input type="email" name="contact[email]" autocomplete="email" required value="{{ form.email }}"></label>
+    </div>
+    <label class="wt-field"><span>Order number <em>(if you have one)</em></span><input type="text" name="contact[order]" placeholder="e.g. #1001"></label>
+    <label class="wt-field"><span>Message</span><textarea name="contact[body]" rows="5" required>{{ form.body }}</textarea></label>
+    <button class="btn" type="submit">Send message</button>
+  {%- endform -%}
+</main>
+{% schema %}{ "name": "Woven Tails contact", "settings": [] }{% endschema %}

@@ -1,0 +1,19 @@
+{%- comment -%} Simple product page for add-ons (extra storybook copy, collage upgrade). {%- endcomment -%}
+{%- assign v = product.selected_or_first_available_variant -%}
+<main class="wrap wt-shell">
+  <div class="wt-simple">
+    {%- if product.featured_image -%}<img class="wt-simple__img" src="{{ product.featured_image | image_url: width: 900 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" width="900" height="900">{%- endif -%}
+    <div class="wt-simple__copy">
+      <span class="eyebrow">Add-on</span>
+      <h1>{{ product.title }}</h1>
+      <div class="price">{{ v.price | money_without_trailing_zeros }}</div>
+      <div class="rte">{{ product.description }}</div>
+      {%- form 'product', product, class: 'wt-simple__form' -%}
+        <input type="hidden" name="id" value="{{ v.id }}">
+        <button class="btn" type="submit" {% unless v.available %}disabled{% endunless %}>Add to cart</button>
+      {%- endform -%}
+      <p class="note">Usually added with a blanket or storybook order. <a href="/collections/all">See everything we make</a>.</p>
+    </div>
+  </div>
+</main>
+{% schema %}{ "name": "Woven Tails simple product", "settings": [] }{% endschema %}
