@@ -757,7 +757,7 @@
             body: JSON.stringify({ items: [{ id: +addonId, quantity: 1, properties: { For: `${pets}-pet collage` } }] }) });
         }
         try { localStorage.removeItem(key); } catch (x) {}
-        location.href = 'checkout.html';
+        location.href = '/store-preview/checkout';
       } catch (err) {
         console.error(err);
         if (btn) { btn.disabled = false; btn.innerHTML = label; }

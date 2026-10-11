@@ -103,7 +103,7 @@ BANNER = """<div style="position:sticky;top:0;z-index:60;background:#1F3127;colo
 PREVIEW_JS = """<script>
 // preview only: pretend the cart accepts the design, then show the checkout stand-in
 (function(){var f=window.fetch;window.fetch=function(u,o){if(String(u).indexOf('/cart/add')===0){return Promise.resolve(new Response(JSON.stringify({ok:true}),{status:200,headers:{'Content-Type':'application/json'}}));}return f.apply(this,arguments);};
-document.addEventListener('submit',function(e){var a=e.target.getAttribute('action')||'';if(!e.defaultPrevented&&/cart|contact/.test(a)){e.preventDefault();location.href='checkout.html';}});})();
+document.addEventListener('submit',function(e){var a=e.target.getAttribute('action')||'';if(!e.defaultPrevented&&/cart|contact/.test(a)){e.preventDefault();location.href='/store-preview/checkout';}});})();
 </script>"""
 
 
@@ -112,12 +112,12 @@ def links(html):
         url = m.group(2)
         path, _, frag = url.partition("#")
         if path in LINKS:
-            return f'{m.group(1)}="{LINKS[path]}{"#" + frag if frag else ""}"'
+            return f'{m.group(1)}="{BASE}{LINKS[path].replace(".html", "").replace("index", "")}{"#" + frag if frag else ""}"'
         if path.startswith("/policies/") or path.startswith("/pages/") or path.startswith("/products/") or path.startswith("/collections/"):
-            return f'{m.group(1)}="404.html"'
+            return f'{m.group(1)}="{BASE}404"'
         return m.group(0)
     html = re.sub(r'(href|action)="(/[^"]*)"', fix, html)
-    html = html.replace(MEDIA + "theme-assets/wt-editor.js", "assets/wt-editor.js").replace(MEDIA + "theme-assets/wt-site.css", "assets/wt-site.css").replace(MEDIA + "theme-assets/wt-site.js", "assets/wt-site.js")
+    html = html.replace(MEDIA + "theme-assets/wt-editor.js", BASE + "assets/wt-editor.js").replace(MEDIA + "theme-assets/wt-site.css", BASE + "assets/wt-site.css").replace(MEDIA + "theme-assets/wt-site.js", BASE + "assets/wt-site.js")
     html = re.sub(r"(<body[^>]*>)", r"\1" + BANNER, html, count=1)
     return html.replace("</head>", PREVIEW_JS + "\n</head>", 1)
 
@@ -137,7 +137,7 @@ def main():
     for f in ("wt-editor.js", "wt-site.css", "wt-site.js"):
         shutil.copy(THEME / "assets" / f, OUT / "assets" / f)
     ed = OUT / "assets" / "wt-editor.js"
-    ed.write_text(ed.read_text().replace("location.href = '/checkout'", "location.href = 'checkout.html'"))
+    ed.write_text(ed.read_text().replace("location.href = '/checkout'", "location.href = '/store-preview/checkout'"))
 
     base = {"shop": {"name": "Woven Tails"}, "request": {"locale": {"iso_code": "en"}}, "settings": {}, "canonical_url": "",
             "routes": {"cart_url": "/cart", "search_url": "/search"}, "all_products": PRODUCTS, "cart": EMPTY_CART}
@@ -168,7 +168,7 @@ def main():
         render(file, policy, ctx(page_title=title, template={"name": "policy"}))
     render("checkout.html", """<main class="wrap wt-shell wt-shell--center"><span class="eyebrow">Preview</span><h1>Here the live store opens <em>Shopify checkout.</em></h1>
       <p class="lede">Your design, photos and text are saved on the order. In this preview nothing is sent or charged.</p>
-      <a class="btn" href="blanket.html">Back to the blanket</a></main>""", ctx(page_title="Checkout", template={"name": "page"}))
+      <a class="btn" href="/store-preview/blanket">Back to the blanket</a></main>""", ctx(page_title="Checkout", template={"name": "page"}))
     print("preview written to", OUT, "pages:", len(list(OUT.glob("*.html"))))
 
 
