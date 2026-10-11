@@ -765,6 +765,8 @@
         return;
       }
       e.preventDefault(); e.stopImmediatePropagation();
+      // empty text boxes print nothing; drop them so the order shows only real text
+      if (st.layers.some((L) => L.type === 'text' && !(L.text || '').trim())) { st.layers = st.layers.filter((L) => L.type !== 'text' || (L.text || '').trim()); st.sel = null; render(); }
       const btn = form.querySelector('[type=submit]'); const label = btn && btn.innerHTML;
       if (btn) { btn.disabled = true; btn.textContent = 'Saving your design…'; }
       try {
@@ -775,7 +777,7 @@
         let n = 0; for (const L of st.layers) if (L.type === 'photo' && files.get(L.id)) fd.append(`properties[Pet photo ${++n}]`, files.get(L.id));
         const pets = st.layers.filter((L) => L.type === 'photo').length;
         fd.append('properties[Pets in design]', String(pets));
-        const texts = st.layers.filter((L) => L.type === 'text').map((L) => `${L.text} (${FONTS[L.font].label})`).join(' | ');
+        const texts = st.layers.filter((L) => L.type === 'text' && (L.text || '').trim()).map((L) => `${L.text.trim()} (${FONTS[L.font].label})`).join(' | ');
         if (texts) fd.append('properties[Text on blanket]', texts);
         fd.append('properties[_Design data]', snapshot().slice(0, 4500));
         let r = await fetch('/cart/add.js', { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
