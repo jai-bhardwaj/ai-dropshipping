@@ -44,6 +44,24 @@ def page_script(script):
     return script
 
 
+# Copy that differs in the Shopify theme, where people upload and design on the page itself.
+THEME_COPY = {
+    "blanket": [
+        ("After checkout we email you to send your pet's photo", "Upload your pet's photo above and design it live"),
+        ("<h3>Order</h3><p class=\"muted\">Pick your art style and check out.</p>", "<h3>Design it</h3><p class=\"muted\">Upload a photo, pick a style, add names or a message.</p>"),
+        ("<h3>Send a photo</h3><p class=\"muted\">Reply to our email with 1–3 clear photos of your pet's face. Phone photos are perfect.</p>", "<h3>We polish it</h3><p class=\"muted\">Our artist tidies the cut-out and checks it will weave well.</p>"),
+        ("We send the illustration within 24 hours. Ask for up to 2 changes, free.", "We email your proof within 24 hours. Ask for up to 2 changes, free."),
+        ("Add it in the order note and we'll place it under the portrait.", "Add it in the designer above: up to 3 lines of text, placed and angled anywhere."),
+    ],
+    "gift-set": [
+        ("You approve the blanket art and the storybook character in one email.", "Upload it once in the designer above. You approve the blanket art and the storybook character in one email."),
+    ],
+    "storybook": [
+        ("Reply to our email with your pet's photo, up to 3 family names and their favorite treat.", "Upload your pet's photo and add up to 3 family names and their favorite treat above."),
+    ],
+}
+
+
 def convert(page):
     main, buybar, script = body_of(page)
     main = rewrite(main, page)
@@ -55,9 +73,10 @@ def convert(page):
         main = main.replace('<section class="wrap hero">', '<section class="wrap hero" id="create">')
         # the art-style chips are replaced by the variant chips in the form
         main = re.sub(r'\s*<div class="picker">\s*<span class="picker-label">Art style</span>.*?</div>\s*</div>', "", main, count=1, flags=re.S)
-        main = main.replace("After checkout we email you to send your pet's photo", "Upload your pet's photo above, or email it after checkout")
-        main = main.replace("Add it in the order note and we'll place it under the portrait.", "Type it in the name box above and we'll weave it under the portrait.")
-        main = main.replace("Reply to our email with 1–3 clear photos of your pet's face. Phone photos are perfect.", "Upload a clear photo of your pet's face, or reply to our email with it. Phone photos are perfect.")
+        for a, b in THEME_COPY.get(page, []):
+            if a not in main:
+                raise SystemExit(f"theme copy not found in {page}: {a!r}")
+            main = main.replace(a, b)
         script = script.replace('document.getElementById("styles").addEventListener("pick", (e) => { state.style = e.detail; apply(); });',
             'document.addEventListener("wt:style", (e) => { state.style = e.detail; if (!state.user) apply(); });\n    document.addEventListener("wt:art", (e) => { state.user = true; b.setArtURL(e.detail); });\n    document.addEventListener("wt:design", (e) => { state.user = true; b.setArtURL(e.detail, true); });\n    document.addEventListener("wt:theme", (e) => b.setFringe(e.detail.fringe));\n    document.getElementById("pets").addEventListener("pick", () => { state.user = false; });')
         script = script.replace('initGift(document.getElementById("gift-stage"),', 'const g = initGift(document.getElementById("gift-stage"),')
@@ -126,7 +145,7 @@ LAYOUT = """<!doctype html>
   <div class="wrap">
     <div class="stack">
       <a class="brand" href="/">Woven Tails</a>
-      <p class="muted">Your pet, illustrated from your photo, woven into cotton or starring in their own book. Made to order in the USA.</p>
+      <p class="muted">Your pet, illustrated from your photo, woven into cotton or starring in their own book. Woven and printed to order in the USA.</p>
       <p class="disclose">Artwork is AI-assisted and checked by hand; you approve every design before it's made. Lifestyle images on this site are illustrations of the products.</p>
     </div>
     <div><h4>Shop</h4><ul><li><a href="/products/custom-pet-portrait-woven-blanket">Woven blanket · $64</a></li><li><a href="/products/personalized-pet-storybook">Storybook · $42</a></li><li><a href="/products/pet-portrait-gift-set">Gift set · $99</a></li></ul></div>

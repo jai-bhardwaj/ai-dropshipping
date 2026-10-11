@@ -273,7 +273,7 @@
         <div class="wte__style"></div>
         <div class="wte__panel" hidden></div>
         <ul class="wte__warn" aria-live="polite"></ul>
-        <p class="wte__fine">Drag to move · corner handle resizes · top handle rotates · pinch on phones. We polish your pet's art and email a proof before weaving.</p>
+        <p class="wte__fine">Drag to move · corner handle resizes · top handle rotates · pinch on phones. We polish your pet's art and email a proof before weaving. The preview is a guide: woven colors come out a little softer and tiny details are simplified.</p>
       </div>`;
     const cv = root.querySelector('canvas'), g = cv.getContext('2d');
     const $ = (s) => root.querySelector(s);
@@ -648,7 +648,7 @@
         viewer.querySelectorAll('[data-view]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.view === v)));
         if (!mq.matches) return;
         edStage.hidden = v !== 'design'; stage3d.hidden = v !== '3d';
-        hint.textContent = v === 'design' ? 'Drag to move · corner handle resizes · top handle rotates · edit with the controls on the right' : 'Drag to turn · this is how your design looks woven';
+        hint.textContent = v === 'design' ? 'Drag to move · corner handle resizes · top handle rotates · we polish your art and email a proof before weaving' : 'Drag to turn · a guide to the woven look: real thread colors are a little softer and tiny details are simplified';
         if (v === '3d') requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
         fit();
       };
