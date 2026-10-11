@@ -273,6 +273,11 @@
   .wte-tabs button{font:800 14px Nunito,system-ui,sans-serif;border:0;background:transparent;color:#1F3127;padding:8px 16px;border-radius:999px;cursor:pointer;min-height:38px}
   .wte-tabs button[aria-selected=true]{background:#1F3127;color:#F4EEE3}
   .wte__hint{margin:0;font-size:13px;line-height:1.4;color:#56645A}
+  .wte-peek{position:fixed;right:12px;top:calc(env(safe-area-inset-top,0px) + 80px);z-index:25;display:none;width:128px;padding:0;border:2px solid #fff;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 10px 26px -8px rgba(31,49,39,.55);cursor:pointer}
+  .wte-peek.show{display:block}
+  .wte-peek img{display:block;width:100%;aspect-ratio:2600/1850;object-fit:cover}
+  .wte-peek span{display:block;padding:3px 0;font:800 11px Nunito,system-ui,sans-serif;color:#1F3127;text-align:center}
+  .wte-addon{font-size:.85em;opacity:.9}
   @media (min-width:900px){
     .hero:has(.wte-viewer){grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:start}
     .wte-viewer{position:sticky;top:88px}
@@ -325,7 +330,7 @@
         <details class="wte-more">
           <summary>Fine-tune the layout <span class="wte-small">(optional)</span></summary>
           <div class="wte-more__body">
-            <p class="wte-small">Drag pets and text right on the picture. Tap something to resize, rotate or curve it here. Two fingers pinch on phones.</p>
+            <p class="wte-small">Tap a pet or text on the picture, then drag it. Resize, rotate or curve it with the controls below. On phones you can also pinch with two fingers.</p>
             <div class="wte__bar">
               <button type="button" class="wte__btn" data-layout="row">Pets in a row</button>
               <button type="button" class="wte__btn" data-layout="grid">Pets in a grid</button>
@@ -350,7 +355,7 @@
       st.layers = o.layers.filter((L) => L.type === 'text' || imgs.has(L.id)).map((L) => L.type === 'photo' ? { ...L, img: imgs.get(L.id).raw } : L);
       if (st.sel && !st.layers.find((L) => L.id === st.sel)) st.sel = null;
     }
-    function commit() { history.push(snapshot()); if (history.length > 60) history.shift(); future = []; save(); }
+    function commit() { st.dirty = true; history.push(snapshot()); if (history.length > 60) history.shift(); future = []; save(); }
     function save() {
       try {
         const photos = {};
@@ -368,7 +373,7 @@
       }
       restore(o.design);
       history = [snapshot()];
-      syncStyleFromPage(false);
+      pageStyle(st.style);
       render(); panel(); styleBar(); warnings();
       if (st.layers.some((L) => L.type === 'photo')) setView('design');
       if (st.layers.some((L) => L.type === 'photo')) note('Restored your last design. Re-add photos if you want us to get the original files too.');
@@ -416,6 +421,7 @@
       g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, cv.width, cv.height);
       g.setTransform(scale(), 0, 0, scale(), 0, 0); paint(g, false);
       emptyEl.hidden = st.layers.length > 0;
+      cv.style.touchAction = st.sel ? 'none' : 'pan-y';
       emit3D();
     }
     let t3d;
@@ -425,7 +431,7 @@
       t3d = setTimeout(() => {
         document.dispatchEvent(new CustomEvent('wt:theme', { detail: { fringe: FRINGE[st.style]() } }));
         drawThumbs();
-        if (!st.layers.length && !st.touched) return;
+        if (!st.layers.length && !st.touched && !st.dirty) return;
         const c = document.createElement('canvas'); c.width = 1040; c.height = 740;
         const x = c.getContext('2d'); x.scale(c.width / DW, c.height / DH); paint(x, true);
         document.dispatchEvent(new CustomEvent('wt:design', { detail: c.toDataURL('image/jpeg', 0.85) }));
@@ -495,7 +501,7 @@
         L.x = clamp(nx, -200, DW + 200); L.y = clamp(ny, -200, DH + 200);
       } else if (drag.mode === 'scale') {
         const k = Math.hypot(px - L.x, py - L.y) / drag.diag0;
-        if (L.type === 'photo') L.w = clamp(drag.w0 * k, 120, DW * 1.2); else L.size = clamp(drag.size0 * k, 30, 600);
+        if (L.type === 'photo') L.w = clamp(drag.w0 * k, 120, DW * 1.2); else { L.size = clamp(drag.size0 * k, 30, 600); L.userSized = true; }
       } else if (drag.mode === 'rotate') {
         L.rot = snapAngle(drag.rot0 + (Math.atan2(py - L.y, px - L.x) - drag.a0) * 180 / Math.PI);
       }
@@ -519,7 +525,8 @@
       if (list.length > room) note(`Up to ${MAX_PHOTOS} pets per blanket. Added the first ${room}.`);
       if (arr.length && view !== 'design') setView('design');
       for (const file of arr) {
-        setBusy(+1, 'Cutting out your pet… (about 5 seconds)');
+        setBusy(+1, 'Cutting out your pet…');
+        const slow = setTimeout(() => { if (busy > 0) busyEl.querySelector('span').textContent = 'Still working… the first photo takes a little longer'; }, 8000);
         try {
           const img = await decode(file);
           if (Math.min(img.width, img.height) < 600) note('That photo is quite small, so the woven portrait may look soft. A larger photo works best.');
@@ -535,7 +542,7 @@
           st.sel = null; if (view !== 'design') setView('design');
         } catch (err) {
           console.warn(err); note("We couldn't open that photo. Please try a JPG or PNG.");
-        } finally { setBusy(-1); }
+        } finally { clearTimeout(slow); setBusy(-1); }
         commit(); render(); panel(); warnings();
       }
     }
@@ -548,6 +555,7 @@
     }
     function remove(L) {
       st.layers = st.layers.filter((M) => M !== L); files.delete(L.id); st.sel = null;
+      if (L.auto === 'memorial') st.memorialOff = true;
       if (L.type === 'photo') relayout();
       commit(); render(); panel(); warnings();
     }
@@ -570,7 +578,9 @@
       // recolor text that still uses the previous style's default colors
       for (const L of st.layers) if (L.type === 'text' && TEXT_COLORS[prev].includes(L.color)) L.color = TEXT_COLORS[style][Math.max(0, TEXT_COLORS[prev].indexOf(L.color)) % TEXT_COLORS[style].length];
       if (prev === 'christmas' && style !== 'christmas') { st.layers = st.layers.filter((L) => !L.banner); st.banner = false; }
-      if (style === 'memorial' && !st.layers.some((L) => L.type === 'text')) st.layers.push({ id: uid(), type: 'text', text: 'Forever in our hearts', font: 'script', color: TEXT_COLORS.memorial[0], size: 170, rot: 0, curve: 0, x: DW / 2, y: SAFE.y + SAFE.h - 120 });
+      if (prev === 'memorial' && style !== 'memorial') st.layers = st.layers.filter((L) => L.auto !== 'memorial');
+      if (style === 'memorial' && !st.memorialOff && !st.layers.some((L) => L.auto === 'memorial'))
+        st.layers.push({ id: uid(), type: 'text', auto: 'memorial', text: 'Forever in our hearts', font: 'script', color: TEXT_COLORS.memorial[0], size: 160, rot: 0, curve: 0, x: DW / 2, y: SAFE.y + 110 });
       if (st.sel && !st.layers.find((L) => L.id === st.sel)) st.sel = null;
       relayout(prev === 'royal' || style === 'royal');
       styleBar(); commit(); render(); panel(); warnings();
@@ -616,8 +626,8 @@
         let v = e.target.value.replace(EMOJI, ''); const lines = v.split('\n').slice(0, 2); v = lines.join('\n');
         if (v.length > MAX_CHARS) v = v.slice(0, MAX_CHARS);
         if (v !== e.target.value) { e.target.value = v; note('Emoji and very long text can\'t be woven, so we kept letters, numbers and simple symbols (max 40 characters, 2 lines).'); }
-        L.text = v; if (L.main) nameIn.value = v.replace(/\n/g, ' ');
-      } else if (k === 'size') { if (L.type === 'photo') L.w = +e.target.value; else L.size = +e.target.value; }
+        L.text = v; delete L.auto; if (L.main) nameIn.value = v.replace(/\n/g, ' ');
+      } else if (k === 'size') { if (L.type === 'photo') L.w = +e.target.value; else { L.size = +e.target.value; L.userSized = true; } }
       else if (k === 'rot') L.rot = +e.target.value; else if (k === 'curve') L.curve = +e.target.value;
       render();
     });
@@ -627,12 +637,12 @@
       const L = selected();
       if (t.dataset.addText !== undefined) { $('.wte-more').open = true; return addText(); }
       if (t.dataset.style) return chooseStyle(t.dataset.style);
-      if (t.dataset.nameFont) { nameFont = t.dataset.nameFont; const M = mainText(); if (M) { M.font = nameFont; commit(); render(); panel(); warnings(); } else steps(); return; }
+      if (t.dataset.nameFont) { nameFont = t.dataset.nameFont; const M = mainText(); if (M) { M.font = nameFont; fitText(M); commit(); render(); panel(); warnings(); } else steps(); return; }
       if (t.dataset.removePet) { const P = st.layers.find((M) => M.id === t.dataset.removePet); if (P) remove(P); return; }
       if (t.dataset.later !== undefined) { form.dataset.later = '1'; if (form.requestSubmit) form.requestSubmit(); else form.submit(); return; }
       if (t.dataset.layout) { st.mode = t.dataset.layout; st.manual = false; relayout(true); commit(); render(); warnings(); return; }
-      if (t.dataset.undo !== undefined) { if (history.length > 1) { future.push(history.pop()); restore(history[history.length - 1]); styleBar(); render(); panel(); warnings(); save(); } return; }
-      if (t.dataset.redo !== undefined) { const s = future.pop(); if (s) { history.push(s); restore(s); styleBar(); render(); panel(); warnings(); save(); } return; }
+      if (t.dataset.undo !== undefined) { if (history.length > 1) { future.push(history.pop()); restore(history[history.length - 1]); afterRestore(); } return; }
+      if (t.dataset.redo !== undefined) { const s2 = future.pop(); if (s2) { history.push(s2); restore(s2); afterRestore(); } return; }
       if (t.dataset.pop) { st.popColor = +t.dataset.pop; st.touched = true; styleBar(); commit(); render(); warnings(); return; }
       if (t.dataset.banner !== undefined) {
         st.banner = t.checked;
@@ -674,6 +684,12 @@
         }
       }
       if (photos.length >= 3) out.push(`Collage of ${photos.length} pets: a $10 collage upgrade is added at checkout.`);
+      const priceEl = form && form.querySelector('[data-wt-price]');
+      if (priceEl) {
+        let add = form.querySelector('.wte-addon');
+        if (!add) { add = document.createElement('span'); add.className = 'wte-addon'; priceEl.after(add); }
+        add.textContent = photos.length >= 3 ? ' + $10 collage' : '';
+      }
       $('.wte__warn').innerHTML = [...new Set(out)].map((m) => `<li>${m.replace(/</g, '&lt;')}</li>`).join('');
       root.dispatchEvent(new CustomEvent('wt:count', { bubbles: true, detail: photos.length }));
       steps();
@@ -712,10 +728,22 @@
         st.layers.push({ id: uid(), type: 'text', main: true, text: v, font: nameFont, color: TEXT_COLORS[st.style][0], size: 170, rot: 0, curve: 0, x: DW / 2, y: SAFE.y + SAFE.h - 120 });
         relayout(); if (view !== 'design') setView('design');
       } else M.text = v;
+      if ((M = mainText())) fitText(M);
       render(); syncPanel(); warnings();
     });
     nameIn.addEventListener('change', () => commit());
+    function fitText(L) {                                 // auto-size the name line: as big as 170, smaller only when it would not fit
+      if (L.userSized) return;
+      L.size = 170; g.font = textFont(L);
+      const w = measureText(g, L).w, max = SAFE.w * 0.86;
+      if (w > max) L.size = Math.max(MIN_TEXT + 10, Math.floor(170 * max / w));
+    }
     if (form) form.addEventListener('formdata', (e) => { if (!String(e.formData.get("properties[Pet's name]") || '').trim()) e.formData.delete("properties[Pet's name]"); });
+    function afterRestore() { styleBar(); render(); panel(); warnings(); save(); pageStyle(st.style); }
+    function pageStyle(style) {                           // tick the matching Art style option without re-running setStyle
+      const radio = [...document.querySelectorAll('.wt-opt')].find((r) => STYLE_FROM.some(([re, s2]) => s2 === style && re.test(r.value)));
+      if (radio && !radio.checked) { radio.checked = true; radio.dispatchEvent(new Event('change', { bubbles: true })); }
+    }
     function chooseStyle(style) {
       const radio = [...document.querySelectorAll('.wt-opt')].find((r) => STYLE_FROM.some(([re, s2]) => s2 === style && re.test(r.value)));
       if (radio) { radio.checked = true; radio.dispatchEvent(new Event('change', { bubbles: true })); }
@@ -786,13 +814,22 @@
         viewer.querySelectorAll('[data-view]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.view === v)));
         edStage.hidden = v !== 'design'; stage3d.hidden = v !== '3d';
         const has = st.layers.some((L) => L.type === 'photo');
-        hint.textContent = v === 'design' ? 'Drag to move things. We polish your art and email a proof before anything is woven.'
+        hint.textContent = v === 'design' ? 'Tap a pet or text, then drag to move it. We polish your art and email a proof before anything is woven.'
           : has ? 'Drag to turn. A guide to the woven look: real thread colors are a little softer.' : 'Example blanket. Add your photo to see yours.';
         if (v === '3d') requestAnimationFrame(() => window.dispatchEvent(new Event('resize')));
         fit();
       };
       viewer.addEventListener('click', (e) => { const b = e.target.closest('[data-view]'); if (b) setView(b.dataset.view); });
       setView(view);
+      // phones: a small floating copy of the design while the customer scrolls through the steps
+      const peek = document.createElement('button'); peek.type = 'button'; peek.className = 'wte-peek'; peek.setAttribute('aria-label', 'Back to your design');
+      peek.innerHTML = '<img alt=""><span>Your design</span>'; document.body.appendChild(peek);
+      let away = false;
+      const showPeek = () => peek.classList.toggle('show', away && innerWidth < 900 && st.layers.some((L) => L.type === 'photo') && !!peek.querySelector('img').src);
+      document.addEventListener('wt:design', (e) => { peek.querySelector('img').src = e.detail; showPeek(); });
+      if ('IntersectionObserver' in window) new IntersectionObserver(([en]) => { away = !en.isIntersecting; showPeek(); }, { threshold: 0.15 }).observe(viewer);
+      peek.addEventListener('click', () => { if (view !== 'design') setView('design'); viewer.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+      addEventListener('resize', showPeek);
     })();
     new ResizeObserver(() => fit()).observe(cv.parentElement);
     if (document.fonts) Promise.all(Object.values(FONTS).map((f) => document.fonts.load(f.css.replace('{s}', '40')).catch(() => {}))).then(() => render());
