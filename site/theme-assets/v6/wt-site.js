@@ -38,3 +38,14 @@
     });
   });
 })();
+
+// Store: show the first-order offer in the top bar (themes published before v10 still carry the old bar)
+(() => {
+  const bar = document.querySelector('div.announce');
+  if (!bar || /WELCOME10/.test(bar.textContent) || !document.querySelector('a.skip')) return;
+  const a = document.createElement('a');
+  a.className = 'announce';
+  a.href = '/discount/WELCOME10?redirect=%2Fproducts%2Fcustom-pet-portrait-woven-blanket';
+  a.innerHTML = '10% off your first order: <b>WELCOME10</b> (applied for you) · Free US shipping<span class="hide-sm"> · Order by Dec 10 for Christmas</span>';
+  bar.replaceWith(a);
+})();
