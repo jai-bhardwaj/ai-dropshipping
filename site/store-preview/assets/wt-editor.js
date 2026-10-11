@@ -273,7 +273,7 @@
   .wte-tabs button{font:800 14px Nunito,system-ui,sans-serif;border:0;background:transparent;color:#1F3127;padding:8px 16px;border-radius:999px;cursor:pointer;min-height:38px}
   .wte-tabs button[aria-selected=true]{background:#1F3127;color:#F4EEE3}
   .wte__hint{margin:0;font-size:13px;line-height:1.4;color:#56645A}
-  .wte-peek{position:fixed;right:12px;top:calc(env(safe-area-inset-top,0px) + 80px);z-index:25;display:none;width:128px;padding:0;border:2px solid #fff;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 10px 26px -8px rgba(31,49,39,.55);cursor:pointer}
+  .wte-peek{position:fixed;right:10px;top:calc(env(safe-area-inset-top,0px) + 78px);z-index:25;display:none;width:96px;opacity:.96;padding:0;border:2px solid #fff;border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 10px 26px -8px rgba(31,49,39,.55);cursor:pointer}
   .wte-peek.show{display:block}
   .wte-peek img{display:block;width:100%;aspect-ratio:2600/1850;object-fit:cover}
   .wte-peek span{display:block;padding:3px 0;font:800 11px Nunito,system-ui,sans-serif;color:#1F3127;text-align:center}
