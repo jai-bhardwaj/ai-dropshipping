@@ -1,0 +1,61 @@
+{%- comment -%} Woven Tails buy form: guided steps + personalization, straight to checkout. {%- endcomment -%}
+{%- liquid
+  assign current = product.selected_or_first_available_variant
+  assign h = product.handle
+  assign has_editor = false
+  if h contains 'blanket' or h contains 'gift-set'
+    assign has_editor = true
+  endif
+-%}
+<div class="wt-buy{% if has_editor %} has-editor{% endif %}" data-buy-anchor>
+  {%- form 'product', product, id: 'wt-buy-form', class: 'wt-buy__form' -%}
+    <input type="hidden" name="id" value="{{ current.id }}" data-wt-variant>
+    <input type="hidden" name="return_to" value="/checkout">
+    {%- unless product.has_only_default_variant -%}
+      {%- for option in product.options_with_values -%}
+        <section class="wt-card wt-card--options">
+          <h3 class="wt-card__h"><span class="wt-card__n">1</span>Choose the {{ option.name | downcase }}</h3>
+          <div class="wt-seg" role="radiogroup" aria-label="{{ option.name }}">
+            {%- for value in option.values -%}
+              <label class="wt-seg__opt"><input class="wt-opt" type="radio" name="wt-option-{{ forloop.parentloop.index0 }}" data-index="{{ forloop.parentloop.index0 }}" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %}><span>{{ value }}</span></label>
+            {%- endfor -%}
+          </div>
+        </section>
+      {%- endfor -%}
+    {%- endunless -%}
+    {% render 'woven-personalization', product: product, uid: 'buy' %}
+    <div class="wt-buy__cta">
+      <button type="submit" class="btn wt-buy__btn" {% unless current.available %}disabled{% endunless %}>Buy now · <span data-wt-price>{{ current.price | money_without_trailing_zeros }}</span></button>
+      <p class="wt-secure"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Secure checkout with PayPal or card</p>
+      <ul class="wt-trust">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><span><b>Free US shipping</b> with tracking</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 10.5l2.5 2.5L16 8"/></svg><span><b>Proof in 24 hours.</b> Nothing is made until you approve</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span><b>Free fix or refund</b> if anything is wrong</span></li>
+      </ul>
+    </div>
+  {%- endform -%}
+  <script type="application/json" data-wt-variants>[{%- for v in product.variants -%}{"id":{{ v.id }},"options":{{ v.options | json }},"price":{{ v.price | money_without_trailing_zeros | json }},"available":{{ v.available | json }}}{% unless forloop.last %},{% endunless %}{%- endfor -%}]</script>
+  <script>
+    (() => {
+      const root = document.currentScript.closest('.wt-buy');
+      const variants = JSON.parse(root.querySelector('[data-wt-variants]').textContent);
+      const idInput = root.querySelector('[data-wt-variant]'), price = root.querySelector('[data-wt-price]'), btn = root.querySelector('.wt-buy__btn');
+      const STYLE = [[/royal/i, 'royal'], [/christmas|scarf/i, 'christmas'], [/memorial/i, 'memorial'], [/pop/i, 'pop']];
+      const sync = () => {
+        const sel = [...root.querySelectorAll('.wt-opt:checked')].sort((a, b) => a.dataset.index - b.dataset.index).map((i) => i.value);
+        const v = variants.find((x) => x.options.every((o, i) => o === sel[i]));
+        if (v) { idInput.value = v.id; price.textContent = v.price; btn.disabled = !v.available; document.querySelectorAll('[data-wt-price-mirror]').forEach((el) => { el.textContent = v.price; }); }
+        for (const val of sel) for (const [re, st] of STYLE) if (re.test(val)) { document.dispatchEvent(new CustomEvent('wt:style', { detail: st })); break; }
+      };
+      root.addEventListener('change', (e) => { if (e.target.classList.contains('wt-opt')) sync(); });
+      root.querySelector('form').addEventListener('submit', (e) => { if (e.defaultPrevented) return; btn.disabled = true; btn.textContent = 'Taking you to checkout…'; });
+      // phones: the bottom bar's button buys (or jumps to the first unfinished step)
+      const wireBar = () => document.querySelectorAll('.buybar a[href="#create"]').forEach((a) => {
+        if (a.dataset.wtWired) return; a.dataset.wtWired = '1';
+        a.textContent = 'Buy now';
+        a.addEventListener('click', (e) => { e.preventDefault(); const f = root.querySelector('form'); if (f.requestSubmit) f.requestSubmit(btn); else btn.click(); });
+      });
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wireBar); else wireBar();
+    })();
+  </script>
+</div>

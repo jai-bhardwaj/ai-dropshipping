@@ -1,0 +1,9 @@
+<main class="wrap wt-shell">
+  <header class="wt-shell__head">
+    <span class="eyebrow">Shop</span>
+    <h1>{% if collection and collection.handle != 'all' and collection.title != blank %}{{ collection.title }}{% else %}Made from your pet's photo{% endif %}</h1>
+    <p class="lede">Every piece starts with one photo. You approve the art before anything is made.</p>
+  </header>
+  {% render 'wt-product-grid' %}
+</main>
+{% schema %}{ "name": "Woven Tails shop", "settings": [] }{% endschema %}

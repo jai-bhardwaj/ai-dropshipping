@@ -1,0 +1,12 @@
+<div class="wt-grid">
+  {%- assign handles = 'custom-pet-portrait-woven-blanket,personalized-pet-storybook,pet-portrait-gift-set' | split: ',' -%}
+  {%- for h in handles -%}
+    {%- assign p = all_products[h] -%}
+    {%- if p and p.id -%}
+      <a class="wt-grid__card" href="{{ p.url }}">
+        <img src="{{ p.featured_image | image_url: width: 700 }}" alt="{{ p.title | escape }}" width="700" height="700" loading="lazy">
+        <span class="wt-grid__body"><b>{{ p.title | split: ',' | first | split: ':' | first }}</b><span>{{ p.price | money_without_trailing_zeros }}</span></span>
+      </a>
+    {%- endif -%}
+  {%- endfor -%}
+</div>

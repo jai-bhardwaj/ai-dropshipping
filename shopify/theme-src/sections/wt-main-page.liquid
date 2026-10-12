@@ -1,0 +1,15 @@
+{%- comment -%} Plain content page (FAQ, About, Send your photo, privacy choices) in the Woven Tails look. {%- endcomment -%}
+<main class="wrap wt-shell">
+  <header class="wt-shell__head">
+    <span class="eyebrow">{% if template.name == 'article' %}{{ blog.title }}{% else %}Woven Tails{% endif %}</span>
+    <h1>{% if article %}{{ article.title }}{% elsif blog %}{{ blog.title }}{% else %}{{ page.title }}{% endif %}</h1>
+  </header>
+  <div class="rte">
+    {%- if article -%}{{ article.content }}
+    {%- elsif blog -%}
+      <ul class="wt-list">{% for a in blog.articles %}<li><a href="{{ a.url }}">{{ a.title }}</a></li>{% endfor %}</ul>
+    {%- else -%}{{ page.content }}{%- endif -%}
+  </div>
+  {% render 'wt-help' %}
+</main>
+{% schema %}{ "name": "Woven Tails content page", "settings": [] }{% endschema %}
