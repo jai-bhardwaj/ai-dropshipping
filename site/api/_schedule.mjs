@@ -9,8 +9,7 @@ const TAGS = {
 };
 
 export const POSTS = [
-  { date: '2026-10-12', slot: 'am', type: 'reel', media: ['social/reels/1A-photo-to-blanket.mp4'],
-    caption: `Upload your dog's photo. We'll weave it. 🧶\nPick a style, add their name, approve the proof. $64 · free US shipping · link in bio.\n${TAGS.blanket}` },
+  // 2026-10-12 am: photo-to-blanket reel went out through SocialAPI
   { date: '2026-10-12', slot: 'pm', type: 'carousel', media: ['social/post-03-style-1.jpg', 'social/post-03-style-2.jpg', 'social/post-03-style-3.jpg', 'social/post-03-style-4.jpg'],
     caption: `Same cat. Three styles. Which one would you pick? Comment 1, 2 or 3 👇\nBold Pop, Christmas or Royal (and a gentle Memorial style too). Try your own pet in every style on our site. Link in bio.\n#catsofinstagram #catlovers #custompetportrait #petportrait #christmasgifts` },
   { date: '2026-10-13', slot: 'am', type: 'reel', media: ['social/reels/4A-3d-blanket.mp4'],
