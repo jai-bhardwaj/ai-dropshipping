@@ -11,6 +11,7 @@
 //   POST /api/social?action=post   {type, media[], caption}   publish now (media = site paths or full URLs)
 //   POST /api/social?action=reply  {comment_id, message}
 //   GET  /api/social?action=refresh           extend the token (also runs automatically on Mondays)
+//   GET  /api/social?action=check             prepare (not publish) a photo and a reel to prove posting works
 import { POSTS } from './_schedule.mjs';
 
 const G = 'https://graph.instagram.com/v21.0';
@@ -80,6 +81,14 @@ export default async function handler(req, res) {
       return res.status(200).json({ date, slot, out });
     }
     if (action === 'post') return res.status(200).json(await publish(body));
+    if (action === 'check') {                              // prepare (not publish) one image + one reel to prove permissions work
+      const me = process.env.IG_USER_ID, deadline = Date.now() + 50000;
+      const img = (await ig(`/${me}/media`, { image_url: url('social/post-01-intro.jpg'), caption: 'check' })).id;
+      await waitReady(img, deadline);
+      const reel = (await ig(`/${me}/media`, { media_type: 'REELS', video_url: url('social/reels/4D-3d-gift-set.mp4'), caption: 'check' })).id;
+      await waitReady(reel, deadline);
+      return res.status(200).json({ image_container: img, reel_container: reel, published: false });
+    }
     if (action === 'me') return res.status(200).json(await ig('/me', { fields: 'user_id,username,name,followers_count,follows_count,media_count' }, 'GET'));
     if (action === 'media') return res.status(200).json(await ig(`/${process.env.IG_USER_ID}/media`, { fields: 'id,caption,media_type,permalink,timestamp,like_count,comments_count', limit: q.get('limit') || '25' }, 'GET'));
     if (action === 'comments') return res.status(200).json(await ig(`/${q.get('id')}/comments`, { fields: 'id,text,username,timestamp,replies{id,text,username,timestamp}' }, 'GET'));
