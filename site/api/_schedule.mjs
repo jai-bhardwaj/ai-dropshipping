@@ -18,8 +18,6 @@ export const POSTS = [
     caption: `Woven, not printed. Here's the difference 🧵\nOn our blankets the picture is made of colored cotton threads, not ink on top. That's why every design gets a bold style first: bold art weaves beautifully. Link in bio.\n#wovenblanket #jacquard #petportrait #handmadegifts #doglovers` },
   { date: '2026-10-14', slot: 'am', type: 'carousel', media: ['social/post-05-book-1.jpg', 'social/post-05-book-2.jpg', 'social/post-05-book-3.jpg', 'social/post-05-book-4.jpg', 'social/post-05-book-5.jpg'],
     caption: `What if your dog was the hero of a book? 📖\n"Sunny and the Very Big Day": 24 illustrated pages starring your pet, with your family's names in the story. Hardcover, printed to order in the USA. $42. Link in bio.\n${TAGS.book}` },
-  { date: '2026-10-14', slot: 'pm', type: 'reel', media: ['social/reels/2A-storybook-hero.mp4'],
-    caption: `What if your dog was the hero of a book? 📖 $42 · link in bio\n${TAGS.book}` },
   { date: '2026-10-15', slot: 'am', type: 'image', media: ['social/post-06-cat-book.jpg'],
     caption: `Your cat already thinks they're the main character. We just made it official. 😼\nA 24-page storybook starring your cat. $42. Link in bio.\n${TAGS.cat}` },
   { date: '2026-10-15', slot: 'pm', type: 'reel', media: ['social/reels/2C-cat-main-character.mp4'],
