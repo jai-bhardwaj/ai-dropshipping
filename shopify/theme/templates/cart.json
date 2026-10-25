@@ -1,0 +1,12 @@
+{
+  "layout": "woven",
+  "sections": {
+    "main": {
+      "type": "wt-cart",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

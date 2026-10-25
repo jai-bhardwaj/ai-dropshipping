@@ -1,0 +1,66 @@
+<main class="wrap wt-shell">
+  <header class="wt-shell__head"><span class="eyebrow">Free US shipping on every order</span><h1>Your cart</h1></header>
+  {%- if cart.item_count == 0 -%}
+    <p class="lede">Your cart is empty. Start with your pet's photo:</p>
+    {% render 'wt-product-grid' %}
+  {%- else -%}
+  <form action="{{ routes.cart_url }}" method="post" class="wt-cart" id="wt-cart">
+    <ul class="wt-cart__items">
+      {%- for item in cart.items -%}
+        {%- liquid
+          assign design = item.properties['Design']
+          assign thumb = item.image | image_url: width: 300
+          if design contains 'http'
+            assign thumb = design
+          endif
+        -%}
+        <li class="wt-cart__item">
+          <img class="wt-cart__img" src="{{ thumb }}" alt="" width="120" height="120" loading="lazy">
+          <div class="wt-cart__info">
+            <a class="wt-cart__title" href="{{ item.url }}">{{ item.product.title }}</a>
+            {%- unless item.product.has_only_default_variant -%}<span class="wt-cart__meta">{{ item.variant.title }}</span>{%- endunless -%}
+            {%- assign photos = 0 -%}
+            <dl class="wt-cart__props">
+              {%- for p in item.properties -%}
+                {%- assign k = p.first -%}{%- assign first = k | slice: 0 -%}
+                {%- if p.last == blank or first == '_' -%}{%- continue -%}{%- endif -%}
+                {%- if k contains 'photo' or k == 'Design' -%}{%- assign photos = photos | plus: 1 -%}{%- continue -%}{%- endif -%}
+                <div><dt>{{ k }}</dt><dd>{{ p.last }}</dd></div>
+              {%- endfor -%}
+              {%- if photos > 0 -%}<div><dt>Your design</dt><dd>Saved ✓</dd></div>{%- endif -%}
+            </dl>
+            <div class="wt-cart__row">
+              <label class="wt-qty"><span class="sr">Quantity</span>
+                <button type="button" data-step="-1" aria-label="One fewer">−</button>
+                <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" inputmode="numeric">
+                <button type="button" data-step="1" aria-label="One more">+</button>
+              </label>
+              <a class="wt-cart__remove" href="{{ item.url_to_remove }}">Remove</a>
+            </div>
+          </div>
+          <span class="wt-cart__price">{{ item.final_line_price | money_without_trailing_zeros }}</span>
+        </li>
+      {%- endfor -%}
+    </ul>
+    <aside class="wt-cart__sum">
+      <div class="wt-cart__line"><span>Subtotal</span><b>{{ cart.total_price | money_without_trailing_zeros }}</b></div>
+      <div class="wt-cart__line"><span>Shipping</span><b>Free</b></div>
+      <p class="note">Have a discount code? Add it at checkout.</p>
+      <button class="btn wt-cart__go" type="submit" name="checkout">Checkout</button>
+      <ul class="wt-trust">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 10.5l2.5 2.5L16 8"/></svg><span><b>Proof in 24 hours.</b> Nothing is made until you approve</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span><b>Free fix or refund</b> if anything is wrong</span></li>
+      </ul>
+      <button class="sr" type="submit" name="update">Update cart</button>
+    </aside>
+  </form>
+  <script>
+    (() => {
+      const f = document.getElementById('wt-cart'); if (!f) return;
+      f.addEventListener('click', (e) => { const b = e.target.closest('[data-step]'); if (!b) return; const i = b.parentElement.querySelector('input'); i.value = Math.max(0, +i.value + +b.dataset.step); f.requestSubmit ? f.requestSubmit(f.querySelector('[name=update]')) : f.submit(); });
+      f.addEventListener('change', (e) => { if (e.target.name === 'updates[]') f.requestSubmit ? f.requestSubmit(f.querySelector('[name=update]')) : f.submit(); });
+    })();
+  </script>
+  {%- endif -%}
+</main>
+{% schema %}{ "name": "Woven Tails cart", "settings": [] }{% endschema %}

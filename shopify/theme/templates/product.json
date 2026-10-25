@@ -1,0 +1,12 @@
+{
+  "layout": "woven",
+  "sections": {
+    "main": {
+      "type": "wt-product",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

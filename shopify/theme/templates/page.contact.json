@@ -1,0 +1,12 @@
+{
+  "layout": "woven",
+  "sections": {
+    "main": {
+      "type": "wt-contact",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

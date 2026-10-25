@@ -1,0 +1,19 @@
+{%- liquid
+  assign page = section.settings.page
+-%}
+{%- case page -%}
+  {%- when 'home' -%}{% render 'wt-home' %}
+  {%- when 'blanket' -%}{% render 'wt-blanket', product: product %}
+  {%- when 'storybook' -%}{% render 'wt-storybook', product: product %}
+  {%- when 'gift-set' -%}{% render 'wt-gift-set', product: product %}
+{%- endcase -%}
+{% schema %}
+{
+  "name": "Woven Tails page",
+  "settings": [
+    { "type": "select", "id": "page", "label": "Page", "default": "home",
+      "options": [ { "value": "home", "label": "Home" }, { "value": "blanket", "label": "Blanket" }, { "value": "storybook", "label": "Storybook" }, { "value": "gift-set", "label": "Gift set" } ] }
+  ],
+  "presets": [ { "name": "Woven Tails page" } ]
+}
+{% endschema %}
